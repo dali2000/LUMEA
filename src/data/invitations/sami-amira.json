@@ -1,0 +1,25 @@
+{
+  "theme": "tunisian-heritage",
+  "couple": { "name1": "Sami", "name2": "Amira" },
+  "message": "Nous serions honorés de votre présence pour célébrer notre mariage.",
+  "date": "2027-07-03T18:30:00",
+  "location": {
+    "name": "Sidi Bou Saïd",
+    "address": "Tunis",
+    "mapsUrl": "https://maps.google.com/?q=Sidi+Bou+Said"
+  },
+  "program": [
+    { "time": "18:30", "label": "Cérémonie" },
+    { "time": "20:00", "label": "Cocktail" },
+    { "time": "21:30", "label": "Dîner" }
+  ],
+  "quote": "Entre le bleu du ciel et le blanc des murs, notre histoire commence.",
+  "gallery": [
+    { "caption": "Nos fiançailles" },
+    { "caption": "À Sidi Bou Saïd" }
+  ],
+  "rsvp": {
+    "deadline": "2027-06-15",
+    "contactEmail": "sami.amira@example.com"
+  }
+}

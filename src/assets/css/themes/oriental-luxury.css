@@ -1,0 +1,39 @@
+/* Oriental Luxury — noir profond, champagne, dore genereux, motifs orientaux subtils. */
+.theme-oriental-luxury {
+  --bg: #15120f;
+  --bg-alt: #1c1611;
+  --text: #f3eadd;
+  --text-muted: #b9a988;
+  --text-inverse: #15120f;
+  --accent: #c9a96a;
+  --accent-strong: #c9a96a;
+  --border: rgba(201, 169, 106, 0.22);
+  --border-on-dark: rgba(243, 234, 221, 0.16);
+  --shadow-soft: 0 4px 28px rgba(0, 0, 0, 0.35);
+}
+
+.theme-oriental-luxury .invite-names,
+.theme-oriental-luxury .quote-block p {
+  letter-spacing: 0.03em;
+}
+
+.theme-oriental-luxury .invite-hero {
+  position: relative;
+  isolation: isolate;
+}
+.theme-oriental-luxury .invite-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.16;
+  z-index: -1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cg fill='none' stroke='%23C9A96A' stroke-width='1'%3E%3Cpath d='M32 2 L62 32 L32 62 L2 32 Z'/%3E%3Cpath d='M32 16 L48 32 L32 48 L16 32 Z'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 64px 64px;
+}
+
+.theme-oriental-luxury .program-list::before { background: var(--accent); opacity: 0.6; }
+.theme-oriental-luxury .program-item::before { background: var(--accent); }
+.theme-oriental-luxury .gallery-tile { border-color: var(--border); }
+.theme-oriental-luxury .btn-primary { background: var(--accent); color: var(--text-inverse); }
+.theme-oriental-luxury .btn-primary:hover { background: #d8bb84; }
+.theme-oriental-luxury .btn-ghost { border-color: var(--accent); }

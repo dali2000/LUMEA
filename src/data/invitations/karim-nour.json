@@ -1,0 +1,27 @@
+{
+  "theme": "modern-wedding",
+  "couple": { "name1": "Karim", "name2": "Nour" },
+  "message": "On se marie. Soyez là.",
+  "date": "2027-09-18T19:00:00",
+  "location": {
+    "name": "La Villa Didon",
+    "address": "Carthage",
+    "mapsUrl": "https://maps.google.com/?q=Villa+Didon+Carthage"
+  },
+  "program": [
+    { "time": "19:00", "label": "Cérémonie" },
+    { "time": "20:00", "label": "Cocktail" },
+    { "time": "21:30", "label": "Dîner" },
+    { "time": "23:00", "label": "DJ set" }
+  ],
+  "quote": "Deux trajectoires, une seule direction.",
+  "gallery": [
+    { "caption": "Shooting engagement" },
+    { "caption": "New York, 2025" },
+    { "caption": "Le jour J approche" }
+  ],
+  "rsvp": {
+    "deadline": "2027-08-25",
+    "contactEmail": "karim.nour@example.com"
+  }
+}

@@ -1,0 +1,39 @@
+/* Tunisian Heritage — bleu profond, blanc, motifs de zellige, touches dorees. */
+.theme-tunisian-heritage {
+  --bg: #ffffff;
+  --bg-alt: #eaf2f5;
+  --text: #1b3a4b;
+  --text-muted: #5b7482;
+  --text-inverse: #ffffff;
+  --accent: #b08d57;
+  --accent-strong: #1b3a4b;
+  --border: rgba(27, 58, 75, 0.16);
+  --border-on-dark: rgba(255, 255, 255, 0.2);
+}
+
+.theme-tunisian-heritage .invite-hero {
+  position: relative;
+  isolation: isolate;
+}
+.theme-tunisian-heritage .invite-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+  z-index: -1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='52' height='52'%3E%3Cg fill='none' stroke='%231B3A4B' stroke-width='1'%3E%3Ccircle cx='26' cy='26' r='9'/%3E%3Cpath d='M26 2 V50 M2 26 H50'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 52px 52px;
+}
+
+/* A thin zigzag rule, evocative of tile-edge borders, under the hero and above the footer */
+.theme-tunisian-heritage .invite-hero {
+  border-bottom: 10px solid transparent;
+  border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='10'%3E%3Cpath d='M0 10 L5 0 L10 10 L15 0 L20 10' fill='none' stroke='%23B08D57' stroke-width='1.4'/%3E%3C/svg%3E") 0 0 10 0 repeat;
+}
+
+.theme-tunisian-heritage .program-item::before { background: var(--accent-strong); border: 2px solid var(--accent); background-clip: padding-box; }
+.theme-tunisian-heritage .program-time { color: var(--accent-strong); }
+.theme-tunisian-heritage .btn-primary { background: var(--accent-strong); }
+.theme-tunisian-heritage .btn-primary:hover { background: #244f66; }
+.theme-tunisian-heritage .label { color: var(--accent-strong); }
+.theme-tunisian-heritage .invite-date { color: var(--accent); }

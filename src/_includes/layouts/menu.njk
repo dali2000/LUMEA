@@ -1,7 +1,7 @@
 ---
 layout: layouts/base.njk
 eleventyComputed:
-  extraCss: ["/assets/css/themes/{{ menu.theme }}.css"]
+  themeCss: "/assets/css/themes/{{ menu.theme }}.css"
   bodyClass: "page-menu theme-{{ menu.theme }}"
 ---
 {% from "partials/icons.njk" import icon %}

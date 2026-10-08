@@ -1,8 +1,8 @@
 ---
 layout: layouts/base.njk
+extraJs: ["/assets/js/countdown.js", "/assets/js/gallery.js", "/assets/js/rsvp.js"]
 eleventyComputed:
-  extraCss: ["/assets/css/themes/{{ invite.theme }}.css"]
-  extraJs: ["/assets/js/countdown.js", "/assets/js/gallery.js", "/assets/js/rsvp.js"]
+  themeCss: "/assets/css/themes/{{ invite.theme }}.css"
   bodyClass: "page-invitation theme-{{ invite.theme }}"
 ---
 {% from "partials/icons.njk" import icon %}

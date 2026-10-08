@@ -23,9 +23,15 @@ npm run build    # build de production dans ./_site
 2. Renommez le fichier avec le slug souhaité, ex. `mohamed-sarah.json`
    → la page sera générée sur `/invitations/mohamed-sarah/`.
 3. Remplissez les champs (`couple`, `date`, `location`, `program`, `gallery`,
-   `quote`, `rsvp`). Le champ `theme` choisit le thème visuel
-   (actuellement `minimal-wedding`; les thèmes suivants se créent dans
-   `src/_includes/themes/` + `src/assets/css/themes/`).
+   `quote`, `rsvp`). Le champ `theme` choisit le thème visuel parmi :
+   `minimal-wedding`, `oriental-luxury`, `tunisian-heritage`,
+   `modern-wedding`, `floral`. Chaque thème est un simple fichier CSS dans
+   `src/assets/css/themes/` qui redéfinit les variables de couleur (et,
+   pour Modern Wedding, quelques réglages de mise en page) — le layout
+   HTML (`src/_includes/layouts/invitation.njk`) reste le même pour tous.
+   Pour créer un 7e thème : dupliquez un fichier CSS de thème, ajustez les
+   variables `--bg`/`--text`/`--accent`/etc., donnez-lui un nom de classe
+   `.theme-<slug>`, et utilisez ce `<slug>` comme valeur de `theme`.
 4. `npm run build` — aucune autre modification de code n'est nécessaire.
 
 ## Ajouter un menu digital

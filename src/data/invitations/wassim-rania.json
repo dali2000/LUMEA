@@ -1,0 +1,27 @@
+{
+  "theme": "floral",
+  "couple": { "name1": "Wassim", "name2": "Rania" },
+  "message": "Nous avons le bonheur de vous inviter à célébrer notre mariage, entouré de fleurs et de ceux que nous aimons.",
+  "date": "2027-04-24T17:30:00",
+  "location": {
+    "name": "Les Jardins d'Hammamet",
+    "address": "Hammamet",
+    "mapsUrl": "https://maps.google.com/?q=Les+Jardins+Hammamet"
+  },
+  "program": [
+    { "time": "17:30", "label": "Cérémonie" },
+    { "time": "18:30", "label": "Cocktail au jardin" },
+    { "time": "20:30", "label": "Dîner" }
+  ],
+  "quote": "Comme les fleurs s'ouvrent au printemps, notre amour s'épanouit chaque jour un peu plus.",
+  "gallery": [
+    { "caption": "Au jardin" },
+    { "caption": "Nos fiançailles" },
+    { "caption": "En weekend" },
+    { "caption": "Avec nos proches" }
+  ],
+  "rsvp": {
+    "deadline": "2027-04-01",
+    "contactEmail": "wassim.rania@example.com"
+  }
+}

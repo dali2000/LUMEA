@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="/assets/css/main.css">
-  {% for href in extraCss %}<link rel="stylesheet" href="{{ href }}">{% endfor %}
+  {% if themeCss %}<link rel="stylesheet" href="{{ themeCss }}">{% endif %}
 </head>
 <body class="{{ bodyClass }}">
   {{ content | safe }}

@@ -1,6 +1,6 @@
 {
   "theme": "minimal-wedding",
-  "couple": { "name1": "Amine", "name2": "Latifa" },
+  "couple": { "name1": "Dali", "name2": "Latifa" },
   "message": "Nous avons le plaisir de vous inviter à célébrer notre mariage.",
   "date": "2027-05-15T18:00:00",
   "location": {
@@ -23,6 +23,6 @@
   ],
   "rsvp": {
     "deadline": "2027-05-01",
-    "contactEmail": "amine.latifa@example.com"
+    "contactEmail": "dali.latifa@example.com"
   }
 }

@@ -1,0 +1,27 @@
+{
+  "theme": "oriental-luxury",
+  "couple": { "name1": "Mohamed", "name2": "Sarah" },
+  "message": "Avec joie, nous vous invitons à célébrer notre union.",
+  "date": "2027-06-12T19:00:00",
+  "location": {
+    "name": "Dar Sébastian",
+    "address": "Hammamet",
+    "mapsUrl": "https://maps.google.com/?q=Dar+Sebastian+Hammamet"
+  },
+  "program": [
+    { "time": "19:00", "label": "Henné" },
+    { "time": "20:30", "label": "Cérémonie" },
+    { "time": "21:30", "label": "Dîner" },
+    { "time": "23:30", "label": "Soirée" }
+  ],
+  "quote": "Que notre histoire soit aussi belle que la lumière du soir sur la médina.",
+  "gallery": [
+    { "caption": "Nos fiançailles" },
+    { "caption": "La demande" },
+    { "caption": "En famille" }
+  ],
+  "rsvp": {
+    "deadline": "2027-05-20",
+    "contactEmail": "mohamed.sarah@example.com"
+  }
+}

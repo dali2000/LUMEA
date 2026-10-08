@@ -1,0 +1,46 @@
+/* Modern Wedding — tres moderne, typographie editoriale a grande echelle, contraste franc. */
+.theme-modern-wedding {
+  --bg: #ffffff;
+  --bg-alt: #f2f2f0;
+  --text: #0d0d0d;
+  --text-muted: #6b6b6b;
+  --accent: #15120f;
+  --accent-strong: #15120f;
+  --border: rgba(13, 13, 13, 0.12);
+  --radius-sm: 2px;
+  --radius-md: 2px;
+}
+
+.theme-modern-wedding .invite-hero {
+  min-height: 100vh;
+  text-align: left;
+  align-items: flex-end;
+  padding-bottom: var(--space-12);
+}
+.theme-modern-wedding .hero-inner { max-width: none; width: 100%; }
+.theme-modern-wedding .label { color: var(--text-muted); letter-spacing: 0.2em; }
+.theme-modern-wedding .invite-names {
+  font-size: clamp(3.5rem, 11vw, 7.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  margin: var(--space-2) 0;
+}
+.theme-modern-wedding .invite-message,
+.theme-modern-wedding .invite-date { text-align: left; margin-inline: 0; }
+.theme-modern-wedding .invite-date { border-top: 1px solid var(--border); padding-top: var(--space-2); margin-top: var(--space-3); display: inline-block; }
+
+.theme-modern-wedding .section-head { text-align: left; margin-inline: 0; }
+.theme-modern-wedding .section-head.center { text-align: left; }
+.theme-modern-wedding h2 { font-size: clamp(1.75rem, 4vw, 2.75rem); letter-spacing: -0.01em; }
+
+.theme-modern-wedding .program-list { text-align: left; margin-inline: 0; }
+.theme-modern-wedding .quote-block { text-align: left; margin-inline: 0; max-width: 680px; }
+.theme-modern-wedding .quote-block p { font-style: normal; font-weight: 500; font-size: 1.6rem; }
+.theme-modern-wedding .gallery-tile { border-radius: 2px; filter: saturate(1) grayscale(0.1); }
+.theme-modern-wedding .btn { border-radius: 2px; }
+.theme-modern-wedding .btn-primary:hover { background: #2a2520; transform: none; }
+
+.theme-modern-wedding .info-columns { text-align: left; }
+.theme-modern-wedding .countdown { justify-content: flex-start; }
+.theme-modern-wedding .rsvp-form { text-align: left; margin-inline: 0; }
+
