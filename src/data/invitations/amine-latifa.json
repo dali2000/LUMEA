@@ -1,0 +1,28 @@
+{
+  "theme": "minimal-wedding",
+  "couple": { "name1": "Amine", "name2": "Latifa" },
+  "message": "Nous avons le plaisir de vous inviter à célébrer notre mariage.",
+  "date": "2027-05-15T18:00:00",
+  "location": {
+    "name": "Dar El Marsa",
+    "address": "La Marsa, Tunis",
+    "mapsUrl": "https://maps.google.com/?q=Dar+El+Marsa+La+Marsa"
+  },
+  "program": [
+    { "time": "18:00", "label": "Cérémonie" },
+    { "time": "19:30", "label": "Cocktail" },
+    { "time": "21:00", "label": "Dîner" },
+    { "time": "23:00", "label": "Soirée" }
+  ],
+  "quote": "Deux chemins qui se sont trouvés, pour n'en former qu'un seul. Merci de faire partie de notre histoire.",
+  "gallery": [
+    { "caption": "Nos fiançailles" },
+    { "caption": "En Sicile" },
+    { "caption": "Le jour de la demande" },
+    { "caption": "Avec nos proches" }
+  ],
+  "rsvp": {
+    "deadline": "2027-05-01",
+    "contactEmail": "amine.latifa@example.com"
+  }
+}

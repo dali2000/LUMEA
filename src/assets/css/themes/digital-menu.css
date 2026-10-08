@@ -1,0 +1,7 @@
+/* Digital Menu — restaurant-premium: noir profond + champagne, grille de prix stricte. */
+.theme-digital-menu body {
+  background: var(--bg);
+}
+.theme-digital-menu .menu-item-name {
+  letter-spacing: 0.01em;
+}

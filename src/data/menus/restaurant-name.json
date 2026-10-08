@@ -1,0 +1,50 @@
+{
+  "theme": "digital-menu",
+  "restaurant": {
+    "name": "Le Jardin",
+    "tagline": "Cuisine méditerranéenne"
+  },
+  "categories": [
+    {
+      "name": "Entrées",
+      "items": [
+        { "name": "Brik à l'œuf", "description": "Brick croustillante, thon, câpres", "price": "8 DT" },
+        { "name": "Salade méchouia", "description": "Poivrons et tomates grillés, thon, œuf", "price": "10 DT" },
+        { "name": "Soupe de poisson", "description": "Poissons de roche, rouille maison", "price": "12 DT" }
+      ]
+    },
+    {
+      "name": "Plats",
+      "items": [
+        { "name": "Loup de mer grillé", "description": "Légumes de saison, sauce citron", "price": "38 DT" },
+        { "name": "Couscous royal", "description": "Agneau, poulet, merguez, légumes", "price": "32 DT" },
+        { "name": "Risotto aux fruits de mer", "description": "Crevettes, calamars, safran", "price": "34 DT" }
+      ]
+    },
+    {
+      "name": "Desserts",
+      "items": [
+        { "name": "Makroudh maison", "description": "Dattes, semoule, miel", "price": "7 DT" },
+        { "name": "Tiramisu", "description": "Mascarpone, café, cacao", "price": "9 DT" }
+      ]
+    },
+    {
+      "name": "Boissons",
+      "items": [
+        { "name": "Thé à la menthe", "description": "Pignons de pin", "price": "6 DT" },
+        { "name": "Jus d'orange frais", "description": "Pressé minute", "price": "7 DT" },
+        { "name": "Eau minérale", "description": "50cl", "price": "3 DT" }
+      ]
+    }
+  ],
+  "specialties": ["Loup de mer grillé", "Couscous royal"],
+  "contact": {
+    "phone": "+21620000000",
+    "whatsapp": "https://wa.me/21620000000"
+  },
+  "location": {
+    "address": "Avenue Habib Bourguiba, Tunis",
+    "mapsUrl": "https://maps.google.com/?q=Avenue+Habib+Bourguiba+Tunis"
+  },
+  "hours": "Tous les jours · 12h00 – 23h00"
+}

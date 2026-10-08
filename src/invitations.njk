@@ -1,0 +1,11 @@
+---
+layout: layouts/invitation.njk
+pagination:
+  data: collections.invitations
+  size: 1
+  alias: invite
+permalink: "/invitations/{{ invite.slug }}/"
+eleventyComputed:
+  title: "{{ invite.couple.name1 }} & {{ invite.couple.name2 }}"
+  description: "{{ invite.message }}"
+---

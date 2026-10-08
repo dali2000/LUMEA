@@ -1,0 +1,11 @@
+---
+layout: layouts/menu.njk
+pagination:
+  data: collections.menus
+  size: 1
+  alias: menu
+permalink: "/menus/{{ menu.slug }}/"
+eleventyComputed:
+  title: "{{ menu.restaurant.name }}"
+  description: "{{ menu.restaurant.tagline }}"
+---

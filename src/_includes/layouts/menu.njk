@@ -1,0 +1,94 @@
+---
+layout: layouts/base.njk
+eleventyComputed:
+  extraCss: ["/assets/css/themes/{{ menu.theme }}.css"]
+  bodyClass: "page-menu theme-{{ menu.theme }}"
+---
+{% from "partials/icons.njk" import icon %}
+
+<section class="menu-cover">
+  <div>
+    <span class="label">{{ site.name }} Menu</span>
+    <h1>{{ menu.restaurant.name }}</h1>
+    <p>{{ menu.restaurant.tagline }}</p>
+  </div>
+</section>
+
+<nav class="category-nav">
+  {% for cat in menu.categories %}
+  <a href="#{{ cat.name | slug }}">{{ cat.name }}</a>
+  {% endfor %}
+  {% if menu.specialties and menu.specialties.length %}<a href="#specialites">Spécialités</a>{% endif %}
+  <a href="#infos">Infos</a>
+</nav>
+
+{% for cat in menu.categories %}
+<section id="{{ cat.name | slug }}" class="menu-category">
+  <div class="container">
+    <div class="section-head">
+      <span class="label">{{ cat.name }}</span>
+    </div>
+    <div class="reveal">
+      {% for item in cat.items %}
+      <div class="menu-item">
+        <div>
+          <div class="menu-item-name">{{ item.name }}</div>
+          <div class="menu-item-desc">{{ item.description }}</div>
+        </div>
+        <div class="menu-item-price">{{ item.price }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endfor %}
+
+{% if menu.specialties and menu.specialties.length %}
+<section id="specialites" class="section section--alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="label">Spécialités</span>
+      <h2>Nos incontournables</h2>
+    </div>
+    <div class="specialty-grid reveal">
+      {% for name in menu.specialties %}
+      <div class="card specialty-card">
+        <span class="label">Spécialité</span>
+        <h3>{{ name }}</h3>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section id="infos" class="section">
+  <div class="container menu-info">
+    <div class="reveal">
+      <h3>{{ icon("clock") }} Horaires</h3>
+      <p>{{ menu.hours }}</p>
+      <h3 style="margin-top:var(--space-3);">{{ icon("phone") }} Contact</h3>
+      <p><a href="tel:{{ menu.contact.phone }}">{{ menu.contact.phone }}</a></p>
+      {% if menu.contact.whatsapp %}<p><a href="{{ menu.contact.whatsapp }}" target="_blank" rel="noopener">{{ icon("whatsapp") }} Écrire sur WhatsApp</a></p>{% endif %}
+    </div>
+    <div class="reveal">
+      <h3>{{ icon("map-pin") }} Localisation</h3>
+      <p>{{ menu.location.address }}</p>
+      <a href="{{ menu.location.mapsUrl }}" target="_blank" rel="noopener" class="btn btn-ghost">Itinéraire</a>
+    </div>
+  </div>
+</section>
+
+<footer class="invite-footer">
+  <div class="logo"><span class="logo-word" style="font-size:1rem;">Créé avec LUMÉA</span></div>
+  <p style="color:var(--text-muted);font-size:var(--size-small);">lumea.tn</p>
+</footer>
+
+<script>
+  document.querySelectorAll(".category-nav a").forEach((a) => {
+    a.addEventListener("click", () => {
+      document.querySelectorAll(".category-nav a").forEach((x) => x.classList.remove("is-active"));
+      a.classList.add("is-active");
+    });
+  });
+</script>

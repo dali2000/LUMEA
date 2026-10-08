@@ -1,0 +1,61 @@
+:root {
+  /* Colors */
+  --color-ivory: #faf7f2;
+  --color-champagne: #e8dfd1;
+  --color-ink: #15120f;
+  --color-gold: #b08d57;
+  --color-bordeaux: #7a3b32;
+  --color-ivory-rgb: 250, 247, 242;
+  --color-ink-rgb: 21, 18, 15;
+  --color-gold-rgb: 176, 141, 87;
+
+  /* Semantic */
+  --bg: var(--color-ivory);
+  --bg-alt: var(--color-champagne);
+  --bg-dark: var(--color-ink);
+  --text: var(--color-ink);
+  --text-inverse: var(--color-ivory);
+  --text-muted: #5c564c;
+  --accent: var(--color-gold);
+  --accent-strong: var(--color-bordeaux);
+  --border: rgba(var(--color-ink-rgb), 0.12);
+  --border-on-dark: rgba(var(--color-ivory-rgb), 0.16);
+
+  /* Typography */
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --size-display: clamp(2.75rem, 6vw, 4rem);
+  --size-h1: clamp(1.75rem, 4vw, 2.5rem);
+  --size-h2: clamp(1.375rem, 2.5vw, 1.75rem);
+  --size-body: 1.0625rem;
+  --size-small: 0.875rem;
+  --size-label: 0.75rem;
+
+  /* Spacing scale (base 8) */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-6: 3rem;
+  --space-8: 4rem;
+  --space-12: 6rem;
+
+  /* Shape */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --shadow-soft: 0 4px 24px rgba(var(--color-ink-rgb), 0.05);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration: 700ms;
+
+  --container-max: 1200px;
+  --gutter: 1.5rem;
+}
+
+@media (min-width: 960px) {
+  :root {
+    --gutter: 5rem;
+  }
+}

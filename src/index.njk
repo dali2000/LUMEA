@@ -1,0 +1,243 @@
+---
+layout: layouts/base.njk
+title: "LUMÉA — Digital Invitations & Menus"
+description: "Invitations et menus digitaux élégants pour mariages, anniversaires, naissances et restaurants. Votre moment, beautifully designed."
+bodyClass: "page-landing"
+---
+{% from "partials/logo.njk" import mark, symbol %}
+{% from "partials/icons.njk" import icon %}
+
+<header class="site-header">
+  {{ mark() }}
+  <a href="#pricing" class="btn btn-ghost">Voir nos tarifs</a>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="logo-word">LUMÉA</span>
+    <p class="hero-tagline">Digital Invitations &amp; Menus</p>
+    <p class="hero-signature">Your moment, beautifully designed.</p>
+    <div class="btn-row center">
+      <a href="#collections" class="btn btn-ghost">Découvrir nos designs</a>
+      <a href="#pricing" class="btn btn-primary">Créer votre invitation</a>
+    </div>
+  </div>
+</section>
+
+<section id="collections" class="section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="label">Collections</span>
+      <h2>Une création pour chaque moment</h2>
+    </div>
+    <div class="grid grid-5 reveal">
+      {% set collections = [
+        { name: "Wedding", desc: "6 templates" },
+        { name: "Birthday", desc: "3 templates" },
+        { name: "Events", desc: "4 templates" },
+        { name: "Digital Menus", desc: "2 templates" },
+        { name: "Custom", desc: "Sur-mesure" }
+      ] %}
+      {% for c in collections %}
+      <div class="collection-card">
+        <div>
+          <span class="label">{{ c.desc }}</span>
+          <h3>{{ c.name }}</h3>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-head center">
+      <span class="label">Showcase</span>
+      <h2>Nos créations, en situation</h2>
+    </div>
+    <div class="showcase-track reveal">
+      {% set showcase = [
+        "Mariage — Amine & Latifa",
+        "Mariage — Mohamed & Sarah",
+        "Menu — Le Jardin",
+        "Naissance — Yassine & Ines"
+      ] %}
+      {% for s in showcase %}
+      <div class="phone">
+        <div class="phone-frame"><p class="label">{{ s }}</p></div>
+        <p class="phone-caption">{{ s }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="label">Comment ça marche</span>
+      <h2>De l'idée au lien partagé, en 5 étapes</h2>
+    </div>
+    <div class="steps reveal">
+      {% set steps = [
+        "Choisissez votre design",
+        "Envoyez vos informations",
+        "Nous créons votre invitation",
+        "Recevez votre lien",
+        "Partagez-le avec vos invités"
+      ] %}
+      {% for s in steps %}
+      <div class="step">
+        <div class="step-number">0{{ loop.index }}</div>
+        <h3>{{ s }}</h3>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-head center">
+      <span class="label">Features</span>
+      <h2>Tout ce qu'il faut, rien de superflu</h2>
+    </div>
+    <div class="grid grid-3 reveal">
+      {% set features = [
+        { icon: "responsive", label: "Design responsive" },
+        { icon: "qrcode", label: "QR Code" },
+        { icon: "map-pin", label: "Google Maps" },
+        { icon: "countdown", label: "Countdown" },
+        { icon: "gallery", label: "Galerie photos" },
+        { icon: "rsvp", label: "RSVP" },
+        { icon: "program", label: "Programme" },
+        { icon: "animations", label: "Animations" },
+        { icon: "music", label: "Musique optionnelle" },
+        { icon: "whatsapp", label: "Partage WhatsApp" }
+      ] %}
+      {% for f in features %}
+      <div class="feature">
+        {{ icon(f.icon) }}
+        <span>{{ f.label }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="label">Pricing</span>
+      <h2>Un tarif pour chaque événement</h2>
+    </div>
+    <div class="pricing-grid reveal">
+      <div class="card pricing-card">
+        <span class="label">Essential</span>
+        <p class="price">120–180 <span>DT</span></p>
+        <p>Anniversaires, naissances, petits événements</p>
+        <ul class="pricing-features">
+          <li>{{ icon("check") }} 1 template au choix</li>
+          <li>{{ icon("check") }} Date, lieu, countdown</li>
+          <li>{{ icon("check") }} Lien partageable</li>
+          <li>{{ icon("check") }} 1 retouche incluse</li>
+        </ul>
+      </div>
+      <div class="card pricing-card featured">
+        <span class="pricing-badge">Le plus populaire</span>
+        <span class="label">Premium</span>
+        <p class="price">280–380 <span>DT</span></p>
+        <p>Mariages, fiançailles, événements moyens</p>
+        <ul class="pricing-features">
+          <li>{{ icon("check") }} Tout Essential</li>
+          <li>{{ icon("check") }} Galerie photos + RSVP</li>
+          <li>{{ icon("check") }} Programme &amp; QR code</li>
+          <li>{{ icon("check") }} 3 retouches, livraison 48-72h</li>
+        </ul>
+      </div>
+      <div class="card pricing-card">
+        <span class="label">Signature</span>
+        <p class="price">600–900 <span>DT</span></p>
+        <p>Mariages haut de gamme, sur-mesure</p>
+        <ul class="pricing-features">
+          <li>{{ icon("check") }} Design 100% sur-mesure</li>
+          <li>{{ icon("check") }} Animations personnalisées</li>
+          <li>{{ icon("check") }} Musique de fond optionnelle</li>
+          <li>{{ icon("check") }} Retouches illimitées 30 jours</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-head center">
+      <span class="label">FAQ</span>
+      <h2>Questions fréquentes</h2>
+    </div>
+    <div class="reveal" style="max-width:640px;margin-inline:auto;">
+      {% set faqs = [
+        { q: "Combien de temps pour recevoir mon invitation digitale ?", a: "48 à 72h selon le forfait choisi." },
+        { q: "Puis-je modifier mon invitation après réception ?", a: "Oui, un nombre de retouches est inclus selon votre forfait." },
+        { q: "Comment mes invités reçoivent-ils l'invitation ?", a: "Un lien unique à partager par WhatsApp, SMS ou réseaux sociaux — aucune application à installer." },
+        { q: "Le RSVP fonctionne-t-il sans compte ?", a: "Oui, un formulaire simple relié à votre email ou WhatsApp." },
+        { q: "Proposez-vous des menus pour restaurants seuls ?", a: "Oui, c'est un service indépendant, sans lien avec un mariage." },
+        { q: "Puis-je garder mon invitation en ligne après l'événement ?", a: "Oui, le lien reste actif, comme un souvenir." }
+      ] %}
+      {% for f in faqs %}
+      <details class="faq-item">
+        <summary class="faq-q">{{ f.q }} {{ icon("chevron") }}</summary>
+        <p class="faq-a">{{ f.a }}</p>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--dark">
+  <div class="container cta-final">
+    <h2>Prêt à créer votre moment ?</h2>
+    <div class="btn-row center" style="justify-content:center;">
+      <a href="#pricing" class="btn btn-ghost">Voir nos tarifs</a>
+      <a href="mailto:{{ site.email }}" class="btn btn-primary">Créer votre invitation</a>
+    </div>
+  </div>
+</section>
+
+<footer class="section--dark site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        {{ mark() }}
+        <p style="margin-top:var(--space-2);opacity:0.75;max-width:280px;">{{ site.tagline }}</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <a href="#collections">Collections</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div>
+        <h4>Collections</h4>
+        <a href="#collections">Wedding</a>
+        <a href="#collections">Birthday</a>
+        <a href="#collections">Digital Menus</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+        <div class="social-row" style="margin-top:var(--space-2);">
+          <a href="{{ site.instagram }}" aria-label="Instagram">{{ icon("instagram") }}</a>
+          <a href="{{ site.facebook }}" aria-label="Facebook">{{ icon("facebook") }}</a>
+          <a href="{{ site.whatsapp }}" aria-label="WhatsApp">{{ icon("whatsapp") }}</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© {{ year }} LUMÉA. Tous droits réservés.</span>
+      <span>Tunis, Tunisie</span>
+    </div>
+  </div>
+</footer>

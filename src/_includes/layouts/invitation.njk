@@ -1,0 +1,131 @@
+---
+layout: layouts/base.njk
+eleventyComputed:
+  extraCss: ["/assets/css/themes/{{ invite.theme }}.css"]
+  extraJs: ["/assets/js/countdown.js", "/assets/js/gallery.js", "/assets/js/rsvp.js"]
+  bodyClass: "page-invitation theme-{{ invite.theme }}"
+---
+{% from "partials/icons.njk" import icon %}
+
+<section class="hero invite-hero">
+  <div class="hero-inner">
+    <span class="label">{{ site.name }} Invitation</span>
+    <h1 class="invite-names">{{ invite.couple.name1 }} &amp; {{ invite.couple.name2 }}</h1>
+    <p class="invite-message">{{ invite.message }}</p>
+    <p class="invite-date">{{ invite.date | formatDateLong }}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container info-columns reveal">
+    <div>
+      {{ icon("calendar") }}
+      <h3>Date</h3>
+      <p>{{ invite.date | formatDateShort }}</p>
+    </div>
+    <div>
+      {{ icon("clock") }}
+      <h3>Heure</h3>
+      <p>{{ invite.date | isoToTime }}</p>
+    </div>
+    <div>
+      {{ icon("map-pin") }}
+      <h3>{{ invite.location.name }}</h3>
+      <p><a href="{{ invite.location.mapsUrl }}" target="_blank" rel="noopener">Voir sur Google Maps</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-head center">
+      <span class="label">Compte à rebours</span>
+    </div>
+    <div class="countdown reveal" data-countdown="{{ invite.date }}">
+      <div class="countdown-unit"><div class="value" data-unit="days">00</div><div class="unit-label">Jours</div></div>
+      <div class="countdown-unit"><div class="value" data-unit="hours">00</div><div class="unit-label">Heures</div></div>
+      <div class="countdown-unit"><div class="value" data-unit="minutes">00</div><div class="unit-label">Min</div></div>
+      <div class="countdown-unit"><div class="value" data-unit="seconds">00</div><div class="unit-label">Sec</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="label">Programme</span>
+      <h2>Le déroulé de la journée</h2>
+    </div>
+    <div class="program-list reveal">
+      {% for p in invite.program %}
+      <div class="program-item">
+        <div class="program-time">{{ p.time }}</div>
+        <div class="program-label">{{ p.label }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% if invite.gallery and invite.gallery.length %}
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-head center">
+      <span class="label">Galerie</span>
+      <h2>Quelques souvenirs</h2>
+    </div>
+    <div class="gallery-grid reveal">
+      {% for g in invite.gallery %}
+      <div class="gallery-tile" data-gallery-item>
+        {% if g.src %}<img src="{{ g.src }}" alt="{{ g.caption }}">{% else %}<span>{{ g.caption }}</span>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if invite.quote %}
+<section class="section">
+  <div class="container quote-block reveal">
+    <p>&laquo; {{ invite.quote }} &raquo;</p>
+  </div>
+</section>
+{% endif %}
+
+<section id="rsvp" class="section section--alt">
+  <div class="container">
+    <div class="section-head center">
+      <span class="label">RSVP</span>
+      <h2>Confirmez votre présence</h2>
+      {% if invite.rsvp.deadline %}<p class="center" style="color:var(--text-muted);font-size:var(--size-small);">Merci de répondre avant le {{ invite.rsvp.deadline | formatDateShort }}</p>{% endif %}
+    </div>
+    <form class="rsvp-form reveal" data-rsvp-form {% if invite.rsvp.contactEmail %}data-email="{{ invite.rsvp.contactEmail }}"{% endif %}>
+      <div>
+        <label for="name">Votre nom</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="rsvp-choice">
+        <label><input type="radio" name="attending" value="yes" checked> Je viens</label>
+        <label><input type="radio" name="attending" value="no"> Je ne pourrai pas venir</label>
+      </div>
+      <div>
+        <label for="guests">Nombre de personnes</label>
+        <input type="number" id="guests" name="guests" min="1" value="1">
+      </div>
+      <div>
+        <label for="message">Message (optionnel)</label>
+        <textarea id="message" name="message"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Envoyer ma réponse</button>
+    </form>
+    <div class="rsvp-confirmation reveal" data-rsvp-confirmation hidden>
+      <p>Merci ! Votre réponse a bien été transmise.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="invite-footer">
+  <div class="logo"><span class="logo-word" style="font-size:1rem;">Créé avec LUMÉA</span></div>
+  <p style="color:var(--text-muted);font-size:var(--size-small);">lumea.tn</p>
+</footer>

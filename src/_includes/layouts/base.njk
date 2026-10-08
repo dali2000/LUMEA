@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title or site.name }}{% if title %} · {{ site.name }}{% endif %}</title>
+  <meta name="description" content="{{ description or site.description }}">
+  <meta name="theme-color" content="#15120F">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <script>document.documentElement.classList.add("js");</script>
+
+  <meta property="og:title" content="{{ title or site.name }}">
+  <meta property="og:description" content="{{ description or site.description }}">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  {% for href in extraCss %}<link rel="stylesheet" href="{{ href }}">{% endfor %}
+</head>
+<body class="{{ bodyClass }}">
+  {{ content | safe }}
+
+  <script src="/assets/js/reveal.js" defer></script>
+  {% for src in extraJs %}<script src="{{ src }}" defer></script>{% endfor %}
+</body>
+</html>

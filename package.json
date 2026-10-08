@@ -1,0 +1,14 @@
+{
+  "name": "lumea",
+  "version": "0.1.0",
+  "private": true,
+  "description": "LUMEA — Digital Invitations & Menus",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy",
+    "debug": "DEBUG=Eleventy* eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6"
+  }
+}

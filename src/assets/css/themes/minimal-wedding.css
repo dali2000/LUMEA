@@ -1,0 +1,7 @@
+/* Minimal Wedding — the default LUMÉA direction: ivory, serif, restraint. */
+.theme-minimal-wedding .invite-names {
+  letter-spacing: 0.02em;
+}
+.theme-minimal-wedding .gallery-tile:hover {
+  filter: saturate(1) brightness(1.02);
+}
