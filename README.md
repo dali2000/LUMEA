@@ -19,7 +19,7 @@ npm run build    # build de production dans ./_site
 
 ## Ajouter une invitation
 
-1. Dupliquez `src/data/invitations/amine-latifa.json`.
+1. Dupliquez `src/data/invitations/dali-latifa.json`.
 2. Renommez le fichier avec le slug souhaité, ex. `mohamed-sarah.json`
    → la page sera générée sur `/invitations/mohamed-sarah/`.
 3. Remplissez les champs (`couple`, `date`, `location`, `program`, `gallery`,
@@ -33,6 +33,32 @@ npm run build    # build de production dans ./_site
    variables `--bg`/`--text`/`--accent`/etc., donnez-lui un nom de classe
    `.theme-<slug>`, et utilisez ce `<slug>` comme valeur de `theme`.
 4. `npm run build` — aucune autre modification de code n'est nécessaire.
+
+### Animation d'ouverture et musique
+
+Chaque invitation s'ouvre sur un écran "Ouvrir l'invitation" (logo + prénoms
+du couple) avant de révéler le contenu — c'est ce même geste qui autorise le
+navigateur à démarrer l'audio avec le son (les navigateurs bloquent la
+lecture automatique sans interaction de l'utilisateur). Une fois ouvertes,
+les sections apparaissent progressivement au scroll, avec un léger
+décalage entre les éléments d'une même section.
+
+Pour ajouter une musique de fond à une invitation, ajoutez dans son JSON :
+
+```json
+"music": { "src": "/assets/audio/votre-morceau.mp3" }
+```
+
+Placez le fichier dans `src/assets/audio/`. Un bouton rond flottant
+(en bas à droite) permet ensuite à l'invité de couper/remettre le son à
+tout moment. Sans ce champ `music`, l'invitation s'ouvre normalement, sans
+audio ni bouton.
+
+Un fichier `src/assets/audio/placeholder-ambiance.wav` est inclus à titre de
+démonstration (un son d'ambiance généré, pas un morceau sous licence) —
+**remplacez-le par un morceau que vous avez le droit d'utiliser** avant de
+mettre en ligne, et préférez un `.mp3` ou `.ogg` compressé (beaucoup plus
+léger qu'un `.wav`) pour le chargement mobile.
 
 ## Ajouter un menu digital
 

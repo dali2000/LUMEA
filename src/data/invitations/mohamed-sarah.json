@@ -1,5 +1,6 @@
 {
   "theme": "oriental-luxury",
+  "music": { "src": "/assets/audio/placeholder-ambiance.wav" },
   "couple": { "name1": "Mohamed", "name2": "Sarah" },
   "message": "Avec joie, nous vous invitons à célébrer notre union.",
   "date": "2027-06-12T19:00:00",

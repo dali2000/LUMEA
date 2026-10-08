@@ -1,11 +1,29 @@
 ---
 layout: layouts/base.njk
-extraJs: ["/assets/js/countdown.js", "/assets/js/gallery.js", "/assets/js/rsvp.js"]
+extraJs: ["/assets/js/intro.js", "/assets/js/countdown.js", "/assets/js/gallery.js", "/assets/js/rsvp.js"]
 eleventyComputed:
   themeCss: "/assets/css/themes/{{ invite.theme }}.css"
   bodyClass: "page-invitation theme-{{ invite.theme }}"
 ---
 {% from "partials/icons.njk" import icon %}
+{% from "partials/logo.njk" import symbol %}
+
+<div class="intro-overlay" data-intro>
+  <div class="intro-content">
+    <div style="width:28px;height:28px;margin-inline:auto;color:var(--accent);">{{ symbol() }}</div>
+    <p class="label" style="margin-top:var(--space-3);">{{ site.name }} Invitation</p>
+    <h2 class="intro-names">{{ invite.couple.name1 }} &amp; {{ invite.couple.name2 }}</h2>
+    <button type="button" class="btn btn-primary intro-open" data-open-invite>Ouvrir l'invitation</button>
+    {% if invite.music %}
+    <p class="intro-hint">{{ icon("music") }} Avec musique</p>
+    {% endif %}
+  </div>
+</div>
+
+{% if invite.music %}
+<audio data-bg-music loop preload="none" src="{{ invite.music.src }}"></audio>
+<button type="button" class="music-toggle" data-music-toggle hidden aria-label="Activer ou couper la musique">{{ icon("music") }}</button>
+{% endif %}
 
 <section class="hero invite-hero">
   <div class="hero-inner">

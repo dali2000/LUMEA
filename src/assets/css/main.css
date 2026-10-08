@@ -308,12 +308,95 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 
 /* Scroll reveal — progressive enhancement only: content is fully visible by
-   default, and only hidden pre-reveal once .js confirms the script runs. */
-.reveal { transition: opacity var(--duration) var(--ease-out), transform var(--duration) var(--ease-out); }
-.js .reveal { opacity: 0; transform: translateY(16px); }
-.js .reveal.is-visible { opacity: 1; transform: translateY(0); }
+   default, and only hidden pre-reveal once .js confirms the script runs.
+   The observed element (.reveal) never hides itself — only its direct
+   children do, each with a small stagger — so a slow observer or a tool
+   that screenshots without scrolling still shows real, laid-out content. */
+.js .reveal > * {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 650ms var(--ease-out), transform 650ms var(--ease-out);
+}
+.js .reveal.is-visible > * { opacity: 1; transform: translateY(0); }
+.reveal > *:nth-child(1) { transition-delay: 0ms; }
+.reveal > *:nth-child(2) { transition-delay: 70ms; }
+.reveal > *:nth-child(3) { transition-delay: 140ms; }
+.reveal > *:nth-child(4) { transition-delay: 210ms; }
+.reveal > *:nth-child(5) { transition-delay: 280ms; }
+.reveal > *:nth-child(6) { transition-delay: 350ms; }
+.reveal > *:nth-child(7) { transition-delay: 420ms; }
+.reveal > *:nth-child(8) { transition-delay: 490ms; }
+.reveal > *:nth-child(9) { transition-delay: 560ms; }
+.reveal > *:nth-child(n+10) { transition-delay: 630ms; }
 @media (prefers-reduced-motion: reduce) {
-  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .js .reveal > * { opacity: 1; transform: none; transition: none; }
+}
+
+/* Opening overlay (invitations) — hidden entirely without JS (progressive
+   enhancement, same rule as .reveal above: never block content on JS). */
+.intro-overlay { display: none; }
+.js .intro-overlay {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--bg);
+  padding: var(--space-4);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 650ms var(--ease-out), visibility 650ms var(--ease-out);
+}
+.intro-overlay.is-closing { opacity: 0; visibility: hidden; pointer-events: none; }
+.intro-content { max-width: 360px; }
+.intro-content .logo-word { opacity: 0.8; }
+.intro-names { font-size: clamp(1.75rem, 5vw, 2.5rem); margin: var(--space-3) 0 var(--space-4); }
+.intro-open { width: 100%; }
+.intro-hint {
+  margin-top: var(--space-3);
+  font-size: var(--size-small);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+}
+
+/* Floating music toggle */
+.music-toggle {
+  position: fixed;
+  right: var(--space-3);
+  bottom: var(--space-3);
+  z-index: 150;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--accent);
+  animation: music-spin 9s linear infinite;
+}
+.music-toggle[hidden] { display: none; }
+.music-toggle svg { width: 18px; height: 18px; }
+.music-toggle.is-muted { animation-play-state: paused; }
+.music-toggle.is-muted::after {
+  content: "";
+  position: absolute;
+  width: 26px;
+  height: 1.5px;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+@keyframes music-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .music-toggle { animation: none; }
 }
 
 /* ---------- Invitation components ---------- */

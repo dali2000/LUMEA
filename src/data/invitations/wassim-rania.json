@@ -1,5 +1,6 @@
 {
   "theme": "floral",
+  "music": { "src": "/assets/audio/placeholder-ambiance.wav" },
   "couple": { "name1": "Wassim", "name2": "Rania" },
   "message": "Nous avons le bonheur de vous inviter à célébrer notre mariage, entouré de fleurs et de ceux que nous aimons.",
   "date": "2027-04-24T17:30:00",
