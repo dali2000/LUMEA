@@ -1,0 +1,83 @@
+{#
+  Scene 6 of the opening film (is-ring): the last image before the portal
+  opens onto the invitation.
+  "finale" in the JSON: rings (default) | monogram | heart | fireworks | date
+  | age (birthday default: the age from "honoree").
+  Styles: story.css (rings) and story-variants.css (the others).
+#}
+<div class="story-rings finale--{{ finale }}" aria-hidden="true">
+{% if finale == "monogram" %}
+  {# The initials are written with a pen inside a laurel wreath #}
+  <svg viewBox="0 0 200 170">
+    {% for side in ["l", "r"] %}
+    <g class="mono-wreath"{% if side == "r" %} transform="matrix(-1 0 0 1 200 0)"{% endif %}>
+      <path class="mono-branch" d="M92 158 C 40 146, 18 100, 34 46" pathLength="1" />
+      {% for l in [[78,153,-75],[62,146,-60],[48,134,-45],[38,118,-30],[31,100,-15],[30,82,0],[31,64,12]] %}
+      <g transform="rotate({{ l[2] }} {{ l[0] }} {{ l[1] }})"><use class="mono-leaf" href="#st-leaf" x="{{ l[0] - 4 }}" y="{{ l[1] - 9 }}" width="8" height="18" style="--o:{{ loop.index0 }}" /></g>
+      {% endfor %}
+    </g>
+    {% endfor %}
+    <text class="mono-letter mono-letter--a" x="86" y="104">{{ name1 | first }}</text>
+    {% if name2 %}<text class="mono-letter mono-letter--b" x="116" y="122">{{ name2 | first }}</text>{% endif %}
+  </svg>
+
+{% elif finale == "heart" %}
+  {# A heart drawn in a single golden line, which then beats #}
+  <svg viewBox="0 0 120 110">
+    <path class="fin-heart" d="M60 100 C 20 72, 4 48, 14 28 C 24 8, 50 8, 60 30 C 70 8, 96 8, 106 28 C 116 48, 100 72, 60 100 Z" pathLength="1" />
+    <path class="fin-heart-inner" d="M60 88 C 30 66, 18 48, 25 33 C 32 19, 51 19, 60 36 C 69 19, 88 19, 95 33 C 102 48, 90 66, 60 88 Z" pathLength="1" />
+    <path class="ring-spark" d="M96 2 L97.6 9.4 L105 11 L97.6 12.6 L96 20 L94.4 12.6 L87 11 L94.4 9.4 Z" />
+  </svg>
+
+{% elif finale == "fireworks" %}
+  {# Three golden bursts above the couple #}
+  {% set dirs = [[1,0],[0.866,0.5],[0.5,0.866],[0,1],[-0.5,0.866],[-0.866,0.5],[-1,0],[-0.866,-0.5],[-0.5,-0.866],[0,-1],[0.5,-0.866],[0.866,-0.5]] %}
+  <svg viewBox="0 0 300 200">
+    {% for b in [[95,80,46,0],[210,62,40,1],[160,128,34,2]] %}
+    <g class="fw" style="--b:{{ b[3] }}">
+      <path class="fw-trail" d="M{{ b[0] }} 200 V{{ b[1] + 6 }}" pathLength="1" />
+      <g class="fw-burst" style="transform-origin: {{ b[0] }}px {{ b[1] }}px">
+        {% for d in dirs %}
+        <path class="fw-ray" d="M{{ (b[0] + d[0] * 7) | round(1) }} {{ (b[1] + d[1] * 7) | round(1) }} L{{ (b[0] + d[0] * b[2]) | round(1) }} {{ (b[1] + d[1] * b[2]) | round(1) }}" pathLength="1" />
+        <circle class="fw-dot" cx="{{ (b[0] + d[0] * (b[2] + 6)) | round(1) }}" cy="{{ (b[1] + d[1] * (b[2] + 6)) | round(1) }}" r="1.6" />
+        {% endfor %}
+      </g>
+    </g>
+    {% endfor %}
+  </svg>
+
+{% elif finale == "date" %}
+  {# The date composes itself digit by digit, like a departure board #}
+  {% set dd = invite.date.slice(8, 10) %}{% set mm = invite.date.slice(5, 7) %}{% set yy = invite.date.slice(0, 4) %}
+  <div class="fin-date">
+    <div class="fin-date-row">
+      {% for g in [dd, mm, yy] %}
+      {% set gi = loop.index0 %}
+      {% if not loop.first %}<span class="fin-sep" style="--d:{{ [0, 2, 4][gi] }}">·</span>{% endif %}
+      <span class="fin-group">{% for ch in g | list %}<span class="fin-flip" style="--d:{{ [0, 2, 4][gi] + loop.index0 }}">{{ ch }}</span>{% endfor %}</span>
+      {% endfor %}
+    </div>
+    <p class="fin-date-label">{{ invite.date | formatDateLong(lang) }}</p>
+  </div>
+
+{% elif finale == "age" %}
+  {# The age is written by hand in a golden outline, then fills with gold #}
+  <div class="fin-age">
+    <svg viewBox="0 0 200 124">
+      <text class="fin-age-num" x="100" y="100" text-anchor="middle">{{ invite.honoree.age }}</text>
+      <path class="ring-spark" d="M168 8 L169.8 16.2 L178 18 L169.8 19.8 L168 28 L166.2 19.8 L158 18 L166.2 16.2 Z" />
+      <path class="ring-spark" style="animation-delay: 1.9s" d="M30 70 L31.4 76.6 L38 78 L31.4 79.4 L30 86 L28.6 79.4 L22 78 L28.6 76.6 Z" />
+    </svg>
+    <p class="fin-date-label">{{ invite.date | formatDateLong(lang) }}</p>
+  </div>
+
+{% else %}
+  <svg viewBox="0 0 120 84">
+    <circle class="ring ring--a" cx="47" cy="48" r="22" pathLength="1" />
+    <circle class="ring ring--b" cx="73" cy="48" r="22" pathLength="1" />
+    <path class="ring ring--a-over" d="M 63.4 33.5 A 22 22 0 0 1 66.6 59" pathLength="1" />
+    <path class="ring-gem" d="M73 20 L78 25 L73 31 L68 25 Z" />
+    <path class="ring-spark" d="M73 6 L74.6 13.4 L82 15 L74.6 16.6 L73 24 L71.4 16.6 L64 15 L71.4 13.4 Z" />
+  </svg>
+{% endif %}
+</div>

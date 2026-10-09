@@ -1,0 +1,123 @@
+{
+  "theme": "oriental-luxury",
+  "opening": "ringbox",
+  "eventType": "Fiançailles",
+  "kicker": "Ils ont dit oui",
+  "couple": {
+    "name1": "Youssef",
+    "name2": "Inès"
+  },
+  "message": "Nous avons la joie de vous annoncer nos fiançailles et serions honorés de célébrer ce moment avec vous.",
+  "date": "2027-03-13T19:00:00",
+  "location": {
+    "name": "Palais Ennejma Ezzahra",
+    "address": "Sidi Bou Saïd",
+    "mapsUrl": "https://maps.google.com/?q=Ennejma+Ezzahra+Sidi+Bou+Said"
+  },
+  "program": [
+    {
+      "time": "19:00",
+      "label": "Accueil des invités"
+    },
+    {
+      "time": "19:45",
+      "label": "Échange des bagues"
+    },
+    {
+      "time": "20:30",
+      "label": "Dîner"
+    },
+    {
+      "time": "22:00",
+      "label": "Soirée"
+    }
+  ],
+  "quote": "Une bague, une promesse, et tout un chemin à écrire ensemble.",
+  "gallery": [
+    {
+      "caption": "La demande"
+    },
+    {
+      "caption": "La bague"
+    },
+    {
+      "caption": "Nos familles réunies"
+    }
+  ],
+  "rsvp": {
+    "deadline": "2027-03-01",
+    "contactEmail": "youssef.ines@example.com"
+  },
+  "translations": {
+    "en": {
+      "eventType": "Engagement",
+      "kicker": "They said yes",
+      "message": "We are thrilled to announce our engagement and would be honoured to celebrate this moment with you.",
+      "program": [
+        {
+          "label": "Welcome"
+        },
+        {
+          "label": "Exchange of rings"
+        },
+        {
+          "label": "Dinner"
+        },
+        {
+          "label": "Party"
+        }
+      ],
+      "quote": "One ring, one promise, and a whole path to write together.",
+      "gallery": [
+        {
+          "caption": "The proposal"
+        },
+        {
+          "caption": "The ring"
+        },
+        {
+          "caption": "Our families together"
+        }
+      ]
+    },
+    "ar": {
+      "eventType": "خطوبة",
+      "kicker": "قالا نعم",
+      "couple": {
+        "name1": "يوسف",
+        "name2": "إيناس"
+      },
+      "message": "يسعدنا أن نعلن خطوبتنا، ويشرّفنا أن نحتفل بهذه اللحظة معكم.",
+      "program": [
+        {
+          "label": "استقبال الضيوف"
+        },
+        {
+          "label": "تبادل الخواتم"
+        },
+        {
+          "label": "العشاء"
+        },
+        {
+          "label": "السهرة"
+        }
+      ],
+      "quote": "خاتم ووعد، ودربٌ كامل نكتبه معاً.",
+      "gallery": [
+        {
+          "caption": "طلب الزواج"
+        },
+        {
+          "caption": "الخاتم"
+        },
+        {
+          "caption": "عائلتانا معاً"
+        }
+      ],
+      "location": {
+        "name": "قصر النجمة الزهراء",
+        "address": "سيدي بوسعيد"
+      }
+    }
+  }
+}

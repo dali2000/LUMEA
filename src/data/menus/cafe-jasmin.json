@@ -1,0 +1,67 @@
+{
+  "theme": "menu-cafe",
+  "restaurant": {
+    "name": "Café Jasmin",
+    "tagline": "Coffee shop & brunch",
+    "intro": "Café de spécialité torréfié à Tunis, viennoiseries sorties du four chaque matin et brunch servi toute la journée.",
+    "cover": "/assets/images/menus/cafe-jasmin/cover.jpg"
+  },
+  "categories": [
+    {
+      "name": "Cafés",
+      "subtitle": "Torréfaction maison",
+      "items": [
+        { "name": "Cappuccino", "description": "Double espresso, lait micro-moussé", "price": "7 DT", "image": "/assets/images/menus/cafe-jasmin/cappuccino.jpg" },
+        { "name": "Latte macchiato", "description": "Lait chaud, mousse onctueuse, espresso", "price": "8 DT", "image": "/assets/images/menus/cafe-jasmin/latte.jpg" },
+        { "name": "Espresso", "description": "Assemblage Éthiopie & Brésil", "price": "4 DT" },
+        { "name": "Flat white", "description": "Ristretto, lait velouté", "price": "8 DT" }
+      ]
+    },
+    {
+      "name": "Brunch",
+      "subtitle": "Servi toute la journée",
+      "items": [
+        { "name": "Eggs Benedict", "description": "Œufs pochés, jambon de dinde, sauce hollandaise, asperges", "price": "22 DT", "image": "/assets/images/menus/cafe-jasmin/eggs-benedict.jpg", "tags": ["Best-seller"] },
+        { "name": "Avocado toast", "description": "Pain au levain, avocat écrasé, œuf mollet, graines torréfiées", "price": "19 DT", "image": "/assets/images/menus/cafe-jasmin/avocado-toast.jpg", "tags": ["Végétarien"] },
+        { "name": "Pancakes framboise", "description": "Pile de pancakes moelleux, framboises, sucre glace, sirop d'érable", "price": "17 DT", "image": "/assets/images/menus/cafe-jasmin/pancakes.jpg" },
+        { "name": "Smoothie bowl", "description": "Banane, fruits rouges, mangue, granola maison", "price": "16 DT", "image": "/assets/images/menus/cafe-jasmin/smoothie-bowl.jpg", "tags": ["Vegan"] }
+      ]
+    },
+    {
+      "name": "Boulangerie",
+      "items": [
+        { "name": "Croissant pur beurre", "description": "Feuilletage maison, sorti du four le matin", "price": "4 DT", "image": "/assets/images/menus/cafe-jasmin/croissant.jpg" },
+        { "name": "Cheesecake fruits rouges", "description": "Base sablée, crème vanillée, coulis de framboise", "price": "12 DT", "image": "/assets/images/menus/cafe-jasmin/cheesecake.jpg" },
+        { "name": "Pain au chocolat", "description": "Deux barres de chocolat noir", "price": "4,5 DT" }
+      ]
+    },
+    {
+      "name": "Fraîcheur",
+      "items": [
+        { "name": "Jus d'orange pressé", "description": "Oranges de Menzel Bouzelfa, pressées minute", "price": "8 DT", "image": "/assets/images/menus/cafe-jasmin/jus-orange.jpg" },
+        { "name": "Citronnade au jasmin", "description": "Citron, sirop de jasmin maison, menthe", "price": "9 DT", "tags": ["Maison"] },
+        { "name": "Iced latte", "description": "Espresso, lait froid, glaçons", "price": "9 DT" }
+      ]
+    }
+  ],
+  "specialties": [
+    { "name": "Eggs Benedict", "description": "Le classique du brunch, notre best-seller.", "price": "22 DT", "image": "/assets/images/menus/cafe-jasmin/eggs-benedict.jpg" },
+    { "name": "Pancakes framboise", "description": "Moelleux, généreux, servis jusqu'à 18h.", "price": "17 DT", "image": "/assets/images/menus/cafe-jasmin/pancakes.jpg" },
+    { "name": "Cappuccino", "description": "Notre café de spécialité, torréfié à Tunis.", "price": "7 DT", "image": "/assets/images/menus/cafe-jasmin/cappuccino.jpg" }
+  ],
+  "galleryTitle": "Le café",
+  "gallery": [
+    { "src": "/assets/images/menus/cafe-jasmin/comptoir.jpg", "caption": "Le comptoir" },
+    { "src": "/assets/images/menus/cafe-jasmin/viennoiseries.jpg", "caption": "Les viennoiseries du matin" },
+    { "src": "/assets/images/menus/cafe-jasmin/cover.jpg", "caption": "La pause café" }
+  ],
+  "contact": {
+    "phone": "+21671000003",
+    "instagram": "https://instagram.com/"
+  },
+  "location": {
+    "address": "Rue du Lac Biwa, Les Berges du Lac, Tunis",
+    "mapsUrl": "https://maps.google.com/?q=Les+Berges+du+Lac+Tunis"
+  },
+  "hours": "Tous les jours · 7h30 – 19h00"
+}

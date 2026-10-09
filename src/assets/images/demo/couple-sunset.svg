@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <!-- Demo picture for the Polaroid meeting: a couple at sunset by the sea (illustration, no real photo). -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f6b38a" />
+      <stop offset="0.5" stop-color="#f9d3a5" />
+      <stop offset="1" stop-color="#fbe7c6" />
+    </linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e59f86" />
+      <stop offset="1" stop-color="#9c6b74" />
+    </linearGradient>
+    <radialGradient id="sun">
+      <stop offset="0" stop-color="#fff6dc" />
+      <stop offset="0.45" stop-color="#ffd9a0" />
+      <stop offset="1" stop-color="#ffd9a0" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#sky)" />
+  <circle cx="200" cy="232" r="120" fill="url(#sun)" />
+  <circle cx="200" cy="232" r="38" fill="#fff1d2" />
+  <rect y="236" width="400" height="164" fill="url(#sea)" />
+  <g fill="#fff3dc" opacity="0.55">
+    <rect x="150" y="248" width="100" height="3" rx="1.5" />
+    <rect x="166" y="262" width="68" height="3" rx="1.5" />
+    <rect x="182" y="276" width="36" height="3" rx="1.5" />
+  </g>
+  <path d="M0 330 C 90 310, 170 318, 260 332 C 320 342, 370 336, 400 330 V400 H0 Z" fill="#6e4a4f" />
+  <g fill="#3b2a2d">
+    <!-- him -->
+    <circle cx="178" cy="226" r="11" />
+    <path d="M163 242 C 168 238, 188 238, 193 242 L 196 292 L 190 330 L 182 330 L 179 296 L 175 330 L 166 330 L 161 292 Z" />
+    <!-- her -->
+    <circle cx="214" cy="232" r="10" />
+    <path d="M205 246 C 209 243, 220 243, 224 246 L 226 270 C 232 290, 240 312, 246 330 L 192 330 C 198 312, 203 292, 205 270 Z" />
+    <path d="M222 236 C 232 250, 236 268, 234 284 L 228 284 C 228 266, 226 252, 218 240 Z" />
+    <!-- joined hands -->
+    <path d="M192 262 C 198 266, 202 266, 207 262 L 208 267 C 202 271, 197 271, 191 267 Z" />
+  </g>
+  <g fill="none" stroke="#fff4e0" stroke-width="2" stroke-linecap="round" opacity="0.8">
+    <path d="M70 96 q 8 -6 16 0 q 8 -6 16 0" />
+    <path d="M300 70 q 6 -5 12 0 q 6 -5 12 0" />
+  </g>
+</svg>

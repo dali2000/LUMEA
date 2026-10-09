@@ -1,0 +1,131 @@
+---
+layout: layouts/base.njk
+catalogLangs: ["fr", "en", "ar"]
+pagination:
+  data: catalogLangs
+  size: 1
+  alias: catLang
+permalink: "{% if catLang == 'fr' %}/modeles/{% else %}/{{ catLang }}/templates/{% endif %}"
+altLangs:
+  - { lang: fr, path: /modeles/ }
+  - { lang: en, path: /en/templates/ }
+  - { lang: ar, path: /ar/templates/ }
+extraCss: ["/assets/css/catalog.css"]
+extraJs: ["/assets/js/catalog.js"]
+bodyClass: "page-catalog"
+eleventyComputed:
+  pageLang: "{{ catLang }}"
+  title: "{{ i18n[catLang].catalog.metaTitle }}"
+  description: "{{ i18n[catLang].catalog.intro }}"
+---
+{#
+  The template catalogue (src/_data/templates.json): every card plays its
+  demo invitation live (?preview, see assets/js/preview.js) inside a phone,
+  like a video. Price, preview language and a WhatsApp order button.
+#}
+{% from "partials/logo.njk" import mark %}
+{% from "partials/icons.njk" import icon %}
+{% set T = i18n[catLang] %}
+{% set C = T.catalog %}
+
+<header class="site-header catalog-header">
+  {{ mark() }}
+  <nav class="lang-switch" aria-label="{{ T.languages }}">
+    {% for alt in altLangs %}
+    <a href="{{ alt.path }}" hreflang="{{ alt.lang }}" lang="{{ alt.lang }}"{% if alt.lang == catLang %} aria-current="page"{% endif %}>{{ i18n[alt.lang].name }}</a>
+    {% endfor %}
+  </nav>
+</header>
+
+<section class="section catalog">
+  <div class="container">
+    <div class="section-head center">
+      <span class="label">{{ site.name }}</span>
+      <h1>{{ C.title }}</h1>
+      <p class="catalog-intro">{{ C.intro }}</p>
+    </div>
+
+    <div class="catalog-tabs" role="group" aria-label="{{ C.title }}" data-catalog-tabs>
+      <button type="button" data-filter="all" aria-pressed="true">{{ C.all }} <span>{{ templates.length }}</span></button>
+      {% for o in ["wedding", "engagement", "henna", "birthday"] %}
+      {% set count = templates | where("occasion", o) | length %}
+      {% if count %}<button type="button" data-filter="{{ o }}" aria-pressed="false">{{ T.occasions[o] }} <span>{{ count }}</span></button>{% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="catalog-grid">
+      {% for t in templates %}
+      {% set demo = collections.invitations | findBy("slug", t.demo) %}
+      {% if demo %}
+      {% set tname = t.name[catLang] or t.name.fr %}
+      {# Preview in the page's language when the demo has it #}
+      {% set previewLink = (demo.langs | findBy("lang", catLang)) or demo.langs[0] %}
+      {% set demoNames = (demo.couple.name1 + " & " + demo.couple.name2) if demo.couple else demo.honoree.name %}
+      <article class="tpl" data-occasion="{{ t.occasion }}" id="{{ t.id }}">
+        <div class="tpl-screen" data-preview data-src="{{ previewLink.path }}?preview">
+          <div class="tpl-phone" style="--f1: {{ t.frame[0] }}; --f2: {{ t.frame[1] }}; --ink: {{ t.frame[2] }};">
+            <div class="tpl-poster" aria-hidden="true">
+              <span class="tpl-poster-label">{{ T.occasions[t.occasion] }}</span>
+              <span class="tpl-poster-names">{{ demoNames }}</span>
+            </div>
+            <iframe class="tpl-frame" title="{{ C.live }} — {{ tname }}" tabindex="-1" aria-hidden="true" data-frame></iframe>
+          </div>
+          <a class="tpl-open" href="{{ previewLink.path }}" data-demo-link aria-label="{{ C.demo }} — {{ tname }}"></a>
+          <span class="tpl-live" aria-hidden="true"><i></i>{{ C.live }}</span>
+        </div>
+
+        <div class="tpl-body">
+          <div class="tpl-head">
+            <h2 class="tpl-name">{{ tname }}</h2>
+            <span class="label">{{ T.occasions[t.occasion] }}</span>
+          </div>
+          <ul class="tpl-chips">
+            <li>{{ C.chips[demo.opening or "envelope"] }}</li>
+            {% if not demo.couple %}<li>{{ C.chips.cake }}</li>{% endif %}
+            {% if demo.scratch %}<li>{{ C.chips.scratch }}</li>{% endif %}
+            {% if demo.music %}<li>{{ C.chips.music }}</li>{% endif %}
+          </ul>
+          {% if demo.langs.length > 1 %}
+          <div class="tpl-langs">
+            <span>{{ C.previewLang }}</span>
+            <div class="lang-switch" role="group" aria-label="{{ C.previewLang }}">
+              {% for l in demo.langs %}
+              <button type="button" lang="{{ l.lang }}" data-preview-lang="{{ l.path }}" aria-pressed="{{ 'true' if l.path == previewLink.path else 'false' }}">{{ i18n[l.lang].short }}</button>
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %}
+          <p class="tpl-price"><strong>{{ C.from }}{{ t.price }}</strong> {{ C.unit }} <span>· {{ C.oneTime }}</span></p>
+          <ul class="tpl-included">
+            {% for inc in C.included %}<li>{{ icon("check") }} {{ inc }}</li>{% endfor %}
+          </ul>
+          <div class="tpl-actions">
+            <a class="btn btn-ghost" href="{{ previewLink.path }}" data-demo-link>{{ C.demo }}</a>
+            <a class="btn btn-primary" href="{{ site.whatsapp }}?text={{ C.orderMsg | fill({ name: tname, price: t.price }) | urlencode }}" target="_blank" rel="noopener">{{ icon("whatsapp") }} {{ C.order }}</a>
+          </div>
+        </div>
+      </article>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--dark">
+  <div class="container cta-final">
+    <h2>{{ C.custom }}</h2>
+    <p style="opacity:0.8;max-width:520px;margin-inline:auto;">{{ C.customText }}</p>
+    <div class="btn-row center" style="justify-content:center;">
+      <a href="{{ site.whatsapp }}?text={{ C.customMsg | urlencode }}" class="btn btn-primary" target="_blank" rel="noopener">{{ icon("whatsapp") }} {{ C.customCta }}</a>
+    </div>
+  </div>
+</section>
+
+<footer class="section--dark site-footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© {{ year }} LUMÉA</span>
+      <a href="/">{{ C.back }}</a>
+    </div>
+  </div>
+</footer>

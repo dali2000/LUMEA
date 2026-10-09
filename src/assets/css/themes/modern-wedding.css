@@ -1,5 +1,10 @@
 /* Modern Wedding — tres moderne, typographie editoriale a grande echelle, contraste franc. */
 .theme-modern-wedding {
+  --confetti-colors: #ffffff, #e2d3b0, #8a8a8a;
+  --confetti-shape: paper;
+  --scratch-1: #7d7d7d;
+  --scratch-2: #e8e8e8;
+  --scratch-ink: rgba(13, 13, 13, 0.6);
   --bg: #ffffff;
   --bg-alt: #f2f2f0;
   --text: #0d0d0d;
@@ -44,3 +49,32 @@
 .theme-modern-wedding .countdown { justify-content: flex-start; }
 .theme-modern-wedding .rsvp-form { text-align: left; margin-inline: 0; }
 
+
+/* Motion — Modern Photography: letters rise out of a mask, photos wipe in and drift inside their frames. */
+.theme-modern-wedding {
+  --m-dur: 1100ms;
+  --m-y: 40px;
+  --m-stagger: 80ms;
+  --m-letter-dur: 1100ms;
+  --m-letter-step: 45ms;
+  --m-letter-from: translateY(105%);
+  --m-hero-start: 450ms;
+  --m-gallery-from: inset(100% 0 0 0);
+  --m-media-scale: 1.25;
+  --m-parallax: 1.4;
+}
+.theme-modern-wedding .invite-name {
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  vertical-align: bottom;
+}
+.theme-modern-wedding .scroll-cue { left: auto; right: var(--gutter); margin: 0; }
+.theme-modern-wedding .ornament {
+  width: 100%;
+  margin-left: 0;
+  transform-origin: left;
+  background: var(--border);
+  opacity: 1;
+}
+.theme-modern-wedding .quote-block::before { text-align: left; }
+.theme-modern-wedding .gallery-grid { gap: var(--space-1); }

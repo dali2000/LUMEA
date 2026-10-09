@@ -1,0 +1,124 @@
+{
+  "theme": "floral",
+  "opening": "book",
+  "meeting": "polaroid",
+  "finale": "heart",
+  "photo": "/assets/images/demo/couple-sunset.svg",
+  "couple": {
+    "name1": "Mehdi",
+    "name2": "Sana"
+  },
+  "message": "Notre histoire a commencé par une page blanche. Venez écrire avec nous son plus beau chapitre.",
+  "date": "2027-05-29T17:00:00",
+  "location": {
+    "name": "Les Jardins de Carthage",
+    "address": "Carthage",
+    "mapsUrl": "https://maps.google.com/?q=Carthage+Tunisie"
+  },
+  "program": [
+    {
+      "time": "17:00",
+      "label": "Cérémonie dans le jardin"
+    },
+    {
+      "time": "18:30",
+      "label": "Cocktail fleuri"
+    },
+    {
+      "time": "20:00",
+      "label": "Dîner"
+    },
+    {
+      "time": "22:30",
+      "label": "Soirée dansante"
+    }
+  ],
+  "quote": "Chaque histoire d'amour est belle, mais la nôtre est notre préférée.",
+  "gallery": [
+    {
+      "caption": "Notre premier voyage"
+    },
+    {
+      "caption": "La demande"
+    },
+    {
+      "caption": "Au jardin"
+    }
+  ],
+  "rsvp": {
+    "deadline": "2027-05-05",
+    "contactEmail": "mehdi.sana@example.com"
+  },
+  "translations": {
+    "en": {
+      "message": "Our story began with a blank page. Come and write its most beautiful chapter with us.",
+      "program": [
+        {
+          "label": "Garden ceremony"
+        },
+        {
+          "label": "Floral cocktails"
+        },
+        {
+          "label": "Dinner"
+        },
+        {
+          "label": "Dancing"
+        }
+      ],
+      "quote": "Every love story is beautiful, but ours is our favourite.",
+      "gallery": [
+        {
+          "caption": "Our first trip"
+        },
+        {
+          "caption": "The proposal"
+        },
+        {
+          "caption": "In the garden"
+        }
+      ],
+      "location": {
+        "name": "Les Jardins de Carthage",
+        "address": "Carthage"
+      }
+    },
+    "ar": {
+      "couple": {
+        "name1": "مهدي",
+        "name2": "سناء"
+      },
+      "message": "بدأت قصّتنا بصفحة بيضاء. تعالوا نكتب معاً أجمل فصولها.",
+      "program": [
+        {
+          "label": "المراسم في الحديقة"
+        },
+        {
+          "label": "كوكتيل الزهور"
+        },
+        {
+          "label": "العشاء"
+        },
+        {
+          "label": "سهرة راقصة"
+        }
+      ],
+      "quote": "كلّ قصص الحبّ جميلة، لكنّ قصّتنا هي المفضّلة لدينا.",
+      "gallery": [
+        {
+          "caption": "رحلتنا الأولى"
+        },
+        {
+          "caption": "طلب الزواج"
+        },
+        {
+          "caption": "في الحديقة"
+        }
+      ],
+      "location": {
+        "name": "حدائق قرطاج",
+        "address": "قرطاج"
+      }
+    }
+  }
+}

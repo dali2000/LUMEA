@@ -1,0 +1,35 @@
+/* Menu Noir — fine dining : noir profond, champagne, entrée cinématique. */
+.theme-menu-noir {
+  --bg: #0f0e0d;
+  --bg-alt: #171412;
+  --text: #f3eadd;
+  --text-muted: #a59b8a;
+  --text-inverse: #0f0e0d;
+  --accent: #c9a96a;
+  --accent-strong: #c9a96a;
+  --border: rgba(201, 169, 106, 0.18);
+  --border-on-dark: rgba(243, 234, 221, 0.14);
+  --shadow-soft: 0 6px 30px rgba(0, 0, 0, 0.45);
+  --m-dur: 1200ms;
+  --m-y: 22px;
+  --m-scale: 0.97;
+  --m-letter-dur: 1400ms;
+  --m-letter-step: 70ms;
+  --m-letter-from: scale(1.3);
+  --m-letter-blur: 8px;
+  --m-media-scale: 1.2;
+}
+.theme-menu-noir .menu-cover--photo::after {
+  background: linear-gradient(180deg, rgba(15, 14, 13, 0.3) 0%, rgba(15, 14, 13, 0.45) 45%, #0f0e0d 100%);
+}
+.theme-menu-noir .menu-cover--photo .label { color: var(--accent); opacity: 1; }
+.theme-menu-noir .menu-item-name { letter-spacing: 0.02em; }
+.theme-menu-noir .ornament {
+  width: 110px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  opacity: 1;
+}
+.theme-menu-noir .card { background: var(--bg-alt); }
+.theme-menu-noir .specialty-card--photo { background: var(--bg-alt); }
+.theme-menu-noir .btn-primary { background: var(--accent); color: var(--text-inverse); }
+.theme-menu-noir .btn-ghost { color: var(--text); }

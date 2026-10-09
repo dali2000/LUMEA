@@ -1,0 +1,121 @@
+{
+  "theme": "boho-countryside",
+  "couple": {
+    "name1": "Ayoub",
+    "name2": "Salma"
+  },
+  "message": "Pieds nus dans l'herbe et cœur léger : venez célébrer notre mariage à la campagne, à l'heure dorée.",
+  "date": "2027-09-04T17:30:00",
+  "location": {
+    "name": "Domaine Neferis",
+    "address": "Grombalia, Cap Bon",
+    "mapsUrl": "https://maps.google.com/?q=Domaine+Neferis"
+  },
+  "program": [
+    {
+      "time": "17:30",
+      "label": "Cérémonie laïque dans les vignes"
+    },
+    {
+      "time": "18:30",
+      "label": "Apéritif au coucher du soleil"
+    },
+    {
+      "time": "20:00",
+      "label": "Dîner sous les guirlandes"
+    },
+    {
+      "time": "22:00",
+      "label": "Feu de camp & musique"
+    }
+  ],
+  "quote": "Le bonheur, c'est simple comme un soir d'été passé ensemble.",
+  "gallery": [
+    {
+      "caption": "Road trip au Cap Bon"
+    },
+    {
+      "caption": "Les vendanges"
+    },
+    {
+      "caption": "Juste nous deux"
+    }
+  ],
+  "scratch": true,
+  "rsvp": {
+    "deadline": "2027-08-10",
+    "contactEmail": "ayoub.salma@example.com"
+  },
+  "translations": {
+    "en": {
+      "message": "Barefoot in the grass and light of heart: come and celebrate our countryside wedding at golden hour.",
+      "program": [
+        {
+          "label": "Ceremony among the vines"
+        },
+        {
+          "label": "Sunset drinks"
+        },
+        {
+          "label": "Dinner under the string lights"
+        },
+        {
+          "label": "Campfire & music"
+        }
+      ],
+      "quote": "Happiness is as simple as a summer evening spent together.",
+      "gallery": [
+        {
+          "caption": "Road trip to Cap Bon"
+        },
+        {
+          "caption": "The grape harvest"
+        },
+        {
+          "caption": "Just the two of us"
+        }
+      ],
+      "location": {
+        "name": "Domaine Neferis",
+        "address": "Grombalia, Cap Bon"
+      }
+    },
+    "ar": {
+      "couple": {
+        "name1": "أيوب",
+        "name2": "سلمى"
+      },
+      "message": "حفاةً على العشب وبقلوب خفيفة: تعالوا نحتفل بزفافنا في الريف، في الساعة الذهبية.",
+      "program": [
+        {
+          "label": "المراسم بين الكروم"
+        },
+        {
+          "label": "مشروبات عند الغروب"
+        },
+        {
+          "label": "العشاء تحت الأضواء"
+        },
+        {
+          "label": "نار المخيّم والموسيقى"
+        }
+      ],
+      "quote": "السعادة بسيطة، كأمسية صيفية نقضيها معاً.",
+      "gallery": [
+        {
+          "caption": "رحلة إلى الوطن القبلي"
+        },
+        {
+          "caption": "موسم القطاف"
+        },
+        {
+          "caption": "نحن الاثنان فقط"
+        }
+      ],
+      "location": {
+        "name": "ضيعة نفريس",
+        "address": "قرمبالية، الوطن القبلي"
+      }
+    }
+  }
+}

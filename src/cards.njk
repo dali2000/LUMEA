@@ -1,0 +1,11 @@
+---
+layout: layouts/card.njk
+pagination:
+  data: collections.invitationPages
+  size: 1
+  alias: invite
+permalink: "{{ invite.path }}carte/"
+eleventyComputed:
+  title: "{% if invite.couple %}{{ invite.couple.name1 }} & {{ invite.couple.name2 }}{% else %}{{ invite.honoree.name }}{% endif %} — {{ (i18n[invite.lang] or i18n.fr).card.title }}"
+  description: "{{ invite.message }}"
+---

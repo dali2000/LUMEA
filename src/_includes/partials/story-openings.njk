@@ -1,0 +1,162 @@
+{#
+  Scene 1-2 of the opening film: what the guest taps to open the invitation.
+  "opening" in the JSON: envelope (default) | ringbox | door | scroll | book | gift.
+  Every opening holds the same .env-card, which then writes itself (is-card).
+  Styles: story.css (envelope, ringbox) and story-variants.css (the others).
+#}
+{% set card %}
+        <span class="env-card">
+          <span class="card-kicker">{{ kicker }}</span>
+          <span class="card-names">
+            <span class="card-name">{{ name1 | splitLetters | safe }}</span>
+            {% if single %}
+            {% if invite.honoree.age %}<span class="card-amp card-age">{{ invite.honoree.age }}</span>{% endif %}
+            {% else %}
+            <span class="card-amp">{{ T.amp }}</span>
+            <span class="card-name">{{ name2 | splitLetters(len1 + 1) | safe }}</span>
+            {% endif %}
+          </span>
+          <span class="card-rule"></span>
+          <span class="card-date">{% if invite.scratch %}{{ T.saveTheDate }}{% else %}{{ invite.date | formatDateLong(lang) }}{% endif %}</span>
+          <span class="card-place">{{ invite.location.name }}</span>
+        </span>
+{% endset %}
+{% set address %}
+        <span class="env-address" data-guest hidden><small>{{ T.envFor }}</small> <span data-guest-name></span></span>
+{% endset %}
+{% set seal %}
+        <span class="env-seal">
+          <span class="seal-half seal-l">{{ initials }}</span>
+          <span class="seal-half seal-r">{{ initials }}</span>
+        </span>
+{% endset %}
+
+{% if opening == "ringbox" %}
+      <button type="button" class="envelope ringbox" data-envelope aria-label="{{ T.openLabels.ringbox }}">
+        {{ card | safe }}
+        <span class="rb-burst"></span>
+        <span class="rb-box">
+          <span class="rb-base"><span class="rb-cushion"></span></span>
+          <span class="rb-ring">
+            <svg viewBox="0 0 60 60" aria-hidden="true">
+              <ellipse class="rb-band" cx="30" cy="40" rx="15" ry="14" />
+              <path class="rb-band-hi" d="M18 33 A 15 14 0 0 1 26 26.6" />
+              <path class="rb-gem" d="M30 13 L37.5 20 L30 28.5 L22.5 20 Z" />
+              <path class="rb-gem-hi" d="M30 13 L33 20 L30 28.5 Z" />
+              <path class="rb-twinkle" d="M41 6 L42.2 11.8 L48 13 L42.2 14.2 L41 20 L39.8 14.2 L34 13 L39.8 11.8 Z" />
+            </svg>
+          </span>
+          <span class="rb-lid"><span class="rb-lid-face rb-lid-out"></span><span class="rb-lid-face rb-lid-in"></span></span>
+        </span>
+        {{ address | safe }}
+      </button>
+
+{% elif opening == "door" %}
+      {# A blue studded door from Sidi Bou Saïd opens on the light #}
+      <button type="button" class="envelope op-door op-centered" data-envelope aria-label="{{ T.openLabels.door }}">
+        <span class="door-light"></span>
+        {{ card | safe }}
+        <span class="op-body">
+          <span class="door-plaque">{{ initials }}</span>
+          {% for side in ["l", "r"] %}
+          <span class="door-leaf door-leaf--{{ side }}">
+            <svg viewBox="0 0 50 140" preserveAspectRatio="none" aria-hidden="true">
+              <path class="door-panel" d="M0 140 V50 A50 50 0 0 1 50 0 V140 Z" />
+              <path class="door-line" d="M7 133 V52 A43 43 0 0 1 43 8.5 M43 133 V60" />
+              {% for s in [[10.6,43],[15.4,30],[24.3,19.4],[36.3,12.4],[10,60],[10,72],[10,84],[10,96],[10,108],[10,120],[10,130],[20,130],[30,130],[40,130],[30,78],[37,90],[30,102],[23,90],[30,90]] %}
+              <circle class="door-stud" cx="{{ s[0] }}" cy="{{ s[1] }}" r="1.5" />
+              {% endfor %}
+            </svg>
+            {% if side == "r" %}<span class="door-knocker"></span>{% endif %}
+          </span>
+          {% endfor %}
+          <svg class="door-frame" viewBox="0 0 100 140" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M-3 141 V50 A53 53 0 0 1 103 50 V141" />
+          </svg>
+        </span>
+        {{ address | safe }}
+      </button>
+
+{% elif opening == "scroll" %}
+      {# A sealed scroll unrolls and reveals the card #}
+      <button type="button" class="envelope op-scroll op-centered" data-envelope aria-label="{{ T.openLabels.scroll }}">
+        {{ card | safe }}
+        <span class="op-body">
+          <span class="scroll-roll scroll-roll--t"></span>
+          <span class="scroll-roll scroll-roll--b"></span>
+          <span class="scroll-tie"></span>
+        </span>
+        {{ seal | safe }}
+        {{ address | safe }}
+      </button>
+
+{% elif opening == "book" %}
+      {# A storybook opens, its pages turn ("Il était une fois…") onto the card #}
+      <button type="button" class="envelope op-book op-centered" data-envelope aria-label="{{ T.openLabels.book }}">
+        <span class="op-body">
+          <span class="book">
+            <span class="book-page"><span class="book-text">…et l'histoire continue avec vous.</span></span>
+            <span class="book-leaf" style="--z:1px; --delay:1750ms">
+              <span class="book-face book-face--front"></span>
+              <span class="book-face book-face--back"><span class="book-text">{{ T.bookOnce }} {{ coupleLabel }}…</span></span>
+            </span>
+            <span class="book-leaf" style="--z:2px; --delay:1450ms">
+              <span class="book-face book-face--front"></span>
+              <span class="book-face book-face--back"></span>
+            </span>
+            <span class="book-leaf" style="--z:3px; --delay:1150ms">
+              <span class="book-face book-face--front"><span class="book-text book-text--chapter">{{ T.bookChapter }}</span></span>
+              <span class="book-face book-face--back"></span>
+            </span>
+            <span class="book-leaf book-cover" style="--z:4px; --delay:200ms">
+              <span class="book-face book-face--front">
+                <span class="book-title">{{ T.bookTitle }}</span>
+                <span class="book-initials">{{ initials }}</span>
+              </span>
+              <span class="book-face book-face--back book-lining"></span>
+            </span>
+          </span>
+        </span>
+        {{ card | safe }}
+        {{ address | safe }}
+      </button>
+
+{% elif opening == "gift" %}
+      {# The ribbon unties, the lid pops off and the card rises from the box #}
+      <button type="button" class="envelope op-gift" data-envelope aria-label="{{ T.openLabels.gift }}">
+        <span class="rb-burst gift-burst"></span>
+        {{ card | safe }}
+        <span class="op-body">
+          <span class="gift-box">
+            <span class="gift-body"><i class="gift-band"></i><i class="gift-tag">{{ initials }}</i></span>
+            <span class="gift-lid">
+              <i class="gift-band"></i>
+              <span class="gift-bow"><i class="gift-loop gift-loop--l"></i><i class="gift-loop gift-loop--r"></i><i class="gift-knot"></i></span>
+            </span>
+          </span>
+        </span>
+        {{ address | safe }}
+      </button>
+
+{% else %}
+      <button type="button" class="envelope" data-envelope aria-label="{{ T.openLabels.envelope }}">
+        <span class="env-back"></span>
+        {{ card | safe }}
+        <span class="env-front">
+          <svg viewBox="0 0 100 68" preserveAspectRatio="none" aria-hidden="true">
+            <polygon class="env-side" points="0,0 50,37 0,68" />
+            <polygon class="env-side" points="100,0 50,37 100,68" />
+            <polygon class="env-bottom" points="0,68 50,33 100,68" />
+          </svg>
+        </span>
+        <span class="env-flap">
+          <span class="env-flap-face env-flap-out">
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polyline class="env-flap-edge" points="0,1 50,57 100,1" /></svg>
+          </span>
+          <span class="env-flap-face env-flap-in"></span>
+        </span>
+        {% if story in ["royal", "garden", "henna", "boho"] %}<span class="env-ribbon"><i></i><i></i></span>{% endif %}
+        {{ seal | safe }}
+        {{ address | safe }}
+      </button>
+{% endif %}

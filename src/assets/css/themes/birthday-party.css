@@ -1,0 +1,102 @@
+/* Birthday Party — anniversaire chic : crème, corail, or et canard, fanions et ballons. */
+.theme-birthday-party {
+  --bg: #fff8ef;
+  --bg-alt: #fdebe0;
+  --text: #3a2440;
+  --text-muted: #7a5a72;
+  --text-inverse: #fff8ef;
+  --accent: #d9a13b;
+  --accent-strong: #ef6f5e;
+  --border: rgba(58, 36, 64, 0.14);
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --confetti-colors: #ef6f5e, #e2b04a, #2f8f8a, #f6a593;
+  --confetti-shape: paper;
+  --scratch-1: #ef6f5e;
+  --scratch-2: #f6c2a8;
+  --scratch-ink: rgba(58, 36, 64, 0.6);
+}
+
+/* Bunting across the top of the hero, balloons in the lower corners */
+.theme-birthday-party .invite-hero {
+  position: relative;
+  isolation: isolate;
+  background: radial-gradient(ellipse at 50% 0%, rgba(246, 165, 147, 0.32), transparent 62%), var(--bg);
+}
+.theme-birthday-party .invite-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: clamp(60px, 12vw, 110px);
+  z-index: -1;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 70' preserveAspectRatio='none'%3E%3Cpath d='M-5 6 Q 200 56 405 6' fill='none' stroke='%238A6A7C' stroke-width='0.8'/%3E%3Cg%3E%3Cpath d='M24 14 L42 17 L31 36 Z' fill='%23EF6F5E'/%3E%3Cpath d='M66 22 L84 25 L73 44 Z' fill='%23E2B04A'/%3E%3Cpath d='M110 28 L128 30 L118 50 Z' fill='%232F8F8A'/%3E%3Cpath d='M154 31 L172 32 L163 52 Z' fill='%23EF6F5E'/%3E%3Cpath d='M196 32 L214 32 L205 52 Z' fill='%23E2B04A'/%3E%3Cpath d='M238 31 L256 30 L247 51 Z' fill='%232F8F8A'/%3E%3Cpath d='M282 28 L300 26 L292 47 Z' fill='%23EF6F5E'/%3E%3Cpath d='M326 22 L344 19 L337 40 Z' fill='%23E2B04A'/%3E%3Cpath d='M368 15 L386 11 L380 33 Z' fill='%232F8F8A'/%3E%3C/g%3E%3C/svg%3E") top / 100% 100% no-repeat;
+  transform-origin: 50% 0;
+}
+.theme-birthday-party .invite-hero::after {
+  content: "";
+  position: absolute;
+  right: 4%;
+  bottom: 6%;
+  width: clamp(70px, 16vw, 120px);
+  aspect-ratio: 80 / 130;
+  z-index: -1;
+  opacity: 0.85;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 130'%3E%3Cg fill='none' stroke='%238A6A7C' stroke-width='0.8'%3E%3Cpath d='M24 52 C 20 70, 30 86, 26 130'/%3E%3Cpath d='M56 62 C 60 80, 50 96, 54 130'/%3E%3C/g%3E%3Cpath d='M24 2 C 38 2, 42 15, 42 24 C 42 38, 32 48, 24 50 C 16 48, 6 38, 6 24 C 6 15, 10 2, 24 2 Z' fill='%23EF6F5E'/%3E%3Cpath d='M56 14 C 69 14, 73 26, 73 34 C 73 47, 64 56, 56 58 C 48 56, 39 47, 39 34 C 39 26, 43 14, 56 14 Z' fill='%232F8F8A'/%3E%3Cpath d='M14 14 C 15 9, 19 7, 22 6.5 M47 25 C 48 20, 52 18, 55 18' stroke='white' stroke-opacity='.6' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E") bottom / contain no-repeat;
+}
+
+.theme-birthday-party .invite-names { font-weight: 600; }
+.theme-birthday-party .invite-age { color: var(--accent-strong); }
+.theme-birthday-party .label { color: var(--accent-strong); }
+.theme-birthday-party .program-list::before { background: var(--accent); opacity: 0.5; }
+.theme-birthday-party .program-item::before { background: var(--accent-strong); }
+.theme-birthday-party .btn-primary { background: var(--accent-strong); color: var(--text-inverse); }
+.theme-birthday-party .btn-primary:hover { background: #d95b4b; }
+.theme-birthday-party .card,
+.theme-birthday-party .gallery-tile { border-radius: var(--radius-md); }
+.theme-birthday-party .quote-block p { color: var(--text); }
+
+/* Section ornament: three dots of confetti */
+.theme-birthday-party .ornament {
+  width: 40px;
+  height: 10px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10'%3E%3Ccircle cx='8' cy='5' r='3' fill='%23EF6F5E'/%3E%3Ccircle cx='20' cy='5' r='3' fill='%23E2B04A'/%3E%3Ccircle cx='32' cy='5' r='3' fill='%232F8F8A'/%3E%3C/svg%3E") center / contain no-repeat;
+  opacity: 1;
+}
+
+/* Motion — Birthday: lively and bouncy; the letters pop in, the bunting swings. */
+.theme-birthday-party {
+  --m-dur: 900ms;
+  --m-y: 26px;
+  --m-stagger: 80ms;
+  --m-letter-dur: 900ms;
+  --m-letter-step: 55ms;
+  --m-letter-from: translateY(0.5em) scale(0.6) rotate(-10deg);
+  --m-letter-blur: 0px;
+  --m-media-scale: 1.08;
+  --m-gallery-from: inset(0 0 0 0 round 20px);
+  --m-parallax: 0.8;
+}
+
+@keyframes bp-swing { from { rotate: -1.2deg; } to { rotate: 1.2deg; } }
+@keyframes bp-drop { from { opacity: 0; translate: 0 -40px; } }
+@keyframes bp-float { from { opacity: 0; translate: 0 60px; } }
+@keyframes bp-bob { from { translate: 0 0; } to { translate: 0 -8px; } }
+.js .theme-birthday-party:not(.is-opened) .invite-hero::before,
+.js .theme-birthday-party:not(.is-opened) .invite-hero::after { opacity: 0; }
+.theme-birthday-party.is-opened .invite-hero::before {
+  animation:
+    bp-drop 1.2s cubic-bezier(0.22, 1.3, 0.36, 1) var(--m-hero-start) both,
+    bp-swing 4s ease-in-out 1.8s infinite alternate;
+}
+.theme-birthday-party.is-opened .invite-hero::after {
+  animation:
+    bp-float 2s var(--m-ease) calc(var(--m-hero-start) + 300ms) both,
+    bp-bob 3.2s ease-in-out 2.4s infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-birthday-party .invite-hero::before,
+  .theme-birthday-party .invite-hero::after { animation: none !important; }
+  .js .theme-birthday-party:not(.is-opened) .invite-hero::before,
+  .js .theme-birthday-party:not(.is-opened) .invite-hero::after { opacity: 1; }
+}

@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap");
 @import "tokens.css";
+@import "i18n.css";
 
 /* Reset */
 *, *::before, *::after { box-sizing: border-box; }
@@ -71,6 +72,21 @@ ul { margin: 0; padding: 0; list-style: none; }
   transition: transform var(--duration) var(--ease-out), background-color 250ms ease, border-color 250ms ease, opacity 250ms ease;
 }
 .btn:hover { transform: scale(1.02); }
+.btn:active { transform: scale(0.98); transition-duration: 120ms; }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+/* A soft sheen crosses the button on hover. */
+.btn { position: relative; overflow: hidden; isolation: isolate; }
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.18) 50%, transparent 65%);
+  transform: translateX(-120%);
+  transition: transform 900ms var(--ease-out);
+  pointer-events: none;
+}
+.btn:hover::after { transform: translateX(120%); }
 .btn-primary {
   background: var(--text);
   color: var(--text-inverse);
@@ -102,7 +118,13 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 /* Logo */
 .logo { display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none; color: inherit; }
-.logo svg { width: 28px; height: 28px; }
+.logo .lumea-monogram { width: 30px; height: 30px; }
+.lumea-wordmark { display: block; height: 0.8em; width: auto; overflow: visible; }
+.lumea-monogram { display: block; }
+.logo-accent { fill: var(--accent, #bfa676); }
+.logo .lumea-wordmark { height: 15px; }
+.logo--credit { flex-direction: column; gap: 0.5rem; font-size: var(--size-label); letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
+.logo--credit .lumea-wordmark { height: 12px; color: var(--text); }
 .logo-word {
   font-family: var(--font-serif);
   font-size: 1.25rem;
@@ -134,7 +156,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   position: relative;
 }
 .hero-inner { max-width: 760px; }
-.hero .logo-word { font-size: var(--size-display); letter-spacing: 0.04em; display: block; margin-bottom: var(--space-2); }
+.hero-wordmark { margin: 0 auto var(--space-3); line-height: 1; }
+.hero-wordmark .lumea-wordmark { height: clamp(2.25rem, 6vw, 3.5rem); margin-inline: auto; }
 .hero-tagline { font-size: var(--size-h2); font-family: var(--font-sans); font-weight: 400; color: var(--text-muted); margin-bottom: var(--space-3); }
 .hero-signature { font-family: var(--font-serif); font-style: italic; font-size: 1.25rem; color: var(--text); margin-bottom: var(--space-4); }
 
@@ -196,6 +219,11 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .phone-frame .label { color: var(--text-muted); margin: 0; }
 .phone-caption { font-size: var(--size-small); color: var(--text-muted); text-align: center; }
+a.phone { color: inherit; text-decoration: none; }
+a.phone .phone-frame { transition: transform 500ms var(--m-ease, ease), box-shadow 500ms ease; }
+a.phone:hover .phone-frame, a.phone:focus-visible .phone-frame { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12); }
+.phone-names { margin: 0; font-family: var(--font-serif); font-size: 1.6rem; line-height: 1.2; }
+.phone-names i { display: block; font-size: 0.8em; opacity: 0.75; }
 
 /* How it works steps */
 .steps {
@@ -310,58 +338,21 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* Scroll reveal — progressive enhancement only: content is fully visible by
    default, and only hidden pre-reveal once .js confirms the script runs.
    The observed element (.reveal) never hides itself — only its direct
-   children do, each with a small stagger — so a slow observer or a tool
-   that screenshots without scrolling still shows real, laid-out content. */
+   children do, staggered by the --i index reveal.js gives each child, so a
+   slow observer or a tool that screenshots without scrolling still shows
+   real, laid-out content. Timing comes from the --m-* motion tokens, which
+   invitation themes override (see motion.css). */
 .js .reveal > * {
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 650ms var(--ease-out), transform 650ms var(--ease-out);
+  transform: translateY(var(--m-y, 14px)) scale(var(--m-scale, 1));
 }
-.js .reveal.is-visible > * { opacity: 1; transform: translateY(0); }
-.reveal > *:nth-child(1) { transition-delay: 0ms; }
-.reveal > *:nth-child(2) { transition-delay: 70ms; }
-.reveal > *:nth-child(3) { transition-delay: 140ms; }
-.reveal > *:nth-child(4) { transition-delay: 210ms; }
-.reveal > *:nth-child(5) { transition-delay: 280ms; }
-.reveal > *:nth-child(6) { transition-delay: 350ms; }
-.reveal > *:nth-child(7) { transition-delay: 420ms; }
-.reveal > *:nth-child(8) { transition-delay: 490ms; }
-.reveal > *:nth-child(9) { transition-delay: 560ms; }
-.reveal > *:nth-child(n+10) { transition-delay: 630ms; }
+.js .reveal:not(.is-settled) > * {
+  transition: opacity var(--m-dur, 650ms) var(--m-ease, var(--ease-out)), transform var(--m-dur, 650ms) var(--m-ease, var(--ease-out));
+  transition-delay: calc(var(--i, 0) * var(--m-stagger, 70ms));
+}
+.js .reveal.is-visible > * { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   .js .reveal > * { opacity: 1; transform: none; transition: none; }
-}
-
-/* Opening overlay (invitations) — hidden entirely without JS (progressive
-   enhancement, same rule as .reveal above: never block content on JS). */
-.intro-overlay { display: none; }
-.js .intro-overlay {
-  display: flex;
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: var(--bg);
-  padding: var(--space-4);
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 650ms var(--ease-out), visibility 650ms var(--ease-out);
-}
-.intro-overlay.is-closing { opacity: 0; visibility: hidden; pointer-events: none; }
-.intro-content { max-width: 360px; }
-.intro-content .logo-word { opacity: 0.8; }
-.intro-names { font-size: clamp(1.75rem, 5vw, 2.5rem); margin: var(--space-3) 0 var(--space-4); }
-.intro-open { width: 100%; }
-.intro-hint {
-  margin-top: var(--space-3);
-  font-size: var(--size-small);
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4em;
 }
 
 /* Floating music toggle */
@@ -430,16 +421,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   border-radius: var(--radius-sm);
   background: linear-gradient(160deg, var(--bg-alt), var(--bg));
   border: 1px solid var(--border);
-  display: flex;
-  align-items: flex-end;
-  padding: var(--space-2);
   cursor: pointer;
-  filter: saturate(0.9);
-  transition: transform var(--duration) var(--ease-out), filter var(--duration) var(--ease-out);
 }
-.gallery-tile:hover { transform: scale(1.02); filter: saturate(1); }
-.gallery-tile span { font-size: var(--size-small); color: var(--text-muted); }
-.gallery-tile img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-sm); }
 
 .lightbox {
   position: fixed; inset: 0; background: rgba(var(--color-ink-rgb), 0.85);
@@ -448,7 +431,6 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .lightbox.is-open { opacity: 1; pointer-events: auto; }
 .lightbox-content { max-width: 480px; width: 100%; }
-.lightbox-content .gallery-tile { cursor: default; aspect-ratio: 4 / 5; }
 .lightbox-close {
   position: absolute; top: var(--space-3); right: var(--gutter);
   background: none; border: none; color: var(--text-inverse); font-size: 2rem; cursor: pointer; line-height: 1;
@@ -466,6 +448,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .rsvp-form textarea { resize: vertical; min-height: 80px; }
 .rsvp-choice { display: flex; gap: var(--space-3); }
 .rsvp-choice label { display: flex; align-items: center; gap: 0.4rem; font-weight: 400; }
+.rsvp-choice input { accent-color: var(--accent); }
 .rsvp-confirmation { text-align: center; }
 
 .invite-footer { text-align: center; padding-block: var(--space-6) var(--space-4); }
@@ -514,3 +497,11 @@ ul { margin: 0; padding: 0; list-style: none; }
 .menu-info h3 { font-size: 1rem; }
 .menu-info h3 svg { margin-right: 0.4em; }
 .menu-info p { color: var(--text-muted); font-size: var(--size-small); }
+
+/* Landing — header nav, collection cards as links */
+.site-nav { display: flex; align-items: center; gap: var(--space-2); }
+.site-langs { font-size: var(--size-small); letter-spacing: 0.08em; color: var(--text-muted); }
+a.collection-card { color: inherit; text-decoration: none; }
+@media (max-width: 480px) { .site-langs { display: none; } }
+.site-langs a { text-decoration: none; } .site-langs a:hover { color: var(--accent); }
+.pricing-card .btn { margin-top: var(--space-3); width: 100%; }

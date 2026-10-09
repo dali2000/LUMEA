@@ -1,0 +1,189 @@
+[
+  {
+    "id": "palais-d-orient",
+    "name": {
+      "fr": "Palais d'Orient",
+      "en": "Oriental Palace",
+      "ar": "قصر الشرق"
+    },
+    "occasion": "wedding",
+    "demo": "mohamed-sarah",
+    "price": "45,999",
+    "tier": "premium",
+    "frame": [
+      "#2a1f16",
+      "#120e0b",
+      "#d4b273"
+    ]
+  },
+  {
+    "id": "porte-bleue",
+    "name": {
+      "fr": "Porte Bleue",
+      "en": "Blue Door",
+      "ar": "الباب الأزرق"
+    },
+    "occasion": "wedding",
+    "demo": "nizar-farah",
+    "price": "45,999",
+    "tier": "premium",
+    "frame": [
+      "#dcecf4",
+      "#ffffff",
+      "#1b3a4b"
+    ]
+  },
+  {
+    "id": "livre-de-fleurs",
+    "name": {
+      "fr": "Livre de Fleurs",
+      "en": "Book of Flowers",
+      "ar": "كتاب الزهور"
+    },
+    "occasion": "wedding",
+    "demo": "mehdi-sana",
+    "price": "39,999",
+    "tier": "essential",
+    "frame": [
+      "#fdf6f3",
+      "#f3e1db",
+      "#4a3532"
+    ]
+  },
+  {
+    "id": "nuit-etoilee",
+    "name": {
+      "fr": "Nuit Étoilée",
+      "en": "Starry Night",
+      "ar": "ليلة النجوم"
+    },
+    "occasion": "wedding",
+    "demo": "adam-yasmine",
+    "price": "45,999",
+    "tier": "premium",
+    "frame": [
+      "#1d2a5c",
+      "#060918",
+      "#e3cf9a"
+    ]
+  },
+  {
+    "id": "riad-andalou",
+    "name": {
+      "fr": "Riad Andalou",
+      "en": "Andalusian Riad",
+      "ar": "الرياض الأندلسي"
+    },
+    "occasion": "wedding",
+    "demo": "omar-lina",
+    "price": "45,999",
+    "tier": "premium",
+    "frame": [
+      "#fbf1e3",
+      "#e6c7a5",
+      "#1f6f78"
+    ]
+  },
+  {
+    "id": "premiere-danse",
+    "name": {
+      "fr": "Première Danse",
+      "en": "First Dance",
+      "ar": "الرقصة الأولى"
+    },
+    "occasion": "wedding",
+    "demo": "rami-olfa",
+    "price": "45,999",
+    "tier": "premium",
+    "frame": [
+      "#1a1a1a",
+      "#070707",
+      "#ffffff"
+    ]
+  },
+  {
+    "id": "heure-doree",
+    "name": {
+      "fr": "Heure Dorée",
+      "en": "Golden Hour",
+      "ar": "الساعة الذهبية"
+    },
+    "occasion": "wedding",
+    "demo": "ayoub-salma",
+    "price": "39,999",
+    "tier": "essential",
+    "frame": [
+      "#f6d7b8",
+      "#efe1cf",
+      "#4a3326"
+    ]
+  },
+  {
+    "id": "epure",
+    "name": {
+      "fr": "Épure",
+      "en": "Pure",
+      "ar": "البساطة"
+    },
+    "occasion": "wedding",
+    "demo": "dali-latifa",
+    "price": "39,999",
+    "tier": "essential",
+    "frame": [
+      "#fbf8f3",
+      "#efe7db",
+      "#2a2520"
+    ]
+  },
+  {
+    "id": "ecrin",
+    "name": {
+      "fr": "L'Écrin",
+      "en": "The Ring Box",
+      "ar": "علبة الخاتم"
+    },
+    "occasion": "engagement",
+    "demo": "youssef-ines",
+    "price": "45,999",
+    "tier": "premium",
+    "frame": [
+      "#2a1f16",
+      "#120e0b",
+      "#d4b273"
+    ]
+  },
+  {
+    "id": "nuit-du-henne",
+    "name": {
+      "fr": "Nuit du Henné",
+      "en": "Henna Night",
+      "ar": "ليلة الحنّة"
+    },
+    "occasion": "henna",
+    "demo": "hedi-mariem",
+    "price": "45,999",
+    "tier": "premium",
+    "frame": [
+      "#5a1f28",
+      "#180609",
+      "#e0b25c"
+    ]
+  },
+  {
+    "id": "confettis",
+    "name": {
+      "fr": "Confettis",
+      "en": "Confetti",
+      "ar": "حفلة الألوان"
+    },
+    "occasion": "birthday",
+    "demo": "lina-30-ans",
+    "price": "39,999",
+    "tier": "essential",
+    "frame": [
+      "#fff7ec",
+      "#f9cfbf",
+      "#3a2440"
+    ]
+  }
+]

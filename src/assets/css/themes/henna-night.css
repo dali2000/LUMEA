@@ -1,0 +1,92 @@
+/* Henna Night — soirée du henné : bordeaux, or et vert, motifs de henné. */
+.theme-henna-night {
+  --bg: #fbf5ee;
+  --bg-alt: #f4e7d8;
+  --text: #3d1a1f;
+  --text-muted: #8a6a62;
+  --text-inverse: #fbf5ee;
+  --accent: #b8893a;
+  --accent-strong: #7a1f2b;
+  --border: rgba(122, 31, 43, 0.16);
+  --confetti-colors: #7a1f2b, #b8893a, #2f5d3a, #e0b25c;
+  --confetti-shape: petals;
+  --scratch-1: #a4772d;
+  --scratch-2: #f3d58e;
+  --scratch-ink: rgba(61, 26, 31, 0.6);
+}
+
+/* A henna mandala behind the names, and a paisley border at the foot */
+.theme-henna-night .invite-hero { position: relative; isolation: isolate; }
+.theme-henna-night .invite-hero::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(92vw, 620px);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  z-index: -1;
+  opacity: 0.12;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-100 -100 200 200'%3E%3Cg fill='none' stroke='%237A1F2B' stroke-width='1'%3E%3Ccircle r='18'/%3E%3Ccircle r='76'/%3E%3Ccircle r='94' stroke-dasharray='2 5'/%3E%3Cg id='p'%3E%3Cpath d='M0 -22 C 8 -36, 8 -50, 0 -64 C -8 -50, -8 -36, 0 -22 Z'/%3E%3Ccircle cy='-84' r='3'/%3E%3C/g%3E%3Cuse href='%23p' transform='rotate(30)'/%3E%3Cuse href='%23p' transform='rotate(60)'/%3E%3Cuse href='%23p' transform='rotate(90)'/%3E%3Cuse href='%23p' transform='rotate(120)'/%3E%3Cuse href='%23p' transform='rotate(150)'/%3E%3Cuse href='%23p' transform='rotate(180)'/%3E%3Cuse href='%23p' transform='rotate(210)'/%3E%3Cuse href='%23p' transform='rotate(240)'/%3E%3Cuse href='%23p' transform='rotate(270)'/%3E%3Cuse href='%23p' transform='rotate(300)'/%3E%3Cuse href='%23p' transform='rotate(330)'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+}
+.theme-henna-night .invite-hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 14px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='14'%3E%3Cpath d='M2 12 C 2 4, 12 2, 14 7 C 15 10, 11 11, 10 9' fill='none' stroke='%23B8893A' stroke-width='1.2'/%3E%3Ccircle cx='22' cy='7' r='1.6' fill='%237A1F2B'/%3E%3C/svg%3E") repeat-x;
+  background-size: 28px 14px;
+}
+
+.theme-henna-night .invite-names { font-style: italic; font-weight: 500; color: var(--accent-strong); }
+.theme-henna-night .label { color: var(--accent); }
+.theme-henna-night .program-list::before { background: var(--accent); opacity: 0.5; }
+.theme-henna-night .program-item::before { background: var(--accent-strong); border: 2px solid var(--accent); background-clip: padding-box; }
+.theme-henna-night .program-time { color: var(--accent-strong); }
+.theme-henna-night .btn-primary { background: var(--accent-strong); color: var(--text-inverse); }
+.theme-henna-night .btn-primary:hover { background: #8f2a37; }
+.theme-henna-night .quote-block p { color: var(--accent-strong); }
+
+/* Motion — Henna: letters flow in like a henna brush stroke (slanted, from
+   the left), the mandala turns very slowly, the border is drawn outwards. */
+.theme-henna-night {
+  --m-dur: 1300ms;
+  --m-y: 18px;
+  --m-stagger: 110ms;
+  --m-letter-dur: 1300ms;
+  --m-letter-step: 70ms;
+  --m-letter-from: translate(-0.25em, 0.1em) skewX(-14deg);
+  --m-letter-blur: 3px;
+  --m-media-scale: 1.1;
+  --m-gallery-from: inset(0 100% 0 0 round 12px);
+  --m-parallax: 0.7;
+}
+
+@keyframes hn-mandala { from { opacity: 0; scale: 0.7; rotate: -40deg; } }
+@keyframes hn-turn { to { rotate: 360deg; } }
+@keyframes hn-border { from { scale: 0 1; } }
+.js .theme-henna-night:not(.is-opened) .invite-hero::before { opacity: 0; }
+.js .theme-henna-night:not(.is-opened) .invite-hero::after { scale: 0 1; }
+.theme-henna-night.is-opened .invite-hero::before {
+  animation:
+    hn-mandala 3s var(--m-ease) var(--m-hero-start) both,
+    hn-turn 160s linear 3s infinite;
+}
+.theme-henna-night.is-opened .invite-hero::after { animation: hn-border 2s var(--m-ease) calc(var(--m-hero-start) + 700ms) both; }
+
+/* Section ornament: three henna dots */
+.theme-henna-night .ornament {
+  width: 30px;
+  height: 6px;
+  background:
+    radial-gradient(circle, var(--accent-strong) 2.4px, transparent 3px) 0 0 / 12px 6px repeat-x;
+  opacity: 0.9;
+}
+@media (prefers-reduced-motion: reduce) {
+  .theme-henna-night .invite-hero::before,
+  .theme-henna-night .invite-hero::after { animation: none !important; }
+  .js .theme-henna-night:not(.is-opened) .invite-hero::before { opacity: 0.12; }
+  .js .theme-henna-night:not(.is-opened) .invite-hero::after { scale: none; }
+}

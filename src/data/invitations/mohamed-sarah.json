@@ -1,7 +1,12 @@
 {
   "theme": "oriental-luxury",
-  "music": { "src": "/assets/audio/placeholder-ambiance.wav" },
-  "couple": { "name1": "Mohamed", "name2": "Sarah" },
+  "music": {
+    "src": "/assets/audio/placeholder-ambiance.wav"
+  },
+  "couple": {
+    "name1": "Mohamed",
+    "name2": "Sarah"
+  },
   "message": "Avec joie, nous vous invitons à célébrer notre union.",
   "date": "2027-06-12T19:00:00",
   "location": {
@@ -10,19 +15,105 @@
     "mapsUrl": "https://maps.google.com/?q=Dar+Sebastian+Hammamet"
   },
   "program": [
-    { "time": "19:00", "label": "Henné" },
-    { "time": "20:30", "label": "Cérémonie" },
-    { "time": "21:30", "label": "Dîner" },
-    { "time": "23:30", "label": "Soirée" }
+    {
+      "time": "19:00",
+      "label": "Henné"
+    },
+    {
+      "time": "20:30",
+      "label": "Cérémonie"
+    },
+    {
+      "time": "21:30",
+      "label": "Dîner"
+    },
+    {
+      "time": "23:30",
+      "label": "Soirée"
+    }
   ],
   "quote": "Que notre histoire soit aussi belle que la lumière du soir sur la médina.",
   "gallery": [
-    { "caption": "Nos fiançailles" },
-    { "caption": "La demande" },
-    { "caption": "En famille" }
+    {
+      "caption": "Nos fiançailles"
+    },
+    {
+      "caption": "La demande"
+    },
+    {
+      "caption": "En famille"
+    }
   ],
   "rsvp": {
     "deadline": "2027-05-20",
     "contactEmail": "mohamed.sarah@example.com"
+  },
+  "translations": {
+    "en": {
+      "message": "With joy, we invite you to celebrate our union.",
+      "program": [
+        {
+          "label": "Henna"
+        },
+        {
+          "label": "Ceremony"
+        },
+        {
+          "label": "Dinner"
+        },
+        {
+          "label": "Party"
+        }
+      ],
+      "quote": "May our story be as beautiful as the evening light over the medina.",
+      "gallery": [
+        {
+          "caption": "Our engagement"
+        },
+        {
+          "caption": "The proposal"
+        },
+        {
+          "caption": "With family"
+        }
+      ]
+    },
+    "ar": {
+      "couple": {
+        "name1": "محمد",
+        "name2": "سارة"
+      },
+      "message": "بكلّ فرح، ندعوكم للاحتفال بزواجنا.",
+      "program": [
+        {
+          "label": "الحنّة"
+        },
+        {
+          "label": "المراسم"
+        },
+        {
+          "label": "العشاء"
+        },
+        {
+          "label": "السهرة"
+        }
+      ],
+      "quote": "عسى أن تكون قصّتنا جميلة كضوء المساء على المدينة العتيقة.",
+      "gallery": [
+        {
+          "caption": "خطوبتنا"
+        },
+        {
+          "caption": "طلب الزواج"
+        },
+        {
+          "caption": "مع العائلة"
+        }
+      ],
+      "location": {
+        "name": "دار سيباستيان",
+        "address": "الحمامات"
+      }
+    }
   }
 }

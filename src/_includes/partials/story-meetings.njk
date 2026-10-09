@@ -1,0 +1,157 @@
+{#
+  Scenes 4-5 of the opening film: the meeting (is-couple), then the moment
+  the scene blooms (is-bloom).
+  "meeting" in the JSON: couple (default) | doves | dance | hands | polaroid
+  | cake (polaroid shows "photo" from the JSON, or the couple's initials;
+  cake is the birthday default).
+  Styles: story.css (couple) and story-variants.css (the others).
+#}
+{% set figures %}
+      <svg class="figure figure--groom" viewBox="0 0 60 170">
+        <defs>
+          <linearGradient id="st-figure-grad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" style="stop-color: var(--st-figure-top)" />
+            <stop offset="1" style="stop-color: var(--st-figure)" />
+          </linearGradient>
+        </defs>
+        <ellipse class="figure-shadow" cx="30" cy="167" rx="15" ry="2.2" />
+        <g class="walk">
+          <ellipse cx="30" cy="15" rx="8.5" ry="10" />
+          <path d="M21.5 14 C 21 5, 28 3, 31 3.5 C 37 4, 39.5 8, 38.5 14 C 36 9, 30 8.5, 24 10 Z" />
+          <path d="M26.5 23 L 33.5 23 L 34 31 L 26 31 Z" />
+          <path d="M17 34 C 22 31, 26 30.5, 30 30.5 C 34 30.5, 38 31, 43 34 L 44.5 52 L 42.5 86 L 34 90 L 30 84 L 26 90 L 17.5 86 L 15.5 52 Z" />
+          <path d="M17 34 C 13.5 35, 12.5 38, 12.3 44 L 11.5 84 C 11.6 87, 14.5 88, 15.2 85 L 16.6 50 Z" />
+          <path d="M43 34 C 46.5 35, 47.5 38, 47.7 44 L 48.5 84 C 48.4 87, 45.5 88, 44.8 85 L 43.4 50 Z" />
+          <path d="M19 86 L 21 164 L 28.6 164 L 30 100 L 31.4 164 L 39 164 L 41 86 Z" />
+          <path d="M20 163 L 29 163 L 29.5 166.5 L 18.5 166.5 Z M31 163 L 40 163 L 41.5 166.5 L 30.5 166.5 Z" />
+          <path class="figure-light" d="M27 31.5 L30 44 L33 31.5 Z" />
+          <path d="M29.2 33 L30.8 33 L31.3 41 L30 43 L28.7 41 Z" />
+          <path class="figure-gap" d="M16.6 50 L 16 84 M43.4 50 L 44 84" />
+          <circle class="figure-accent" cx="38.2" cy="40" r="1.7" />
+        </g>
+      </svg>
+      <svg class="figure figure--bride" viewBox="0 0 70 170">
+        <ellipse class="figure-shadow" cx="35" cy="167" rx="30" ry="2.4" />
+        <path class="veil" d="M31.5 6 C 18 30, 10 100, 6 166 L 20 166 C 19 110, 25 50, 35 8 Z" />
+        <g class="walk">
+          <circle cx="35.5" cy="5" r="4.6" />
+          <ellipse cx="35" cy="15.5" rx="8" ry="9.6" />
+          <path d="M32 23.5 L 38 23.5 L 38.5 31 L 31.5 31 Z" />
+          <g class="dress">
+            <path class="skirt" d="M28.3 61 Q 35 63.5 41.7 61 C 47 92, 58 132, 67 165 Q 35 171 3 165 C 12 132, 23 92, 28.3 61 Z" />
+            <path d="M26 34 C 29 31.5, 32 31, 35 31 C 38 31, 41 31.5, 44 34 L 41.5 60 Q 35 62 28.5 60 Z" />
+            <path d="M26 34 C 23 35, 22 38, 21.8 43 L 21.5 55 C 21.5 61, 25 63.5, 31 63 L 31 60 C 27 60, 25 58, 25.2 54 L 26.5 44 Z" />
+            <path d="M44 34 C 47 35, 48 38, 48.2 43 L 48.5 55 C 48.5 61, 45 63.5, 39 63 L 39 60 C 43 60, 45 58, 44.8 54 L 43.5 44 Z" />
+          </g>
+          <path class="figure-accent" d="M28.5 58.5 Q 35 60.5 41.5 58.5 L 41.8 61.5 Q 35 63.5 28.2 61.5 Z" />
+          <g class="bouquet">
+            <path class="bouquet-leaf" d="M33 64 C 31 70, 30 74, 31.5 78 C 33.5 74, 34 70, 34 64 Z M37 64 C 39 70, 40 73, 38.8 77 C 36.8 73, 36 70, 36 64 Z" />
+            <circle cx="35" cy="61.5" r="3.8" />
+            <circle cx="31" cy="60.5" r="2.8" />
+            <circle cx="39" cy="60.5" r="2.8" />
+            <circle cx="33" cy="65" r="2.3" />
+            <circle cx="37.2" cy="65" r="2.3" />
+          </g>
+        </g>
+      </svg>
+{% endset %}
+
+<div class="story-couple meet--{{ meeting }}" aria-hidden="true">
+{% if meeting == "doves" %}
+  {# Two doves fly in from either side, meet, and a heart draws around them #}
+  <svg class="meet-heart" viewBox="0 0 440 250" preserveAspectRatio="xMidYMid meet">
+    <path d="M220 236 C 128 182, 76 132, 92 82 C 106 36, 182 30, 220 84 C 258 30, 334 36, 348 82 C 364 132, 312 182, 220 236 Z" pathLength="1" />
+  </svg>
+  {% for side in ["l", "r"] %}
+  <svg class="dove dove--{{ side }}" viewBox="0 0 80 60">
+    <path class="dove-tail" d="M17 37 C 11 31, 5 26, 0 24 C 3 31, 5 37, 3 43 C 9 42, 13 41, 18 40 Z" />
+    <path class="dove-body" d="M14 37 C 20 29, 34 27, 46 31 C 50 25, 55 21, 61 21.5 C 67 22, 70.5 25.5, 70 29.5 L 77.5 31 L 70 33.5 C 68 38.5, 62 42.5, 54 44.5 C 40 48.5, 24 46.5, 14 37 Z" />
+    <circle class="dove-eye" cx="63.5" cy="26.5" r="1.3" />
+    <g class="dove-wing">
+      <path d="M44 33 C 42 23, 35 12, 22 1 C 21 7, 19 9, 15 10 C 21 14, 23 18, 22 21 C 26 24, 28 28, 27 32 C 33 35, 39 35, 44 33 Z" />
+      <path class="dove-feather" d="M23 6 C 30 13, 35 20, 38 28 M20 14 C 27 19, 31 25, 33 31" />
+    </g>
+    <path class="dove-branch" d="M76 32 C 82 35, 86 38, 90 43 M81 35 C 82 31, 85 30, 87 31 M85 39 C 88 37, 91 38, 92 40" />
+  </svg>
+  {% endfor %}
+
+{% elif meeting == "dance" %}
+  {# The first dance: the couple turn slowly under a spotlight #}
+  <span class="dance-light"></span>
+  <div class="dance-pair">{{ figures | safe }}</div>
+  {% for n in [["♪", 30, 0], ["♫", 70, 1], ["♪", 58, 2]] %}
+  <span class="dance-note" style="left: {{ n[1] }}%; --n: {{ n[2] }}">{{ n[0] }}</span>
+  {% endfor %}
+
+{% elif meeting == "hands" %}
+  {# Two hands meet; the ring slides onto her finger #}
+  <svg class="hands" viewBox="0 0 440 250" preserveAspectRatio="xMidYMid meet">
+    <defs>
+      <linearGradient id="st-hand-grad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" style="stop-color: var(--st-figure-top)" />
+        <stop offset="1" style="stop-color: var(--st-figure)" />
+      </linearGradient>
+    </defs>
+    <g class="hand hand--bride">
+      <path class="hand-skin" d="M440 120 L400 118 C 380 117, 362 118, 350 121 L 290 124 C 280 124.5, 279 133, 289 133 L 340 132 L 282 137 C 271 137.5, 270 147, 281 147 L 338 145 L 287 151 C 277 151.5, 276 160, 287 160.5 L 340 158 L 296 165 C 287 166, 287 174, 297 173.5 L 350 168 C 368 166, 384 160, 400 158 L 440 158 Z" />
+      <path class="hand-cuff hand-cuff--bride" d="M398 114 L560 114 L560 162 L398 162 C 394 146, 394 130, 398 114 Z" />
+    </g>
+    <g class="hand hand--groom">
+      <path class="hand-sleeve" d="M-160 136 H30 V176 H-160 Z" />
+      <path class="hand-cuff hand-cuff--groom" d="M22 134 H40 C 43 148, 43 164, 40 178 H22 Z" />
+      <path class="hand-skin" d="M38 140 C 60 139, 76 136, 92 131 L 128 122 C 140 119, 145 130, 134 134 L 108 142 C 124 143, 132 150, 126 157 C 118 164, 96 166, 80 168 C 64 171, 52 172, 38 172 Z" />
+    </g>
+    <g class="hand-ring">
+      <ellipse class="hand-ring-band" cx="146" cy="128" rx="3.6" ry="7.5" />
+      <path class="hand-ring-gem" d="M146 116 L149.5 119.5 L146 123 L142.5 119.5 Z" />
+    </g>
+    <g class="hand-spark">
+      <circle class="hand-glow" cx="318" cy="155" r="26" />
+      <path class="hand-star" d="M318 133 L320.4 151.6 L339 154 L320.4 156.4 L318 175 L315.6 156.4 L297 154 L315.6 151.6 Z" />
+    </g>
+  </svg>
+
+{% elif meeting == "polaroid" %}
+  {# A Polaroid of the couple falls onto the stage and develops #}
+  <div class="polaroid">
+    <span class="polaroid-tape"></span>
+    <div class="polaroid-photo">
+      {% if invite.photo %}<img src="{{ invite.photo }}" alt="" decoding="async">{% else %}<span class="polaroid-fallback">{{ initials }}</span>{% endif %}
+      <span class="polaroid-develop"></span>
+    </div>
+    <p class="polaroid-caption">{{ coupleLabel }}</p>
+    <svg class="polaroid-heart" viewBox="0 0 40 36"><path d="M20 33 C 8 25, 2 17, 5 10 C 8 3, 17 3, 20 11 C 23 3, 32 3, 35 10 C 38 17, 32 25, 20 33 Z" pathLength="1" /></svg>
+  </div>
+
+{% elif meeting == "cake" %}
+  {# A birthday cake settles on the stage and its candles light one by one;
+     when the scene blooms they are blown out together, curls of smoke rise
+     and the confetti bursts (story.js). #}
+  <svg class="cake" viewBox="0 0 200 200">
+    <ellipse class="cake-shadow" cx="100" cy="190" rx="72" ry="5" />
+    <path class="cake-stand" d="M28 172 H172 L162 179 H38 Z M92 179 H108 L113 190 H87 Z" />
+    <rect class="cake-tier" x="38" y="118" width="124" height="54" rx="8" />
+    <path class="cake-icing" d="M38 126 V123 Q38 118 46 118 H154 Q162 118 162 123 V126 C 156 126 156 136 150 136 C 144 136 144 128 138 128 C 132 128 132 140 124 140 C 116 140 117 128 110 128 C 103 128 104 137 96 137 C 88 137 89 128 82 128 C 75 128 76 141 67 141 C 59 141 60 128 53 128 C 47 128 47 134 42 134 C 39 134 38 130 38 126 Z" />
+    <rect class="cake-tier cake-tier--top" x="62" y="78" width="76" height="42" rx="7" />
+    <path class="cake-icing" d="M62 86 V83 Q62 78 69 78 H131 Q138 78 138 83 V86 C 133 86 133 95 127 95 C 121 95 122 87 116 87 C 110 87 111 98 103 98 C 96 98 97 87 90 87 C 84 87 85 95 78 95 C 72 95 72 87 67 87 C 64 87 62 89 62 86 Z" />
+    {% for d in [[52,156],[70,163],[90,153],[112,164],[132,154],[150,162],[78,110],[100,113],[122,108]] %}
+    <circle class="cake-sprinkle cake-sprinkle--{{ loop.index0 % 3 }}" cx="{{ d[0] }}" cy="{{ d[1] }}" r="2.3" />
+    {% endfor %}
+    {% for x in [76, 88, 100, 112, 124] %}
+    <g class="candle" style="--c:{{ loop.index0 }}">
+      <rect class="candle-stick" x="{{ x - 2.5 }}" y="56" width="5" height="23" rx="1.5" />
+      <path class="candle-stripe" d="M{{ x - 2.5 }} 62 L{{ x + 2.5 }} 59 M{{ x - 2.5 }} 70 L{{ x + 2.5 }} 67" />
+      <path class="candle-wick" d="M{{ x }} 56 V51" />
+      <g class="candle-flame" style="transform-origin: {{ x }}px 51px">
+        <circle class="candle-glow" cx="{{ x }}" cy="44" r="12" />
+        <path class="candle-fire" d="M{{ x }} 36 C {{ x + 4 }} 42, {{ x + 4.5 }} 47, {{ x }} 51 C {{ x - 4.5 }} 47, {{ x - 4 }} 42, {{ x }} 36 Z" />
+      </g>
+      <path class="candle-smoke" d="M{{ x }} 50 C {{ x - 5 }} 43, {{ x + 5 }} 35, {{ x }} 27 C {{ x - 4 }} 20, {{ x + 3 }} 14, {{ x }} 7" pathLength="1" />
+    </g>
+    {% endfor %}
+  </svg>
+
+{% else %}
+  {{ figures | safe }}
+{% endif %}
+</div>

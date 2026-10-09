@@ -1,78 +1,246 @@
 ---
 layout: layouts/base.njk
-extraJs: ["/assets/js/intro.js", "/assets/js/countdown.js", "/assets/js/gallery.js", "/assets/js/rsvp.js"]
+extraCss: ["/assets/css/motion.css", "/assets/css/story.css", "/assets/css/story-variants.css", "/assets/css/features.css"]
+extraJs: ["/assets/js/personalize.js", "/assets/js/confetti.js", "/assets/js/story.js", "/assets/js/motion.js", "/assets/js/countdown.js", "/assets/js/gallery.js", "/assets/js/rsvp.js", "/assets/js/scratch.js", "/assets/js/calendar.js", "/assets/js/addcal.js", "/assets/js/preview.js"]
 eleventyComputed:
   themeCss: "/assets/css/themes/{{ invite.theme }}.css"
-  bodyClass: "page-invitation theme-{{ invite.theme }}"
+  bodyClass: "page-invitation theme-{{ invite.theme }}{% if invite.sparkles == false %} no-sparkles{% endif %}"
 ---
 {% from "partials/icons.njk" import icon %}
-{% from "partials/logo.njk" import symbol %}
+{% from "partials/logo.njk" import symbol, wordmark %}
+{% set T = i18n[invite.lang] or i18n.fr %}
+{% set lang = T.code %}
+{#
+  A wedding-type invitation has "couple": { name1, name2 }; a birthday has
+  "honoree": { name, age } and a single name everywhere (no "&").
+#}
+{% set single = not invite.couple %}
+{% if single %}
+  {% set name1 = invite.honoree.name %}{% set name2 = "" %}
+  {% set coupleLabel = name1 %}
+  {% set initials = invite.honoree.age or (name1 | first) %}
+{% else %}
+  {% set name1 = invite.couple.name1 %}{% set name2 = invite.couple.name2 %}
+  {% set coupleLabel = name1 + " " + T.amp + " " + name2 %}
+  {% set initials = (name1 | first) + (name2 | first) %}
+{% endif %}
+{% set len1 = name1 | length %}
 
-<div class="intro-overlay" data-intro>
-  <div class="intro-content">
-    <div style="width:28px;height:28px;margin-inline:auto;color:var(--accent);">{{ symbol() }}</div>
-    <p class="label" style="margin-top:var(--space-3);">{{ site.name }} Invitation</p>
-    <h2 class="intro-names">{{ invite.couple.name1 }} &amp; {{ invite.couple.name2 }}</h2>
-    <button type="button" class="btn btn-primary intro-open" data-open-invite>Ouvrir l'invitation</button>
-    {% if invite.music %}
-    <p class="intro-hint">{{ icon("music") }} Avec musique</p>
-    {% endif %}
+{#
+  Opening film (assets/css/story.css + assets/js/story.js). Each theme has
+  its own narrative signature; an invitation can pick another one with
+  "story" in its JSON (garden | royal | modern | mediterranean | celestial |
+  henna | andalusian | boho | minimal | party).
+  1 envelope → 2 seal breaks, flap opens → 3 the card rises and writes
+  itself → 4 the couple walk towards each other → 5 the scene blooms →
+  6 the rings → 7 the ring opens onto the invitation.
+  Scenes 1-2, 4-5 and 6 each have variants, chosen in the JSON:
+    "opening": envelope | ringbox | door | scroll | book | gift
+    "meeting": couple | doves | dance | hands | polaroid | cake
+    "finale":  rings | monogram | heart | fireworks | date | age
+  A birthday defaults to the cake (candles lit, then blown out) and the age.
+  Every text of the film comes from _data/i18n.js in the invitation's
+  language; "storyLines" in the JSON (or its translation) overrides them.
+#}
+{% set storyByTheme = { "floral": "garden", "oriental-luxury": "royal", "modern-wedding": "modern", "tunisian-heritage": "mediterranean", "minimal-wedding": "minimal", "celestial-night": "celestial", "henna-night": "henna", "andalusian-riad": "andalusian", "boho-countryside": "boho", "birthday-party": "party" } %}
+{% set story = invite.story or storyByTheme[invite.theme] or "minimal" %}
+{% set storyLines = invite.storyLines or T.storyLines[story] or T.storyLines.minimal %}
+{% set particlesByStory = { "garden": "petals", "royal": "dust", "modern": "dust", "mediterranean": "petals", "minimal": "dust", "celestial": "stars", "henna": "lanterns", "andalusian": "petals", "boho": "fireflies", "party": "confetti" } %}
+{% set opening = invite.opening or "envelope" %}
+{% set meeting = invite.meeting or ("cake" if single else "couple") %}
+{% set finale = invite.finale or (("age" if invite.honoree.age else "fireworks") if single else "rings") %}
+{# Openings with a longer first beat push the following scenes back (ms) #}
+{% set openOffset = { "ringbox": 900, "door": 600, "scroll": 300, "book": 1600, "gift": 900 }[opening] or 0 %}
+{% set openHint = T.hints[opening] or T.hints.envelope %}
+{% set kicker = invite.kicker or (T.defaultKickerSingle if single else T.defaultKicker) %}
+
+{# Browser scripts read their strings from here (rsvp, scratch, gallery, calendar) #}
+<script>window.LUMEA_T = {{ T.js | dump | safe }};</script>
+
+<div class="story story--{{ story }}" data-story data-particles="{{ particlesByStory[story] }}"{% if openOffset %} data-open-offset="{{ openOffset }}"{% endif %} data-finale="{{ finale }}" role="dialog" aria-modal="true" aria-label="{{ T.invitationOf }} {{ coupleLabel }}">
+  <div class="story-glow" aria-hidden="true"></div>
+  {% include "partials/story-scenery.njk" %}
+
+  <div class="story-stage">
+    <div class="story-env-wrap" data-tilt>
+      <span class="env-shadow" aria-hidden="true"></span>
+{% include "partials/story-openings.njk" %}
+    </div>
+
+    {% include "partials/story-meetings.njk" %}
+
+    {% include "partials/story-finales.njk" %}
+
+    <div class="story-lines" aria-hidden="true">
+      {% for line in storyLines %}<p class="story-line story-line--{{ loop.index }}">{{ line }}</p>{% endfor %}
+    </div>
+
+    <div class="story-portal" aria-hidden="true"></div>
   </div>
+
+  <canvas class="story-particles" data-story-particles aria-hidden="true"></canvas>
+
+  <div class="story-hint">
+    <p>{{ openHint }}</p>
+    {% if invite.music %}<p class="story-music">{{ icon("music") }} {{ T.withMusic }}</p>{% endif %}
+  </div>
+  <button type="button" class="btn btn-primary story-continue" data-story-continue>{{ T.continue }}</button>
+  <button type="button" class="story-skip" data-story-skip>{{ T.skip }}</button>
+  <span class="story-brand" aria-hidden="true">{{ wordmark() }}</span>
 </div>
 
 {% if invite.music %}
 <audio data-bg-music loop preload="none" src="{{ invite.music.src }}"></audio>
-<button type="button" class="music-toggle" data-music-toggle hidden aria-label="Activer ou couper la musique">{{ icon("music") }}</button>
+<button type="button" class="music-toggle" data-music-toggle hidden aria-label="{{ T.musicToggle }}">{{ icon("music") }}</button>
 {% endif %}
 
-<section class="hero invite-hero">
+<section class="hero invite-hero" data-parallax="exit">
   <div class="hero-inner">
-    <span class="label">{{ site.name }} Invitation</span>
-    <h1 class="invite-names">{{ invite.couple.name1 }} &amp; {{ invite.couple.name2 }}</h1>
-    <p class="invite-message">{{ invite.message }}</p>
-    <p class="invite-date">{{ invite.date | formatDateLong }}</p>
+    <span class="label hero-seq" style="--d:0">{{ invite.eventType or T.defaultEventType }}</span>
+    <p class="invite-guest hero-seq" style="--d:1" data-guest hidden><span data-guest-name></span>{{ T.guestSuffix }}</p>
+    <h1 class="invite-names{% if single %} invite-names--single{% endif %}" aria-label="{{ coupleLabel }}">
+      <span class="invite-name">{{ name1 | splitLetters | safe }}</span>
+      {% if single %}
+      {% if invite.honoree.age %}<span class="invite-amp invite-age" style="--i:{{ len1 }}" aria-hidden="true">{{ invite.honoree.age }}</span>{% endif %}
+      {% else %}
+      <span class="invite-amp" style="--i:{{ len1 }}" aria-hidden="true">{{ T.amp }}</span>
+      <span class="invite-name">{{ name2 | splitLetters(len1 + 1) | safe }}</span>
+      {% endif %}
+    </h1>
+    <p class="invite-message hero-seq" style="--d:4">{{ invite.message }}</p>
+    <p class="invite-date hero-seq" style="--d:5">{% if invite.scratch %}{{ T.dateHidden }}{% else %}{{ invite.date | formatDateLong(lang) }}{% endif %}</p>
   </div>
+  <a href="#details" class="scroll-cue hero-seq" style="--d:7"><span>{{ T.discover }}</span><i aria-hidden="true"></i></a>
 </section>
 
-<section class="section">
-  <div class="container info-columns reveal">
+<section id="details" class="section">
+  {% if invite.scratch %}
+  <div class="container scratch reveal" data-scratch>
+    <span class="label">{{ T.saveTheDate }}</span>
+    <div class="scratch-card">
+      <div class="scratch-content">
+        <p class="scratch-date">{{ invite.date | formatDateLong(lang) }}</p>
+        <p class="scratch-time">{{ T.at }} {{ invite.date | isoToTime(lang) }}</p>
+      </div>
+      <canvas class="scratch-layer" data-scratch-layer aria-hidden="true"></canvas>
+    </div>
+    <p class="scratch-hint">{{ T.scratchHint }}</p>
+    <button type="button" class="scratch-skip" data-scratch-reveal>{{ T.scratchSkip }}</button>
+  </div>
+  {% endif %}
+  <div class="container info-columns{% if invite.scratch %} info-columns--single{% endif %} reveal">
+    {% if not invite.scratch %}
     <div>
       {{ icon("calendar") }}
-      <h3>Date</h3>
-      <p>{{ invite.date | formatDateShort }}</p>
+      <h3>{{ T.date }}</h3>
+      <p>{{ invite.date | formatDateShort(lang) }}</p>
     </div>
     <div>
       {{ icon("clock") }}
-      <h3>Heure</h3>
-      <p>{{ invite.date | isoToTime }}</p>
+      <h3>{{ T.time }}</h3>
+      <p>{{ invite.date | isoToTime(lang) }}</p>
     </div>
+    {% endif %}
     <div>
       {{ icon("map-pin") }}
       <h3>{{ invite.location.name }}</h3>
-      <p><a href="{{ invite.location.mapsUrl }}" target="_blank" rel="noopener">Voir sur Google Maps</a></p>
+      <p><a href="{{ invite.location.mapsUrl }}" target="_blank" rel="noopener">{{ T.seeMaps }}</a></p>
     </div>
   </div>
+  {% if invite.route != false %}
+  {# The way there: a route draws itself across a small map, the pin drops #}
+  <div class="container route reveal">
+    <div class="route-map">
+      <svg viewBox="0 0 320 190" aria-hidden="true">
+        <defs>
+          <mask id="route-mask"><path class="route-reveal" d="M34 160 C 70 160, 82 124, 116 120 S 160 92, 192 98 S 248 78, 262 50" pathLength="1" /></mask>
+        </defs>
+        <path class="route-water" d="M220 0 H320 V190 H300 C 284 150, 300 120, 286 92 C 272 64, 236 40, 220 0 Z" />
+        <g class="route-roads">
+          <path d="M0 140 C 80 136, 150 150, 320 130" />
+          <path d="M20 0 C 40 60, 60 120, 50 190" />
+          <path d="M0 70 C 70 74, 150 60, 230 70" />
+          <path d="M140 0 C 150 60, 130 130, 160 190" />
+        </g>
+        <g class="route-blocks">
+          <rect x="66" y="22" width="44" height="30" rx="4" />
+          <rect x="164" y="16" width="36" height="34" rx="4" />
+          <rect x="70" y="88" width="40" height="22" rx="4" />
+          <rect x="176" y="118" width="44" height="40" rx="4" />
+          <rect x="22" y="104" width="22" height="22" rx="4" />
+        </g>
+        <path class="route-path" d="M34 160 C 70 160, 82 124, 116 120 S 160 92, 192 98 S 248 78, 262 50" mask="url(#route-mask)" />
+        <circle class="route-start" cx="34" cy="160" r="5" />
+        <text class="route-you" x="34" y="182">{{ T.you }}</text>
+        <g class="route-pin">
+          <circle class="route-pulse" cx="262" cy="50" r="10" />
+          <path class="route-pin-body" d="M262 50 C 262 50, 248 34, 248 25 A 14 14 0 0 1 276 25 C 276 34, 262 50, 262 50 Z" />
+          <circle class="route-pin-dot" cx="262" cy="25" r="4.5" />
+        </g>
+      </svg>
+    </div>
+    <div class="route-info">
+      <span class="label">{{ T.howToGet }}</span>
+      <p class="route-place">{{ invite.location.name }}</p>
+      {% if invite.location.address %}<p class="route-address">{{ invite.location.address }}</p>{% endif %}
+      <div class="route-actions">
+        <a class="btn btn-primary" href="{{ invite.location.mapsUrl }}" target="_blank" rel="noopener">{{ icon("map-pin") }} {{ T.directions }}</a>
+        <a class="btn btn-ghost" href="https://waze.com/ul?q={{ (invite.location.name + ' ' + (invite.location.address or '')) | urlencode }}&navigate=yes" target="_blank" rel="noopener">Waze</a>
+      </div>
+    </div>
+  </div>
+  {% endif %}
 </section>
 
 <section class="section section--alt">
   <div class="container">
-    <div class="section-head center">
-      <span class="label">Compte à rebours</span>
+    <div class="section-head center reveal">
+      <span class="label">{{ T.countdown }}</span>
+      <span class="ornament" aria-hidden="true"></span>
     </div>
     <div class="countdown reveal" data-countdown="{{ invite.date }}">
-      <div class="countdown-unit"><div class="value" data-unit="days">00</div><div class="unit-label">Jours</div></div>
-      <div class="countdown-unit"><div class="value" data-unit="hours">00</div><div class="unit-label">Heures</div></div>
-      <div class="countdown-unit"><div class="value" data-unit="minutes">00</div><div class="unit-label">Min</div></div>
-      <div class="countdown-unit"><div class="value" data-unit="seconds">00</div><div class="unit-label">Sec</div></div>
+      <div class="countdown-unit"><div class="value" data-unit="days">00</div><div class="unit-label">{{ T.days }}</div></div>
+      <div class="countdown-unit"><div class="value" data-unit="hours">00</div><div class="unit-label">{{ T.hours }}</div></div>
+      <div class="countdown-unit"><div class="value" data-unit="minutes">00</div><div class="unit-label">{{ T.minutes }}</div></div>
+      <div class="countdown-unit"><div class="value" data-unit="seconds">00</div><div class="unit-label">{{ T.seconds }}</div></div>
+    </div>
+    {% if invite.calendar != false %}
+    {# The calendar leafs through the months up to the day, which gets circled #}
+    <div class="cal reveal" data-calendar="{{ invite.date }}" data-locale="{{ T.locale }}">
+      <div class="cal-card">
+        <span class="cal-rings" aria-hidden="true"></span>
+        <div class="cal-stack" data-cal-stack>
+          <p class="cal-fallback">{{ invite.date | formatDateLong(lang) }}</p>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% set calTitle = (invite.eventType or T.defaultEventType) + " — " + coupleLabel %}
+    <div class="addcal reveal" data-addcal
+      data-start="{{ invite.date }}"
+      data-end="{{ invite.endDate or '' }}"
+      data-title="{{ calTitle }}"
+      data-location="{{ invite.location.name }}{% if invite.location.address %}, {{ invite.location.address }}{% endif %}"
+      data-details="{{ invite.message }}">
+      <button type="button" class="btn btn-ghost addcal-btn" data-addcal-toggle aria-expanded="false" aria-controls="addcal-menu">
+        <span class="addcal-icon" aria-hidden="true">{{ icon("calendar") }}<i class="addcal-check">{{ icon("check") }}</i></span>
+        <span>{{ T.addToCal }}</span>
+      </button>
+      <ul class="addcal-menu" id="addcal-menu" data-addcal-menu hidden>
+        <li><a href="#" data-addcal-google target="_blank" rel="noopener">{{ T.calGoogle }}</a></li>
+        <li><a href="#" data-addcal-ics>{{ T.calApple }}</a></li>
+        <li><a href="#" data-addcal-outlook target="_blank" rel="noopener">{{ T.calOutlook }}</a></li>
+      </ul>
     </div>
   </div>
 </section>
 
 <section class="section">
   <div class="container">
-    <div class="section-head center">
-      <span class="label">Programme</span>
-      <h2>Le déroulé de la journée</h2>
+    <div class="section-head center reveal">
+      <span class="label">{{ T.program }}</span>
+      <h2>{{ T.programTitleParty if single else T.programTitle }}</h2>
+      <span class="ornament" aria-hidden="true"></span>
     </div>
     <div class="program-list reveal">
       {% for p in invite.program %}
@@ -88,15 +256,17 @@ eleventyComputed:
 {% if invite.gallery and invite.gallery.length %}
 <section class="section section--alt">
   <div class="container">
-    <div class="section-head center">
-      <span class="label">Galerie</span>
-      <h2>Quelques souvenirs</h2>
+    <div class="section-head center reveal">
+      <span class="label">{{ T.gallery }}</span>
+      <h2>{{ T.galleryTitle }}</h2>
+      <span class="ornament" aria-hidden="true"></span>
     </div>
     <div class="gallery-grid reveal">
       {% for g in invite.gallery %}
-      <div class="gallery-tile" data-gallery-item>
-        {% if g.src %}<img src="{{ g.src }}" alt="{{ g.caption }}">{% else %}<span>{{ g.caption }}</span>{% endif %}
-      </div>
+      <figure class="gallery-tile" data-gallery-item data-parallax tabindex="0" role="button" aria-label="{{ T.enlarge }} {{ g.caption }}">
+        <div class="gallery-media">{% if g.src %}<img src="{{ g.src }}" alt="{{ g.caption }}" loading="lazy" decoding="async">{% endif %}</div>
+        <figcaption>{{ g.caption }}</figcaption>
+      </figure>
       {% endfor %}
     </div>
   </div>
@@ -105,45 +275,55 @@ eleventyComputed:
 
 {% if invite.quote %}
 <section class="section">
-  <div class="container quote-block reveal">
-    <p>&laquo; {{ invite.quote }} &raquo;</p>
+  <div class="container quote-block reveal" data-parallax>
+    <p>{{ (T.quoteOpen + invite.quote + T.quoteClose) | splitWords | safe }}</p>
   </div>
 </section>
 {% endif %}
 
 <section id="rsvp" class="section section--alt">
   <div class="container">
-    <div class="section-head center">
+    <div class="section-head center reveal">
       <span class="label">RSVP</span>
-      <h2>Confirmez votre présence</h2>
-      {% if invite.rsvp.deadline %}<p class="center" style="color:var(--text-muted);font-size:var(--size-small);">Merci de répondre avant le {{ invite.rsvp.deadline | formatDateShort }}</p>{% endif %}
+      <h2>{{ T.rsvpTitle }}</h2>
+      {% if invite.rsvp.deadline %}<p class="center" style="color:var(--text-muted);font-size:var(--size-small);">{{ T.rsvpBefore }} {{ invite.rsvp.deadline | formatDateShort(lang) }}</p>{% endif %}
+      <span class="ornament" aria-hidden="true"></span>
     </div>
     <form class="rsvp-form reveal" data-rsvp-form {% if invite.rsvp.contactEmail %}data-email="{{ invite.rsvp.contactEmail }}"{% endif %}>
       <div>
-        <label for="name">Votre nom</label>
+        <label for="name">{{ T.yourName }}</label>
         <input type="text" id="name" name="name" required>
       </div>
       <div class="rsvp-choice">
-        <label><input type="radio" name="attending" value="yes" checked> Je viens</label>
-        <label><input type="radio" name="attending" value="no"> Je ne pourrai pas venir</label>
+        <label><input type="radio" name="attending" value="yes" checked> {{ T.attendYes }}</label>
+        <label><input type="radio" name="attending" value="no"> {{ T.attendNo }}</label>
       </div>
       <div>
-        <label for="guests">Nombre de personnes</label>
+        <label for="guests">{{ T.guests }}</label>
         <input type="number" id="guests" name="guests" min="1" value="1">
       </div>
       <div>
-        <label for="message">Message (optionnel)</label>
+        <label for="message">{{ T.messageOptional }}</label>
         <textarea id="message" name="message"></textarea>
       </div>
-      <button type="submit" class="btn btn-primary">Envoyer ma réponse</button>
+      <button type="submit" class="btn btn-primary">{{ T.send }}</button>
     </form>
-    <div class="rsvp-confirmation reveal" data-rsvp-confirmation hidden>
-      <p>Merci ! Votre réponse a bien été transmise.</p>
+    <div class="rsvp-confirmation" data-rsvp-confirmation hidden>
+      <svg class="rsvp-check" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24" pathLength="1" /><path d="M15 27l7 7 15-16" pathLength="1" /></svg>
+      <p>{{ T.thanks }}</p>
     </div>
   </div>
 </section>
 
-<footer class="invite-footer">
-  <div class="logo"><span class="logo-word" style="font-size:1rem;">Créé avec LUMÉA</span></div>
+<footer class="invite-footer reveal">
+  {% if invite.langs.length > 1 %}
+  <nav class="lang-switch" aria-label="{{ T.languages }}">
+    {% for l in invite.langs %}
+    <a href="{{ l.path }}" hreflang="{{ l.lang }}" lang="{{ l.lang }}"{% if l.lang == lang %} aria-current="page"{% endif %}>{{ i18n[l.lang].name }}</a>
+    {% endfor %}
+  </nav>
+  {% endif %}
+  <a href="{{ invite.path }}carte/" class="invite-printable">{{ T.printable }}</a>
+  <a href="/" class="logo logo--credit"><span>{{ T.createdWith }}</span>{{ wordmark() }}</a>
   <p style="color:var(--text-muted);font-size:var(--size-small);">lumea.tn</p>
 </footer>

@@ -1,0 +1,136 @@
+{
+  "theme": "henna-night",
+  "eventType": "Soirée du henné",
+  "kicker": "La soirée du henné de",
+  "couple": {
+    "name1": "Hédi",
+    "name2": "Mariem"
+  },
+  "message": "Avant le grand jour, venez partager avec nous la nuit du henné : chants, musique, youyous et douceurs.",
+  "date": "2027-06-10T20:00:00",
+  "location": {
+    "name": "Dar Ben Gacem",
+    "address": "Médina de Tunis",
+    "mapsUrl": "https://maps.google.com/?q=Dar+Ben+Gacem+Tunis"
+  },
+  "program": [
+    {
+      "time": "20:00",
+      "label": "Accueil & thé à la menthe"
+    },
+    {
+      "time": "20:45",
+      "label": "Entrée de la mariée"
+    },
+    {
+      "time": "21:30",
+      "label": "Cérémonie du henné"
+    },
+    {
+      "time": "22:30",
+      "label": "Musique & danses"
+    },
+    {
+      "time": "23:30",
+      "label": "Douceurs tunisiennes"
+    }
+  ],
+  "quote": "Que le henné porte bonheur, et que nos deux familles n'en fassent qu'une.",
+  "gallery": [
+    {
+      "caption": "La keswa de la mariée"
+    },
+    {
+      "caption": "Le plateau du henné"
+    },
+    {
+      "caption": "Nos familles"
+    }
+  ],
+  "rsvp": {
+    "deadline": "2027-05-30",
+    "contactEmail": "hedi.mariem@example.com"
+  },
+  "translations": {
+    "en": {
+      "eventType": "Henna night",
+      "kicker": "The henna night of",
+      "message": "Before the big day, come and share the henna night with us: songs, music, youyous and sweets.",
+      "program": [
+        {
+          "label": "Welcome & mint tea"
+        },
+        {
+          "label": "The bride's entrance"
+        },
+        {
+          "label": "The henna ceremony"
+        },
+        {
+          "label": "Music & dancing"
+        },
+        {
+          "label": "Tunisian sweets"
+        }
+      ],
+      "quote": "May the henna bring happiness, and may our two families become one.",
+      "gallery": [
+        {
+          "caption": "The bride's keswa"
+        },
+        {
+          "caption": "The henna tray"
+        },
+        {
+          "caption": "Our families"
+        }
+      ],
+      "location": {
+        "name": "Dar Ben Gacem",
+        "address": "Medina of Tunis"
+      }
+    },
+    "ar": {
+      "eventType": "سهرة الحنّة",
+      "kicker": "سهرة حنّة",
+      "couple": {
+        "name1": "هادي",
+        "name2": "مريم"
+      },
+      "message": "قبل اليوم الكبير، تعالوا نتقاسم معاً ليلة الحنّة: أغانٍ وموسيقى وزغاريد وحلويات.",
+      "program": [
+        {
+          "label": "الاستقبال وشاي بالنعناع"
+        },
+        {
+          "label": "دخول العروس"
+        },
+        {
+          "label": "مراسم الحنّة"
+        },
+        {
+          "label": "موسيقى ورقص"
+        },
+        {
+          "label": "حلويات تونسية"
+        }
+      ],
+      "quote": "عسى أن تجلب الحنّة السعادة، وأن تصير عائلتانا عائلةً واحدة.",
+      "gallery": [
+        {
+          "caption": "كسوة العروس"
+        },
+        {
+          "caption": "طبق الحنّة"
+        },
+        {
+          "caption": "عائلتانا"
+        }
+      ],
+      "location": {
+        "name": "دار بن قاسم",
+        "address": "مدينة تونس العتيقة"
+      }
+    }
+  }
+}

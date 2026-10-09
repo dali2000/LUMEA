@@ -1,0 +1,68 @@
+{
+  "theme": "menu-heritage",
+  "restaurant": {
+    "name": "Dar Zitouna",
+    "tagline": "Cuisine tunisienne de tradition",
+    "intro": "Une maison de la Médina où l'on cuisine comme chez nos grands-mères : épices torréfiées sur place, huile d'olive du Sahel et poissons du jour.",
+    "cover": "/assets/images/menus/dar-zitouna/cover.jpg"
+  },
+  "categories": [
+    {
+      "name": "Entrées",
+      "subtitle": "Pour commencer",
+      "items": [
+        { "name": "Chorba frik", "description": "Soupe d'agneau au blé vert concassé, coriandre fraîche, citron", "price": "9 DT", "image": "/assets/images/menus/dar-zitouna/chorba.jpg", "tags": ["Maison"] },
+        { "name": "Brik à l'œuf", "description": "Feuille de malsouka croustillante, thon, œuf coulant, câpres", "price": "7 DT" },
+        { "name": "Salade méchouia", "description": "Poivrons et tomates grillés au feu de bois, ail, huile d'olive", "price": "8 DT", "tags": ["Végétarien"] },
+        { "name": "Ojja merguez", "description": "Tomates mijotées, harissa douce, merguez, œufs pochés", "price": "14 DT", "image": "/assets/images/menus/dar-zitouna/ojja.jpg" }
+      ]
+    },
+    {
+      "name": "Plats",
+      "subtitle": "De la mer et du terroir",
+      "items": [
+        { "name": "Daurade grillée", "description": "Pêche du jour, légumes de saison, pommes de terre au cumin", "price": "36 DT", "image": "/assets/images/menus/dar-zitouna/daurade.jpg", "tags": ["Signature"] },
+        { "name": "Sardines grillées", "description": "Marinées au citron et au carvi, salade tunisienne", "price": "22 DT", "image": "/assets/images/menus/dar-zitouna/sardines.jpg" },
+        { "name": "Couscous au mérou", "description": "Semoule roulée à la main, sauce rouge épicée, légumes fondants", "price": "38 DT" },
+        { "name": "Kamounia d'agneau", "description": "Agneau mijoté au cumin, pain tabouna", "price": "32 DT" }
+      ]
+    },
+    {
+      "name": "Douceurs",
+      "subtitle": "Pour finir",
+      "items": [
+        { "name": "Dattes Deglet Nour", "description": "Dattes de Tozeur fourrées à la pâte d'amande", "price": "8 DT", "image": "/assets/images/menus/dar-zitouna/dattes.jpg" },
+        { "name": "Makroudh de Kairouan", "description": "Semoule, pâte de dattes, miel de fleur d'oranger", "price": "7 DT" },
+        { "name": "Assida zgougou", "description": "Crème de pin d'Alep, fruits secs (en saison)", "price": "10 DT" }
+      ]
+    },
+    {
+      "name": "Boissons",
+      "items": [
+        { "name": "Thé à la menthe", "description": "Thé vert, menthe fraîche, pignons de pin", "price": "6 DT", "image": "/assets/images/menus/dar-zitouna/the-menthe.jpg" },
+        { "name": "Café turc", "description": "Parfumé à la fleur d'oranger", "price": "5 DT" },
+        { "name": "Citronnade maison", "description": "Citrons pressés, zeste, eau de géranium", "price": "7 DT" }
+      ]
+    }
+  ],
+  "specialties": [
+    { "name": "Daurade grillée", "description": "Notre poisson du jour, grillé entier au feu de bois.", "price": "36 DT", "image": "/assets/images/menus/dar-zitouna/daurade.jpg" },
+    { "name": "Ojja merguez", "description": "La recette de la maison depuis 1987.", "price": "14 DT", "image": "/assets/images/menus/dar-zitouna/ojja.jpg" },
+    { "name": "Thé à la menthe", "description": "Servi à table, à la tunisienne, avec pignons.", "price": "6 DT", "image": "/assets/images/menus/dar-zitouna/the-menthe.jpg" }
+  ],
+  "galleryTitle": "Une maison de la Médina",
+  "gallery": [
+    { "src": "/assets/images/menus/dar-zitouna/epices.jpg", "caption": "Nos épices, torréfiées sur place" },
+    { "src": "/assets/images/menus/dar-zitouna/table.jpg", "caption": "La table d'hôtes" },
+    { "src": "/assets/images/menus/dar-zitouna/cover.jpg", "caption": "L'entrée de la maison" }
+  ],
+  "contact": {
+    "phone": "+21671000000",
+    "whatsapp": "https://wa.me/21620000001"
+  },
+  "location": {
+    "address": "Rue Jemaa Zitouna, Médina de Tunis",
+    "mapsUrl": "https://maps.google.com/?q=Rue+Jemaa+Zitouna+Tunis"
+  },
+  "hours": "Du mardi au dimanche · 12h00 – 15h30 et 19h00 – 23h00"
+}

@@ -1,0 +1,83 @@
+/* ==========================================================================
+   Languages — Arabic (right to left) and the small language switcher.
+   Arabic letters join each other: no letter-spacing, no forced uppercase,
+   no italics, and fonts drawn for the script (Amiri, Tajawal).
+   ========================================================================== */
+
+:root:lang(ar) {
+  --font-serif: "Amiri", "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Tajawal", "Inter", system-ui, sans-serif;
+}
+:lang(ar) body { line-height: 1.8; }
+:lang(ar) h1, :lang(ar) h2, :lang(ar) h3, :lang(ar) h4,
+:lang(ar) .label, :lang(ar) .btn, :lang(ar) .invite-date, :lang(ar) .unit-label,
+:lang(ar) .logo--credit, :lang(ar) .footer-top h4, :lang(ar) .card-kicker, :lang(ar) .card-date,
+:lang(ar) .card-place, :lang(ar) .story-hint, :lang(ar) .story-line, :lang(ar) .invite-message {
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+:lang(ar) .story-line, :lang(ar) .invite-names, :lang(ar) .card-names, :lang(ar) .quote-block p,
+:lang(ar) .hero-signature, :lang(ar) .polaroid-caption, :lang(ar) .fin-date-label,
+:lang(ar) .invite-amp, :lang(ar) .card-amp, :lang(ar) .print-amp, :lang(ar) .print-kicker { font-style: normal !important; }
+/* Amiri sits lower and larger than Cormorant: tighten the display names */
+:lang(ar) .invite-names { line-height: 1.5; }
+:lang(ar) .card-names { line-height: 1.6; }
+
+/* Mirror what is laid out by hand (programme timeline, pricing lists) */
+[dir="rtl"] .program-list { padding-left: 0; padding-right: var(--space-4); }
+[dir="rtl"] .program-list::before { left: auto; right: 5px; }
+[dir="rtl"] .program-item::before { left: auto; right: calc(-1 * var(--space-4) + 1px); }
+[dir="rtl"] .pricing-features,
+[dir="rtl"] .faq-q { text-align: right; }
+/* Dates, times and the countdown stay left-to-right numbers */
+[dir="rtl"] .countdown, [dir="rtl"] .fin-date-row { direction: ltr; }
+
+/* ---------- Language switcher ---------- */
+.lang-switch {
+  display: inline-flex;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  margin-bottom: var(--space-3);
+  font-size: var(--size-small);
+}
+.lang-switch a,
+.lang-switch button {
+  padding: 0.35rem 0.85rem;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--text-muted);
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 250ms ease, color 250ms ease;
+}
+.lang-switch a:hover,
+.lang-switch button:hover { color: var(--text); }
+.lang-switch [aria-current="page"],
+.lang-switch [aria-pressed="true"] { background: var(--accent); color: var(--text-inverse); }
+
+/* ---------- Invitation footer extras ---------- */
+.invite-printable {
+  display: block;
+  width: fit-content;
+  margin: 0 auto var(--space-3);
+  font-size: var(--size-small);
+  color: var(--text-muted);
+  text-underline-offset: 3px;
+}
+.invite-printable:hover { color: var(--accent); }
+
+/* Birthday: the age in place of the "&" */
+.invite-names .invite-age { font-family: var(--font-serif); font-style: normal; font-weight: 600; font-size: 0.9em; }
+.invite-names--single .invite-age { margin-inline-start: 0.2em; }
+.card-age { font-style: normal; font-weight: 600; }
+
+/* ---------- Live preview inside the catalogue (?preview) ---------- */
+.is-preview .story-skip,
+.is-preview .music-toggle,
+.is-preview .scroll-cue { display: none !important; }
+.is-preview body { scrollbar-width: none; }
+.is-preview body::-webkit-scrollbar { display: none; }

@@ -1,18 +1,24 @@
-const MONTHS = [
-  "janvier", "février", "mars", "avril", "mai", "juin",
-  "juillet", "août", "septembre", "octobre", "novembre", "décembre",
-];
+// Dates are written in the invitation's language. Node ships full ICU, so
+// Intl handles French, English and Tunisian Arabic (Maghreb month names,
+// Latin digits) the same way the browser does.
+const LOCALES = { fr: "fr-FR", en: "en-GB", ar: "ar-TN" };
+const localeOf = (lang) => LOCALES[lang] || LOCALES.fr;
 
 const DateTime = {
   fromISO(iso, opts = {}) {
     const d = new Date(iso);
     if (Number.isNaN(d.getTime())) return iso;
-    const day = d.getDate();
-    const month = MONTHS[d.getMonth()];
-    const year = d.getFullYear();
-    if (opts.short) return `${day} ${month.slice(0, 3)}. ${year}`;
-    return `${day} ${month} ${year}`;
+    return new Intl.DateTimeFormat(localeOf(opts.lang), {
+      day: "numeric",
+      month: opts.short ? "short" : "long",
+      year: "numeric",
+    }).format(d);
+  },
+  time(iso, lang) {
+    const d = new Date(iso);
+    if (Number.isNaN(d.getTime())) return iso;
+    return new Intl.DateTimeFormat(localeOf(lang), { hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).format(d);
   },
 };
 
-module.exports = { DateTime };
+module.exports = { DateTime, localeOf };

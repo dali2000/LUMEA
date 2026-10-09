@@ -1,0 +1,120 @@
+{
+  "theme": "andalusian-riad",
+  "couple": {
+    "name1": "Omar",
+    "name2": "Lina"
+  },
+  "message": "Entre zellige et fleurs d'oranger, nous serions heureux de vous compter parmi nous pour notre mariage.",
+  "date": "2027-04-24T17:00:00",
+  "location": {
+    "name": "Dar Hammamet",
+    "address": "Médina de Hammamet",
+    "mapsUrl": "https://maps.google.com/?q=Medina+Hammamet"
+  },
+  "program": [
+    {
+      "time": "17:00",
+      "label": "Cérémonie dans le patio"
+    },
+    {
+      "time": "18:30",
+      "label": "Cocktail au bord de la fontaine"
+    },
+    {
+      "time": "20:00",
+      "label": "Dîner"
+    },
+    {
+      "time": "22:00",
+      "label": "Malouf & soirée"
+    }
+  ],
+  "quote": "Comme les carreaux d'un zellige, deux histoires assemblées en un seul dessin.",
+  "gallery": [
+    {
+      "caption": "À Grenade, l'Alhambra"
+    },
+    {
+      "caption": "La demande"
+    },
+    {
+      "caption": "Nos fleurs d'oranger"
+    }
+  ],
+  "rsvp": {
+    "deadline": "2027-04-01",
+    "contactEmail": "omar.lina@example.com"
+  },
+  "translations": {
+    "en": {
+      "message": "Among zellige tiles and orange blossom, we would be happy to have you with us for our wedding.",
+      "program": [
+        {
+          "label": "Ceremony in the patio"
+        },
+        {
+          "label": "Cocktails by the fountain"
+        },
+        {
+          "label": "Dinner"
+        },
+        {
+          "label": "Malouf & party"
+        }
+      ],
+      "quote": "Like the tiles of a zellige, two stories set into a single pattern.",
+      "gallery": [
+        {
+          "caption": "The Alhambra, Granada"
+        },
+        {
+          "caption": "The proposal"
+        },
+        {
+          "caption": "Our orange blossoms"
+        }
+      ],
+      "location": {
+        "name": "Dar Hammamet",
+        "address": "Medina of Hammamet"
+      }
+    },
+    "ar": {
+      "couple": {
+        "name1": "عمر",
+        "name2": "لينا"
+      },
+      "message": "بين الزليج وزهر البرتقال، يسعدنا أن تكونوا معنا في حفل زفافنا.",
+      "program": [
+        {
+          "label": "المراسم في الفناء"
+        },
+        {
+          "label": "كوكتيل بجانب النافورة"
+        },
+        {
+          "label": "العشاء"
+        },
+        {
+          "label": "المالوف والسهرة"
+        }
+      ],
+      "quote": "كقطع الزليج، قصّتان اجتمعتا في رسمٍ واحد.",
+      "gallery": [
+        {
+          "caption": "قصر الحمراء، غرناطة"
+        },
+        {
+          "caption": "طلب الزواج"
+        },
+        {
+          "caption": "زهر برتقالنا"
+        }
+      ],
+      "location": {
+        "name": "دار الحمامات",
+        "address": "مدينة الحمامات العتيقة"
+      }
+    }
+  }
+}

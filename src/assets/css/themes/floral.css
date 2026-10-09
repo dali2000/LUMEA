@@ -1,5 +1,10 @@
 /* Floral — tons doux, ligne florale delicate, elegant. */
 .theme-floral {
+  --confetti-colors: #c08b82, #efc9c1, #b08d57, #f8e6e1;
+  --confetti-shape: petals;
+  --scratch-1: #c08b82;
+  --scratch-2: #f3dcd6;
+  --scratch-ink: rgba(43, 35, 32, 0.55);
   --bg: #fdf8f6;
   --bg-alt: #f3e7e3;
   --text: #2b2320;
@@ -34,3 +39,32 @@
 .theme-floral .gallery-tile { border-radius: var(--radius-md); }
 .theme-floral .btn-ghost { border-color: var(--accent-strong); }
 .theme-floral .btn-ghost:hover { background: rgba(192, 139, 130, 0.1); }
+
+/* Motion — Romantic: everything arrives softly and a little slower; branches
+   sway gently in the hero. */
+.theme-floral {
+  --m-dur: 1500ms;
+  --m-y: 20px;
+  --m-stagger: 120ms;
+  --m-letter-dur: 1600ms;
+  --m-letter-step: 75ms;
+  --m-letter-from: translateY(0.25em);
+  --m-letter-blur: 4px;
+  --m-media-scale: 1.08;
+  --m-parallax: 0.6;
+}
+
+@keyframes fl-sway { from { rotate: -2deg; } to { rotate: 2deg; } }
+.theme-floral .invite-hero::before { transform-origin: 10% 90%; animation: fl-sway 9s ease-in-out infinite alternate; }
+.theme-floral .invite-hero::after { transform-origin: 90% 10%; animation: fl-sway 11s ease-in-out -4s infinite alternate; }
+
+.theme-floral .ornament {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-strong);
+}
+@media (prefers-reduced-motion: reduce) {
+  .theme-floral .invite-hero::before,
+  .theme-floral .invite-hero::after { animation: none; }
+}

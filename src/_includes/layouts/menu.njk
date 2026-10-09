@@ -1,42 +1,62 @@
 ---
 layout: layouts/base.njk
+extraCss: ["/assets/css/motion.css", "/assets/css/menu.css"]
+extraJs: ["/assets/js/motion.js", "/assets/js/gallery.js", "/assets/js/menu.js"]
 eleventyComputed:
   themeCss: "/assets/css/themes/{{ menu.theme }}.css"
   bodyClass: "page-menu theme-{{ menu.theme }}"
 ---
+{% from "partials/logo.njk" import wordmark %}
 {% from "partials/icons.njk" import icon %}
 
-<section class="menu-cover">
-  <div>
-    <span class="label">{{ site.name }} Menu</span>
-    <h1>{{ menu.restaurant.name }}</h1>
-    <p>{{ menu.restaurant.tagline }}</p>
+{#
+  Every image field is optional: a menu with no photos renders as the
+  classic text menu. Photos open in the shared lightbox (gallery.js).
+#}
+{% macro photo(src, alt, cls) %}<figure class="{{ cls }}" data-gallery-item data-parallax tabindex="0" role="button" aria-label="Voir la photo : {{ alt }}">
+  <div class="gallery-media"><img src="{{ src }}" alt="{{ alt }}" loading="lazy" decoding="async"></div>
+  <figcaption>{{ alt }}</figcaption>
+</figure>{% endmacro %}
+
+<section class="menu-cover{% if menu.restaurant.cover %} menu-cover--photo{% endif %}" data-parallax="exit">
+  {% if menu.restaurant.cover %}
+  <div class="menu-cover-media" aria-hidden="true"><img src="{{ menu.restaurant.cover }}" alt="" fetchpriority="high"></div>
+  {% endif %}
+  <div class="menu-cover-inner">
+    <span class="label menu-seq" style="--d:0">{{ site.name }} Menu</span>
+    <h1 class="menu-title" aria-label="{{ menu.restaurant.name }}">{{ menu.restaurant.name | splitLetters | safe }}</h1>
+    <p class="menu-tagline menu-seq" style="--d:3">{{ menu.restaurant.tagline }}</p>
+    {% if menu.restaurant.intro %}<p class="menu-intro menu-seq" style="--d:4">{{ menu.restaurant.intro }}</p>{% endif %}
   </div>
 </section>
 
-<nav class="category-nav">
+<nav class="category-nav" aria-label="Catégories du menu" data-category-nav>
   {% for cat in menu.categories %}
   <a href="#{{ cat.name | slug }}">{{ cat.name }}</a>
   {% endfor %}
   {% if menu.specialties and menu.specialties.length %}<a href="#specialites">Spécialités</a>{% endif %}
+  {% if menu.gallery and menu.gallery.length %}<a href="#ambiance">Ambiance</a>{% endif %}
   <a href="#infos">Infos</a>
 </nav>
 
 {% for cat in menu.categories %}
-<section id="{{ cat.name | slug }}" class="menu-category">
+<section id="{{ cat.name | slug }}" class="menu-category" data-menu-section>
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="label">{{ cat.name }}</span>
+      {% if cat.subtitle %}<h2>{{ cat.subtitle }}</h2>{% endif %}
+      <span class="ornament" aria-hidden="true"></span>
     </div>
-    <div class="reveal">
+    <div class="menu-list reveal">
       {% for item in cat.items %}
-      <div class="menu-item">
-        <div>
-          <div class="menu-item-name">{{ item.name }}</div>
-          <div class="menu-item-desc">{{ item.description }}</div>
+      <article class="menu-item{% if item.image %} menu-item--photo{% endif %}">
+        {% if item.image %}{{ photo(item.image, item.name, "menu-photo") }}{% endif %}
+        <div class="menu-item-body">
+          <h3 class="menu-item-name">{{ item.name }}{% for tag in item.tags %} <span class="menu-tag">{{ tag }}</span>{% endfor %}</h3>
+          {% if item.description %}<p class="menu-item-desc">{{ item.description }}</p>{% endif %}
         </div>
         <div class="menu-item-price">{{ item.price }}</div>
-      </div>
+      </article>
       {% endfor %}
     </div>
   </div>
@@ -44,25 +64,47 @@ eleventyComputed:
 {% endfor %}
 
 {% if menu.specialties and menu.specialties.length %}
-<section id="specialites" class="section section--alt">
+<section id="specialites" class="section section--alt" data-menu-section>
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="label">Spécialités</span>
       <h2>Nos incontournables</h2>
+      <span class="ornament" aria-hidden="true"></span>
     </div>
     <div class="specialty-grid reveal">
-      {% for name in menu.specialties %}
-      <div class="card specialty-card">
-        <span class="label">Spécialité</span>
-        <h3>{{ name }}</h3>
-      </div>
+      {% for s in menu.specialties %}
+      {% set sp = s if s.name else { name: s } %}
+      <article class="specialty-card{% if sp.image %} specialty-card--photo{% else %} card{% endif %}">
+        {% if sp.image %}{{ photo(sp.image, sp.name, "specialty-media") }}{% endif %}
+        <div class="specialty-body">
+          <span class="label">Spécialité</span>
+          <h3>{{ sp.name }}</h3>
+          {% if sp.description %}<p>{{ sp.description }}</p>{% endif %}
+          {% if sp.price %}<span class="specialty-price">{{ sp.price }}</span>{% endif %}
+        </div>
+      </article>
       {% endfor %}
     </div>
   </div>
 </section>
 {% endif %}
 
-<section id="infos" class="section">
+{% if menu.gallery and menu.gallery.length %}
+<section id="ambiance" class="section" data-menu-section>
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="label">Ambiance</span>
+      <h2>{{ menu.galleryTitle or "Le lieu" }}</h2>
+      <span class="ornament" aria-hidden="true"></span>
+    </div>
+    <div class="gallery-grid reveal">
+      {% for g in menu.gallery %}{{ photo(g.src, g.caption, "gallery-tile") }}{% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section id="infos" class="section section--alt" data-menu-section>
   <div class="container menu-info">
     <div class="reveal">
       <h3>{{ icon("clock") }} Horaires</h3>
@@ -70,6 +112,7 @@ eleventyComputed:
       <h3 style="margin-top:var(--space-3);">{{ icon("phone") }} Contact</h3>
       <p><a href="tel:{{ menu.contact.phone }}">{{ menu.contact.phone }}</a></p>
       {% if menu.contact.whatsapp %}<p><a href="{{ menu.contact.whatsapp }}" target="_blank" rel="noopener">{{ icon("whatsapp") }} Écrire sur WhatsApp</a></p>{% endif %}
+      {% if menu.contact.instagram %}<p><a href="{{ menu.contact.instagram }}" target="_blank" rel="noopener">{{ icon("instagram") }} Instagram</a></p>{% endif %}
     </div>
     <div class="reveal">
       <h3>{{ icon("map-pin") }} Localisation</h3>
@@ -79,16 +122,7 @@ eleventyComputed:
   </div>
 </section>
 
-<footer class="invite-footer">
-  <div class="logo"><span class="logo-word" style="font-size:1rem;">Créé avec LUMÉA</span></div>
+<footer class="invite-footer reveal">
+  <a href="/" class="logo logo--credit"><span>Créé avec</span>{{ wordmark() }}</a>
   <p style="color:var(--text-muted);font-size:var(--size-small);">lumea.tn</p>
 </footer>
-
-<script>
-  document.querySelectorAll(".category-nav a").forEach((a) => {
-    a.addEventListener("click", () => {
-      document.querySelectorAll(".category-nav a").forEach((x) => x.classList.remove("is-active"));
-      a.classList.add("is-active");
-    });
-  });
-</script>

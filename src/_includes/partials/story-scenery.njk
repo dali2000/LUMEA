@@ -1,0 +1,289 @@
+{#
+  Scenery for the opening film, one set per narrative. Only the active
+  story's set is rendered. Elements are revealed by the scene classes on
+  .story (is-playing → is-open → is-card → is-couple → is-bloom → is-ring);
+  see assets/css/story.css.
+#}
+<svg class="story-defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="st-flower" viewBox="-10 -10 20 20">
+      <g style="fill: var(--st-flower)">
+        <circle cx="0" cy="-4.6" r="4.2" />
+        <circle cx="4.4" cy="-1.4" r="4.2" />
+        <circle cx="2.7" cy="3.7" r="4.2" />
+        <circle cx="-2.7" cy="3.7" r="4.2" />
+        <circle cx="-4.4" cy="-1.4" r="4.2" />
+      </g>
+      <circle r="2.4" style="fill: var(--st-flower-c)" />
+    </symbol>
+    <symbol id="st-leaf" viewBox="-6 -12 12 24">
+      <path d="M0 -11 C 6 -4, 6 4, 0 11 C -6 4, -6 -4, 0 -11 Z" style="fill: var(--st-leaf)" />
+    </symbol>
+    <symbol id="st-tile" viewBox="-10 -10 20 20">
+      <path d="M0 -9.5 L2.8 -6.8 L6.7 -6.7 L6.8 -2.8 L9.5 0 L6.8 2.8 L6.7 6.7 L2.8 6.8 L0 9.5 L-2.8 6.8 L-6.7 6.7 L-6.8 2.8 L-9.5 0 L-6.8 -2.8 L-6.7 -6.7 L-2.8 -6.8 Z" style="fill: var(--tile, var(--st-accent))" />
+      <path d="M0 -4 L4 0 L0 4 L-4 0 Z" style="fill: #fffaf1" />
+    </symbol>
+    <radialGradient id="st-glow-grad">
+      <stop offset="0" style="stop-color: var(--st-lantern, #ffc46b); stop-opacity: 0.75" />
+      <stop offset="1" style="stop-color: var(--st-lantern, #ffc46b); stop-opacity: 0" />
+    </radialGradient>
+  </defs>
+</svg>
+
+<div class="story-scenery" aria-hidden="true">
+{% if story == "garden" %}
+  <div class="scn scn-garden">
+    {% for corner in ["tl", "br"] %}
+    <svg class="scn-branch scn-branch--{{ corner }}" viewBox="0 0 170 170">
+      <path class="draw" d="M8 162 C 30 110, 62 74, 118 40" pathLength="1" />
+      <path class="draw" d="M44 106 C 54 92, 70 86, 80 74" pathLength="1" />
+      <path class="draw" d="M76 70 C 90 66, 100 56, 104 44" pathLength="1" />
+      <use class="bloom" href="#st-leaf" x="34" y="104" width="12" height="24" style="--o:1" />
+      <use class="bloom" href="#st-leaf" x="64" y="70" width="12" height="24" style="--o:2" />
+      <use class="bloom" href="#st-leaf" x="92" y="40" width="10" height="20" style="--o:3" />
+      <use class="bloom" href="#st-flower" x="104" y="20" width="30" height="30" style="--o:4" />
+      <use class="bloom" href="#st-flower" x="128" y="36" width="20" height="20" style="--o:5" />
+      <use class="bloom" href="#st-flower" x="70" y="58" width="18" height="18" style="--o:6" />
+    </svg>
+    {% endfor %}
+    <svg class="scn-arch" viewBox="0 0 240 260">
+      <path class="draw" d="M24 260 V120 A96 96 0 0 1 216 120 V260" pathLength="1" />
+      {% set archFlowers = [[24,226,16],[24,176,12],[24,136,18],[30,87,14],[52,52,20],[87,30,13],[120,24,22],[153,30,13],[188,52,20],[210,87,14],[216,136,18],[216,176,12],[216,226,16]] %}
+      {% for f in archFlowers %}
+      <use class="bloom" href="#st-flower" x="{{ f[0] - f[2] / 2 }}" y="{{ f[1] - f[2] / 2 }}" width="{{ f[2] }}" height="{{ f[2] }}" style="--o:{{ loop.index0 }}" />
+      {% endfor %}
+      {% set archLeaves = [[24,200,-20],[24,156,20],[38,110,-35],[68,40,-60],[103,26,-80],[137,26,80],[172,40,60],[202,110,35],[216,156,-20],[216,200,20]] %}
+      {% for l in archLeaves %}
+      <g transform="rotate({{ l[2] }} {{ l[0] }} {{ l[1] }})"><use class="bloom" href="#st-leaf" x="{{ l[0] - 5 }}" y="{{ l[1] - 10 }}" width="10" height="20" style="--o:{{ loop.index0 + 2 }}" /></g>
+      {% endfor %}
+    </svg>
+  </div>
+
+{% elif story == "royal" %}
+  <div class="scn scn-royal">
+    {% for corner in ["tl", "tr", "bl", "br"] %}
+    <svg class="scn-corner scn-corner--{{ corner }}" viewBox="0 0 90 90">
+      <path class="draw" d="M4 86 V4 H86" pathLength="1" />
+      <path class="draw" d="M12 86 V12 H86" pathLength="1" />
+      <path class="draw" d="M12 12 C 30 12, 40 22, 40 40 C 22 40, 12 30, 12 12 Z" pathLength="1" />
+      <circle class="draw" cx="46" cy="46" r="3" pathLength="1" />
+    </svg>
+    {% endfor %}
+    <svg class="scn-palace" viewBox="0 0 320 172">
+      <path class="draw" d="M0 170 H320" pathLength="1" />
+      <path class="draw" d="M110 170 V96 H210 V170" pathLength="1" />
+      <path class="draw" d="M124 96 C 106 78, 136 58, 160 40 C 184 58, 214 78, 196 96" pathLength="1" />
+      <path class="draw" d="M160 40 V24 M155 29 H165" pathLength="1" />
+      <path class="draw" d="M144 170 V132 A16 16 0 0 1 176 132 V170" pathLength="1" />
+      <path class="draw" d="M120 120 V108 A6 6 0 0 1 132 108 V120 M188 120 V108 A6 6 0 0 1 200 108 V120" pathLength="1" />
+      <path class="draw" d="M40 170 V118 H110 M210 118 H280 V170" pathLength="1" />
+      <path class="draw" d="M52 118 C 46 108, 60 98, 75 90 C 90 98, 104 108, 98 118 M222 118 C 216 108, 230 98, 245 90 C 260 98, 274 108, 268 118" pathLength="1" />
+      <path class="draw" d="M56 170 V148 A7 7 0 0 1 70 148 V170 M80 170 V148 A7 7 0 0 1 94 148 V170 M226 170 V148 A7 7 0 0 1 240 148 V170 M250 170 V148 A7 7 0 0 1 264 148 V170" pathLength="1" />
+      <path class="draw" d="M20 170 V72 H36 V170 M20 72 C 20 60, 28 56, 28 46 C 28 56, 36 60, 36 72 M284 170 V72 H300 V170 M284 72 C 284 60, 292 56, 292 46 C 292 56, 300 60, 300 72" pathLength="1" />
+    </svg>
+  </div>
+
+{% elif story == "modern" %}
+  <div class="scn scn-modern">
+    <div class="scn-beam"></div>
+    <div class="scn-orb scn-orb--l"></div>
+    <div class="scn-orb scn-orb--r"></div>
+    <span class="scn-horizon"></span>
+  </div>
+
+{% elif story == "mediterranean" %}
+  <div class="scn scn-med">
+    <div class="scn-sun"></div>
+    <svg class="scn-door" viewBox="0 0 200 262">
+      <path class="scn-door-fill" d="M30 262 V112 C 30 62, 60 36, 100 30 C 140 36, 170 62, 170 112 V262 Z" />
+      <path class="draw" d="M30 262 V112 C 30 62, 60 36, 100 30 C 140 36, 170 62, 170 112 V262" pathLength="1" />
+      <path class="draw" d="M46 262 V116 C 46 74, 70 52, 100 46 C 130 52, 154 74, 154 116 V262" pathLength="1" />
+      {% for s in [[62,96],[78,72],[100,62],[122,72],[138,96],[62,140],[138,140],[62,184],[138,184]] %}
+      <circle class="bloom" cx="{{ s[0] }}" cy="{{ s[1] }}" r="2.2" style="--o:{{ loop.index0 }}" />
+      {% endfor %}
+    </svg>
+    {% for corner in ["tl", "tr"] %}
+    <svg class="scn-bougain scn-bougain--{{ corner }}" viewBox="0 0 170 130">
+      <path class="draw" d="M0 14 C 40 20, 70 40, 96 76 M40 22 C 52 40, 50 60, 58 80" pathLength="1" />
+      {% set clusters = [[60,30,20],[82,52,24],[100,78,18],[44,52,16],[60,78,14],[118,58,14],[28,30,12]] %}
+      {% for c in clusters %}
+      <use class="bloom" href="#st-flower" x="{{ c[0] - c[2] / 2 }}" y="{{ c[1] - c[2] / 2 }}" width="{{ c[2] }}" height="{{ c[2] }}" style="--o:{{ loop.index0 }}" />
+      {% endfor %}
+      <use class="bloom" href="#st-flower" x="128" y="84" width="12" height="12" style="--o:7; --st-flower:#ffffff; --st-flower-c:#f1cf74" />
+      <use class="bloom" href="#st-flower" x="74" y="94" width="10" height="10" style="--o:8; --st-flower:#ffffff; --st-flower-c:#f1cf74" />
+    </svg>
+    {% endfor %}
+    {% set wave = "M0 40 Q 25 28 50 40" %}{% for i in range(1, 16) %}{% set wave = wave + " T " + (i * 50 + 50) + " 40" %}{% endfor %}
+    <svg class="scn-sea" viewBox="0 0 800 120" preserveAspectRatio="none">
+      <path d="{{ wave }}" />
+      <path d="{{ wave }}" transform="translate(-25 26)" />
+      <path d="{{ wave }}" transform="translate(-12 52)" />
+    </svg>
+  </div>
+
+{% elif story == "celestial" %}
+  <div class="scn scn-sky">
+    <div class="scn-stars scn-stars--a"></div>
+    <div class="scn-stars scn-stars--b"></div>
+    <div class="scn-moon"></div>
+    <svg class="scn-constellation" viewBox="0 0 320 150">
+      <path class="draw cst-l" d="M24 118 L58 86 L84 104 L112 70 L136 92" pathLength="1" />
+      <path class="draw cst-r" d="M296 118 L262 86 L236 104 L208 70 L184 92" pathLength="1" />
+      <path class="draw cst-link" d="M136 92 Q 160 30 184 92" pathLength="1" />
+      {% for s in [[24,118,1.6],[58,86,2.2],[84,104,1.5],[112,70,2.6],[136,92,1.9],[296,118,1.6],[262,86,2.2],[236,104,1.5],[208,70,2.6],[184,92,1.9]] %}
+      <circle class="bloom cst-star" cx="{{ s[0] }}" cy="{{ s[1] }}" r="{{ s[2] }}" style="--o:{{ loop.index0 }}" />
+      {% endfor %}
+      <path class="bloom cst-heart" d="M160 43 L162.6 50.4 L170 53 L162.6 55.6 L160 63 L157.4 55.6 L150 53 L157.4 50.4 Z" />
+    </svg>
+    <span class="scn-shoot"></span>
+  </div>
+
+{% elif story == "henna" %}
+  <div class="scn scn-henna">
+    <svg class="scn-mandala" viewBox="-120 -120 240 240">
+      <circle class="draw" r="22" pathLength="1" />
+      <circle class="draw" r="90" pathLength="1" />
+      {% for i in range(0, 12) %}
+      <path class="draw" d="M0 -26 C 9 -42, 9 -58, 0 -74 C -9 -58, -9 -42, 0 -26 Z" transform="rotate({{ i * 30 }})" pathLength="1" style="--o:{{ i }}" />
+      <g transform="rotate({{ i * 30 + 15 }})"><circle class="bloom" cx="0" cy="-80" r="2.4" style="--o:{{ i }}" /></g>
+      {% endfor %}
+      {% for i in range(0, 24) %}
+      <path class="draw" d="M0 -95 Q 5 -102 0 -111 Q -5 -102 0 -95 Z" transform="rotate({{ i * 15 }})" pathLength="1" style="--o:{{ i }}" />
+      {% endfor %}
+    </svg>
+    <svg class="scn-lanterns" viewBox="0 0 400 170">
+      {% for l in [[40,62,0.9],[115,30,0.75],[200,84,1.05],[285,30,0.75],[360,62,0.9]] %}
+      <g class="lantern" style="--o:{{ loop.index0 }}; transform-origin: {{ l[0] }}px 0px">
+        <path class="draw" d="M{{ l[0] }} 0 V{{ l[1] }}" pathLength="1" />
+        <g transform="translate({{ l[0] }} {{ l[1] }}) scale({{ l[2] }})">
+          <circle class="lantern-glow" cx="0" cy="22" r="34" />
+          <path class="lantern-body" d="M-5 0 H5 L8 6 H-8 Z M-11 8 H11 L13 26 L0 40 L-13 26 Z" />
+          <path class="lantern-light" d="M-7.5 11 H7.5 L9 25 L0 34.5 L-9 25 Z" />
+          <path class="lantern-frame" d="M0 10 V36 M-11 18 H11" />
+        </g>
+      </g>
+      {% endfor %}
+    </svg>
+    {% for corner in ["bl", "br"] %}
+    <svg class="scn-paisley scn-paisley--{{ corner }}" viewBox="0 0 160 160">
+      <path class="draw" d="M40 150 C 6 140, 4 92, 36 74 C 66 58, 104 70, 104 104 C 104 128, 82 140, 66 132 C 52 126, 54 104, 70 104" pathLength="1" />
+      <path class="draw" d="M44 138 C 22 130, 20 98, 42 86 C 62 76, 88 86, 90 106" pathLength="1" />
+      <path class="draw" d="M104 104 C 120 80, 140 60, 156 20" pathLength="1" />
+      {% for d in [[118,78],[128,62],[138,47],[147,32],[28,112],[54,90],[80,88]] %}<circle class="bloom" cx="{{ d[0] }}" cy="{{ d[1] }}" r="2.2" style="--o:{{ loop.index0 }}" />{% endfor %}
+    </svg>
+    {% endfor %}
+  </div>
+
+{% elif story == "andalusian" %}
+  <div class="scn scn-riad">
+    {% for corner in ["tl", "tr"] %}
+    <svg class="scn-blossom scn-blossom--{{ corner }}" viewBox="0 0 170 130">
+      <path class="draw" d="M0 10 C 40 18, 76 36, 104 70 M46 20 C 58 38, 56 58, 64 76" pathLength="1" />
+      {% for l in [[30,16,70],[72,38,50],[92,58,40],[56,52,-10]] %}
+      <g transform="rotate({{ l[2] }} {{ l[0] }} {{ l[1] }})"><use class="bloom" href="#st-leaf" x="{{ l[0] - 5 }}" y="{{ l[1] - 10 }}" width="10" height="20" style="--o:{{ loop.index0 }}" /></g>
+      {% endfor %}
+      {% for c in [[52,22,18],[84,48,20],[106,74,16],[66,78,14],[30,34,12]] %}
+      <use class="bloom" href="#st-flower" x="{{ c[0] - c[2] / 2 }}" y="{{ c[1] - c[2] / 2 }}" width="{{ c[2] }}" height="{{ c[2] }}" style="--o:{{ loop.index0 + 2 }}" />
+      {% endfor %}
+      <circle class="bloom fruit" cx="118" cy="92" r="6" style="--o:7" />
+    </svg>
+    {% endfor %}
+    <svg class="scn-riad-arch" viewBox="0 0 240 290">
+      <path class="draw" d="M34 290 V170 C 4 118, 30 34, 120 28 C 210 34, 236 118, 206 170 V290" pathLength="1" />
+      <path class="draw" d="M50 290 V172 C 24 124, 46 50, 120 44 C 194 50, 216 124, 190 172 V290" pathLength="1" />
+      {# Voussoirs: short strokes between the two curves, mirrored #}
+      {% for t in [0.06, 0.18, 0.3, 0.42, 0.54, 0.66, 0.78, 0.9] %}
+      {% set u = 1 - t %}{% set a = u * u * u %}{% set b = 3 * u * u * t %}{% set c = 3 * u * t * t %}{% set d = t * t * t %}
+      {% set ox = a * 34 + b * 4 + c * 30 + d * 120 %}{% set oy = a * 170 + b * 118 + c * 34 + d * 28 %}
+      {% set ix = a * 50 + b * 24 + c * 46 + d * 120 %}{% set iy = a * 172 + b * 124 + c * 50 + d * 44 %}
+      <path class="draw vous{% if loop.index0 % 2 %} vous--alt{% endif %}" d="M{{ ox | round(1) }} {{ oy | round(1) }} L{{ ix | round(1) }} {{ iy | round(1) }}" pathLength="1" style="--o:{{ loop.index0 }}" />
+      <path class="draw vous{% if loop.index0 % 2 %} vous--alt{% endif %}" d="M{{ (240 - ox) | round(1) }} {{ oy | round(1) }} L{{ (240 - ix) | round(1) }} {{ iy | round(1) }}" pathLength="1" style="--o:{{ loop.index0 }}" />
+      {% endfor %}
+    </svg>
+    <svg class="scn-fountain" viewBox="0 0 300 140">
+      <path class="draw" d="M14 140 C 34 24, 100 14, 128 118" pathLength="1" />
+      <path class="draw" d="M286 140 C 266 24, 200 14, 172 118" pathLength="1" />
+      <path class="draw" d="M34 140 C 50 58, 96 48, 116 124" pathLength="1" />
+      <path class="draw" d="M266 140 C 250 58, 204 48, 184 124" pathLength="1" />
+      {% for p in [[124,126],[131,132],[118,134],[176,126],[169,132],[182,134]] %}<circle class="bloom" cx="{{ p[0] }}" cy="{{ p[1] }}" r="1.6" style="--o:{{ loop.index0 }}" />{% endfor %}
+    </svg>
+    <svg class="scn-zellige" viewBox="0 0 420 24">
+      {% for i in range(0, 21) %}
+      <use class="tile" href="#st-tile" x="{{ i * 20 }}" y="2" width="20" height="20" style="--o:{{ (i - 10) | abs }}; --tile: var(--st-tile-{{ ['a', 'b', 'c'][i % 3] }})" />
+      {% endfor %}
+    </svg>
+  </div>
+
+{% elif story == "boho" %}
+  <div class="scn scn-boho">
+    <div class="scn-gsun"></div>
+    <svg class="scn-hills" viewBox="0 0 400 80" preserveAspectRatio="none">
+      <path d="M0 50 C 70 20, 140 30, 210 44 C 280 58, 340 30, 400 38 V80 H0 Z" />
+      <path d="M0 64 C 90 44, 170 52, 250 62 C 320 70, 360 58, 400 56 V80 H0 Z" />
+    </svg>
+    <svg class="scn-lights" viewBox="0 0 400 110">
+      <path class="draw" d="M-10 14 Q 200 120 410 14" pathLength="1" />
+      {% for i in range(1, 14) %}
+      {% set t = i / 14 %}{% set u = 1 - t %}
+      {% set x = 2 * u * t * 200 + t * t * 410 - u * u * 10 %}{% set y = u * u * 14 + 2 * u * t * 120 + t * t * 14 %}
+      <g style="--o:{{ i }}">
+        <circle class="bulb-glow" cx="{{ x | round(1) }}" cy="{{ (y + 7.5) | round(1) }}" r="15" />
+        <path class="bulb-wire" d="M{{ x | round(1) }} {{ y | round(1) }} V{{ (y + 4) | round(1) }}" />
+        <circle class="bulb-core" cx="{{ x | round(1) }}" cy="{{ (y + 7.5) | round(1) }}" r="3.3" />
+      </g>
+      {% endfor %}
+    </svg>
+    {% for side in ["l", "r"] %}
+    <svg class="scn-pampas scn-pampas--{{ side }}" viewBox="0 0 160 220">
+      {# [base x, tip x, tip y, angle of the plume] #}
+      {% for s in [[30,8,70,-8],[52,50,30,-1],[74,98,50,8],[96,140,96,19]] %}
+      <g class="pampas" style="--o:{{ loop.index0 }}; transform-origin: {{ s[0] }}px 220px">
+        <path class="draw" d="M{{ s[0] }} 220 Q {{ (s[0] + s[1]) / 2 - 6 }} {{ (s[2] + 220) / 2 }} {{ s[1] }} {{ s[2] }}" pathLength="1" />
+        <g transform="translate({{ s[1] }} {{ s[2] }}) rotate({{ s[3] }})">
+          <g class="bloom" style="--o:{{ loop.index0 }}">
+            <path class="plume" d="M0 -6 C 11 10, 12 44, 2 76 C -9 44, -10 10, 0 -6 Z" />
+            <path class="feather" d="M0 6 L5 16 M0 18 L-5 28 M1 30 L6 40 M0 42 L-5 52 M1 54 L5 62" />
+          </g>
+        </g>
+      </g>
+      {% endfor %}
+      <path class="draw" d="M14 220 C 18 196, 10 182, 4 172 M46 220 C 44 200, 52 188, 60 178 M120 220 C 122 204, 132 192, 144 186" pathLength="1" />
+    </svg>
+    {% endfor %}
+  </div>
+
+{% elif story == "party" %}
+  {# Birthday: bunting strings itself across the top, then balloons float up
+     the sides once the candles are blown out #}
+  <div class="scn scn-party">
+    <svg class="scn-bunting" viewBox="0 0 400 96">
+      <path class="draw" d="M-10 10 Q 200 76 410 10" pathLength="1" />
+      {% for i in range(1, 12) %}
+      {% set t = i / 12 %}{% set u = 1 - t %}
+      {% set x = u * u * -10 + 2 * u * t * 200 + t * t * 410 %}{% set y = u * u * 10 + 2 * u * t * 76 + t * t * 10 %}
+      <path class="bloom flag flag--{{ i % 3 }}" d="M{{ (x - 10) | round(1) }} {{ y | round(1) }} L{{ (x + 10) | round(1) }} {{ y | round(1) }} L{{ x | round(1) }} {{ (y + 22) | round(1) }} Z" style="--o:{{ i }}" />
+      {% endfor %}
+    </svg>
+    {# [side, offset from the edge %, colour, scale, top %] #}
+    {% for b in [["l", 4, 0, 1, 20], ["l", 17, 1, 0.78, 34], ["l", 1, 2, 0.66, 46], ["r", 5, 1, 0.95, 24], ["r", 18, 2, 0.74, 38], ["r", 2, 0, 0.62, 50]] %}
+    <svg class="scn-balloon scn-balloon--{{ b[0] }} balloon--{{ b[2] }}" viewBox="0 0 40 112" style="--x:{{ b[1] }}%; --s:{{ b[3] }}; --y:{{ b[4] }}%; --o:{{ loop.index0 }}">
+      <path class="balloon-string" d="M20 53 C 15 65, 25 77, 18 89 C 14 97, 22 104, 19 112" />
+      <path class="balloon-body" d="M20 2 C 34 2, 38 15, 38 24 C 38 38, 28 48, 20 50 C 12 48, 2 38, 2 24 C 2 15, 6 2, 20 2 Z" />
+      <path class="balloon-knot" d="M17 49.5 L23 49.5 L21.5 54 L18.5 54 Z" />
+      <path class="balloon-shine" d="M9 16 C 10 10, 14 7, 18 6.5" />
+    </svg>
+    {% endfor %}
+  </div>
+
+{% else %}
+  <div class="scn scn-minimal">
+    <svg class="scn-arch" viewBox="0 0 240 260">
+      <path class="draw" d="M24 260 V120 A96 96 0 0 1 216 120 V260" pathLength="1" />
+      <path class="draw" d="M36 260 V122 A84 84 0 0 1 204 122 V260" pathLength="1" />
+      {% for l in [[96,28,-70],[110,24,-82],[130,24,82],[144,28,70]] %}
+      <g transform="rotate({{ l[2] }} {{ l[0] }} {{ l[1] }})"><use class="bloom" href="#st-leaf" x="{{ l[0] - 4 }}" y="{{ l[1] - 8 }}" width="8" height="16" style="--o:{{ loop.index0 }}" /></g>
+      {% endfor %}
+    </svg>
+  </div>
+{% endif %}
+</div>

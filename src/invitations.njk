@@ -1,11 +1,11 @@
 ---
 layout: layouts/invitation.njk
 pagination:
-  data: collections.invitations
+  data: collections.invitationPages
   size: 1
   alias: invite
-permalink: "/invitations/{{ invite.slug }}/"
+permalink: "{{ invite.path }}"
 eleventyComputed:
-  title: "{{ invite.couple.name1 }} & {{ invite.couple.name2 }}"
+  title: "{% if invite.couple %}{{ invite.couple.name1 }} & {{ invite.couple.name2 }}{% else %}{{ invite.honoree.name }}{% endif %}"
   description: "{{ invite.message }}"
 ---

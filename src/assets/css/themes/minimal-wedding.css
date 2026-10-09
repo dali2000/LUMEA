@@ -5,3 +5,27 @@
 .theme-minimal-wedding .gallery-tile:hover {
   filter: saturate(1) brightness(1.02);
 }
+
+/* Motion — Minimal Editorial: slow, quiet fades; the names settle from wide
+   tracking into place, like type being set. */
+.theme-minimal-wedding {
+  --confetti-colors: #b08d57, #e8dcc6, #2a2520;
+  --confetti-shape: paper;
+  --scratch-1: #b08d57;
+  --scratch-2: #ecd9ae;
+  --scratch-ink: rgba(42, 37, 32, 0.55);
+  --m-dur: 1300ms;
+  --m-y: 10px;
+  --m-stagger: 110ms;
+  --m-letter-dur: 1400ms;
+  --m-letter-step: 80ms;
+  --m-letter-from: translateY(0.18em);
+  --m-media-scale: 1.06;
+  --m-parallax: 0.7;
+}
+@keyframes mw-set { from { letter-spacing: 0.24em; } }
+.theme-minimal-wedding.is-opened .invite-names { animation: mw-set 2.6s var(--m-ease) var(--m-hero-start) both; }
+.theme-minimal-wedding .ornament { width: 64px; opacity: 0.6; }
+@media (prefers-reduced-motion: reduce) {
+  .theme-minimal-wedding .invite-names { animation: none !important; }
+}

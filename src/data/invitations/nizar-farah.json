@@ -1,0 +1,119 @@
+{
+  "theme": "tunisian-heritage",
+  "opening": "door",
+  "meeting": "doves",
+  "finale": "date",
+  "couple": {
+    "name1": "Nizar",
+    "name2": "Farah"
+  },
+  "message": "Derrière cette porte bleue commence notre plus belle histoire. Nous serions heureux de vous y accueillir.",
+  "date": "2027-06-26T18:00:00",
+  "location": {
+    "name": "Dar Said",
+    "address": "Sidi Bou Saïd",
+    "mapsUrl": "https://maps.google.com/?q=Dar+Said+Sidi+Bou+Said"
+  },
+  "program": [
+    {
+      "time": "18:00",
+      "label": "Cérémonie sur la terrasse"
+    },
+    {
+      "time": "19:30",
+      "label": "Cocktail face à la mer"
+    },
+    {
+      "time": "21:00",
+      "label": "Dîner"
+    },
+    {
+      "time": "23:00",
+      "label": "Soirée"
+    }
+  ],
+  "quote": "Comme deux colombes au-dessus du golfe, nous avons choisi le même horizon.",
+  "gallery": [
+    {
+      "caption": "Nos fiançailles"
+    },
+    {
+      "caption": "Le café des Délices"
+    },
+    {
+      "caption": "Avec nos familles"
+    }
+  ],
+  "rsvp": {
+    "deadline": "2027-06-01",
+    "contactEmail": "nizar.farah@example.com"
+  },
+  "translations": {
+    "en": {
+      "message": "Behind this blue door begins our most beautiful story. We would be delighted to welcome you there.",
+      "program": [
+        {
+          "label": "Ceremony on the terrace"
+        },
+        {
+          "label": "Cocktails facing the sea"
+        },
+        {
+          "label": "Dinner"
+        },
+        {
+          "label": "Party"
+        }
+      ],
+      "quote": "Like two doves above the gulf, we chose the same horizon.",
+      "gallery": [
+        {
+          "caption": "Our engagement"
+        },
+        {
+          "caption": "Café des Délices"
+        },
+        {
+          "caption": "With our families"
+        }
+      ]
+    },
+    "ar": {
+      "couple": {
+        "name1": "نزار",
+        "name2": "فرح"
+      },
+      "message": "خلف هذا الباب الأزرق تبدأ أجمل قصّة لنا. يسعدنا أن نستقبلكم فيها.",
+      "program": [
+        {
+          "label": "المراسم على السطح"
+        },
+        {
+          "label": "كوكتيل أمام البحر"
+        },
+        {
+          "label": "العشاء"
+        },
+        {
+          "label": "السهرة"
+        }
+      ],
+      "quote": "كحمامتين فوق الخليج، اخترنا الأفق نفسه.",
+      "gallery": [
+        {
+          "caption": "خطوبتنا"
+        },
+        {
+          "caption": "مقهى العالية"
+        },
+        {
+          "caption": "مع عائلتينا"
+        }
+      ],
+      "location": {
+        "name": "دار سعيد",
+        "address": "سيدي بوسعيد"
+      }
+    }
+  }
+}

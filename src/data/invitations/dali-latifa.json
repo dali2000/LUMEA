@@ -1,6 +1,9 @@
 {
   "theme": "minimal-wedding",
-  "couple": { "name1": "Dali", "name2": "Latifa" },
+  "couple": {
+    "name1": "Dali",
+    "name2": "Latifa"
+  },
   "message": "Nous avons le plaisir de vous inviter à célébrer notre mariage.",
   "date": "2027-05-15T18:00:00",
   "location": {
@@ -9,20 +12,114 @@
     "mapsUrl": "https://maps.google.com/?q=Dar+El+Marsa+La+Marsa"
   },
   "program": [
-    { "time": "18:00", "label": "Cérémonie" },
-    { "time": "19:30", "label": "Cocktail" },
-    { "time": "21:00", "label": "Dîner" },
-    { "time": "23:00", "label": "Soirée" }
+    {
+      "time": "18:00",
+      "label": "Cérémonie"
+    },
+    {
+      "time": "19:30",
+      "label": "Cocktail"
+    },
+    {
+      "time": "21:00",
+      "label": "Dîner"
+    },
+    {
+      "time": "23:00",
+      "label": "Soirée"
+    }
   ],
   "quote": "Deux chemins qui se sont trouvés, pour n'en former qu'un seul. Merci de faire partie de notre histoire.",
   "gallery": [
-    { "caption": "Nos fiançailles" },
-    { "caption": "En Sicile" },
-    { "caption": "Le jour de la demande" },
-    { "caption": "Avec nos proches" }
+    {
+      "caption": "Nos fiançailles"
+    },
+    {
+      "caption": "En Sicile"
+    },
+    {
+      "caption": "Le jour de la demande"
+    },
+    {
+      "caption": "Avec nos proches"
+    }
   ],
   "rsvp": {
     "deadline": "2027-05-01",
     "contactEmail": "dali.latifa@example.com"
+  },
+  "translations": {
+    "en": {
+      "message": "We are delighted to invite you to celebrate our wedding.",
+      "program": [
+        {
+          "label": "Ceremony"
+        },
+        {
+          "label": "Cocktails"
+        },
+        {
+          "label": "Dinner"
+        },
+        {
+          "label": "Party"
+        }
+      ],
+      "quote": "Two paths that found each other, to become one. Thank you for being part of our story.",
+      "gallery": [
+        {
+          "caption": "Our engagement"
+        },
+        {
+          "caption": "In Sicily"
+        },
+        {
+          "caption": "The day of the proposal"
+        },
+        {
+          "caption": "With our loved ones"
+        }
+      ]
+    },
+    "ar": {
+      "couple": {
+        "name1": "دالي",
+        "name2": "لطيفة"
+      },
+      "message": "يسعدنا أن ندعوكم للاحتفال بزفافنا.",
+      "program": [
+        {
+          "label": "المراسم"
+        },
+        {
+          "label": "الكوكتيل"
+        },
+        {
+          "label": "العشاء"
+        },
+        {
+          "label": "السهرة"
+        }
+      ],
+      "quote": "دربان التقيا ليصيرا درباً واحداً. شكراً لكونكم جزءاً من قصّتنا.",
+      "gallery": [
+        {
+          "caption": "خطوبتنا"
+        },
+        {
+          "caption": "في صقلية"
+        },
+        {
+          "caption": "يوم طلب الزواج"
+        },
+        {
+          "caption": "مع أحبّائنا"
+        }
+      ],
+      "location": {
+        "name": "دار المرسى",
+        "address": "المرسى، تونس"
+      }
+    }
   }
 }

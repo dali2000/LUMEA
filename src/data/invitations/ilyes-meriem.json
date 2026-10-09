@@ -1,0 +1,51 @@
+{
+  "theme": "minimal-wedding",
+  "opening": "scroll",
+  "meeting": "hands",
+  "finale": "monogram",
+  "couple": {
+    "name1": "Ilyes",
+    "name2": "Meriem"
+  },
+  "message": "Avec simplicité et beaucoup d'amour, nous vous invitons à célébrer notre union.",
+  "date": "2027-07-17T19:00:00",
+  "location": {
+    "name": "Villa Bleue",
+    "address": "Sidi Bou Saïd",
+    "mapsUrl": "https://maps.google.com/?q=Villa+Bleue+Sidi+Bou+Said"
+  },
+  "program": [
+    {
+      "time": "19:00",
+      "label": "Cérémonie"
+    },
+    {
+      "time": "20:00",
+      "label": "Échange des alliances"
+    },
+    {
+      "time": "21:00",
+      "label": "Dîner"
+    },
+    {
+      "time": "23:00",
+      "label": "Soirée"
+    }
+  ],
+  "quote": "Une main dans la mienne, et le reste du chemin à deux.",
+  "gallery": [
+    {
+      "caption": "Nos fiançailles"
+    },
+    {
+      "caption": "À Tozeur"
+    },
+    {
+      "caption": "Juste nous"
+    }
+  ],
+  "rsvp": {
+    "deadline": "2027-07-01",
+    "contactEmail": "ilyes.meriem@example.com"
+  }
+}

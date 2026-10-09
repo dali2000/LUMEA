@@ -1,0 +1,88 @@
+/* Celestial Night — bleu nuit, argent et or pâle, ciel étoilé. */
+.theme-celestial-night {
+  --bg: #0d1430;
+  --bg-alt: #121b3d;
+  --text: #eef0f8;
+  --text-muted: #a9b0cc;
+  --text-inverse: #0d1430;
+  --accent: #e3cf9a;
+  --accent-strong: #c7cfee;
+  --border: rgba(199, 207, 238, 0.18);
+  --border-on-dark: rgba(238, 240, 248, 0.16);
+  --shadow-soft: 0 4px 28px rgba(0, 0, 0, 0.4);
+  --confetti-colors: #e3cf9a, #ffffff, #c7cfee;
+  --confetti-shape: stars;
+  --scratch-1: #8f96b8;
+  --scratch-2: #e6e9f5;
+  --scratch-ink: rgba(13, 20, 48, 0.6);
+}
+
+/* A slow starfield behind the hero, and a crescent moon */
+.theme-celestial-night .invite-hero { position: relative; isolation: isolate; }
+.theme-celestial-night .invite-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cg fill='%23ffffff'%3E%3Ccircle cx='12' cy='20' r='.9'/%3E%3Ccircle cx='70' cy='8' r='.6'/%3E%3Ccircle cx='140' cy='34' r='1.1'/%3E%3Ccircle cx='40' cy='96' r='.7'/%3E%3Ccircle cx='110' cy='120' r='.9'/%3E%3Ccircle cx='166' cy='150' r='.6'/%3E%3Ccircle cx='24' cy='160' r='1'/%3E%3C/g%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 50% 20%, #1d2a5c 0%, transparent 70%);
+  background-size: 180px 180px, 100% 100%;
+  opacity: 0.85;
+}
+.theme-celestial-night .invite-hero::after {
+  content: "";
+  position: absolute;
+  top: 12%;
+  right: 12%;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  box-shadow: inset -14px 8px 0 0 #f4ecd8;
+  filter: drop-shadow(0 0 12px rgba(244, 236, 216, 0.4));
+  rotate: -12deg;
+  z-index: -1;
+}
+
+.theme-celestial-night .invite-names { font-weight: 500; letter-spacing: 0.02em; }
+.theme-celestial-night .program-list::before { background: var(--accent-strong); opacity: 0.4; }
+.theme-celestial-night .program-item::before { background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+.theme-celestial-night .btn-primary { background: var(--accent); color: var(--text-inverse); }
+.theme-celestial-night .btn-primary:hover { background: #efdfb5; }
+.theme-celestial-night .btn-ghost { border-color: var(--accent); }
+.theme-celestial-night .countdown-unit .value { color: var(--accent); text-shadow: 0 0 18px rgba(227, 207, 154, 0.35); }
+
+/* Motion — Celestial: letters come out of the dark like stars appearing,
+   the starfield breathes, the moon rises with the page. */
+.theme-celestial-night {
+  --m-dur: 1300ms;
+  --m-y: 18px;
+  --m-stagger: 110ms;
+  --m-letter-dur: 1600ms;
+  --m-letter-step: 80ms;
+  --m-letter-from: scale(0.6);
+  --m-letter-blur: 10px;
+  --m-media-scale: 1.15;
+  --m-gallery-from: inset(50% 50% 50% 50% round 50%);
+  --m-parallax: 0.7;
+}
+
+@keyframes cn-twinkle { from { opacity: 0.85; } to { opacity: 0.5; } }
+@keyframes cn-moon { from { opacity: 0; translate: 0 40px; } }
+.js .theme-celestial-night:not(.is-opened) .invite-hero::after { opacity: 0; }
+.theme-celestial-night.is-opened .invite-hero::before { animation: cn-twinkle 5s ease-in-out infinite alternate; }
+.theme-celestial-night.is-opened .invite-hero::after { animation: cn-moon 2.8s var(--m-ease) calc(var(--m-hero-start) + 400ms) both; }
+
+/* Section ornament: a four-point star */
+.theme-celestial-night .ornament {
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .theme-celestial-night .invite-hero::before,
+  .theme-celestial-night .invite-hero::after { animation: none !important; }
+  .js .theme-celestial-night:not(.is-opened) .invite-hero::after { opacity: 1; }
+}

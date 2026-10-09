@@ -1,0 +1,121 @@
+{
+  "theme": "celestial-night",
+  "couple": {
+    "name1": "Adam",
+    "name2": "Yasmine"
+  },
+  "message": "Sous le ciel étoilé de Hammamet, nous vous invitons à célébrer notre mariage.",
+  "date": "2027-08-21T20:30:00",
+  "location": {
+    "name": "Le Jardin des Étoiles",
+    "address": "Hammamet",
+    "mapsUrl": "https://maps.google.com/?q=Hammamet+Tunisie"
+  },
+  "program": [
+    {
+      "time": "20:30",
+      "label": "Cérémonie à la tombée de la nuit"
+    },
+    {
+      "time": "21:30",
+      "label": "Cocktail sous les étoiles"
+    },
+    {
+      "time": "22:30",
+      "label": "Dîner"
+    },
+    {
+      "time": "00:00",
+      "label": "Première danse & soirée"
+    }
+  ],
+  "quote": "Parmi toutes les étoiles du ciel, c'est toi que j'ai choisie.",
+  "gallery": [
+    {
+      "caption": "Notre première nuit d'été"
+    },
+    {
+      "caption": "À Djerba"
+    },
+    {
+      "caption": "La demande, sous la lune"
+    }
+  ],
+  "scratch": true,
+  "rsvp": {
+    "deadline": "2027-08-01",
+    "contactEmail": "adam.yasmine@example.com"
+  },
+  "translations": {
+    "en": {
+      "message": "Under the starry sky of Hammamet, we invite you to celebrate our wedding.",
+      "program": [
+        {
+          "label": "Ceremony at nightfall"
+        },
+        {
+          "label": "Cocktails under the stars"
+        },
+        {
+          "label": "Dinner"
+        },
+        {
+          "label": "First dance & party"
+        }
+      ],
+      "quote": "Of all the stars in the sky, you are the one I chose.",
+      "gallery": [
+        {
+          "caption": "Our first summer night"
+        },
+        {
+          "caption": "In Djerba"
+        },
+        {
+          "caption": "The proposal, under the moon"
+        }
+      ],
+      "location": {
+        "name": "Le Jardin des Étoiles",
+        "address": "Hammamet"
+      }
+    },
+    "ar": {
+      "couple": {
+        "name1": "آدم",
+        "name2": "ياسمين"
+      },
+      "message": "تحت سماء الحمامات المرصّعة بالنجوم، ندعوكم للاحتفال بزفافنا.",
+      "program": [
+        {
+          "label": "المراسم عند الغروب"
+        },
+        {
+          "label": "كوكتيل تحت النجوم"
+        },
+        {
+          "label": "العشاء"
+        },
+        {
+          "label": "الرقصة الأولى والسهرة"
+        }
+      ],
+      "quote": "من بين كلّ نجوم السماء، أنتِ من اخترت.",
+      "gallery": [
+        {
+          "caption": "ليلتنا الصيفية الأولى"
+        },
+        {
+          "caption": "في جربة"
+        },
+        {
+          "caption": "طلب الزواج تحت القمر"
+        }
+      ],
+      "location": {
+        "name": "حديقة النجوم",
+        "address": "الحمامات"
+      }
+    }
+  }
+}

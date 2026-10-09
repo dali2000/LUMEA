@@ -1,0 +1,126 @@
+{
+  "theme": "birthday-party",
+  "opening": "gift",
+  "eventType": "Anniversaire",
+  "kicker": "C'est la fête !",
+  "honoree": {
+    "name": "Lina",
+    "age": 30
+  },
+  "message": "Trente bougies, ça se fête ! Rejoignez-moi pour une soirée pleine de rires, de musique et de gâteau.",
+  "date": "2027-05-08T20:00:00",
+  "location": {
+    "name": "Rooftop des Berges",
+    "address": "Les Berges du Lac, Tunis",
+    "mapsUrl": "https://maps.google.com/?q=Les+Berges+du+Lac+Tunis"
+  },
+  "program": [
+    {
+      "time": "20:00",
+      "label": "Accueil & cocktails"
+    },
+    {
+      "time": "21:00",
+      "label": "Dîner"
+    },
+    {
+      "time": "22:30",
+      "label": "Le gâteau !"
+    },
+    {
+      "time": "23:00",
+      "label": "Dancefloor jusqu'au bout de la nuit"
+    }
+  ],
+  "quote": "On ne vieillit pas, on devient vintage.",
+  "gallery": [
+    {
+      "caption": "Mes 20 ans"
+    },
+    {
+      "caption": "Entre amies"
+    },
+    {
+      "caption": "Été 2026"
+    }
+  ],
+  "rsvp": {
+    "deadline": "2027-04-25",
+    "contactEmail": "lina@example.com"
+  },
+  "translations": {
+    "en": {
+      "eventType": "Birthday",
+      "kicker": "Let's celebrate!",
+      "message": "Thirty candles deserve a party! Join me for an evening full of laughter, music and cake.",
+      "location": {
+        "name": "Rooftop des Berges",
+        "address": "Les Berges du Lac, Tunis"
+      },
+      "program": [
+        {
+          "label": "Welcome & cocktails"
+        },
+        {
+          "label": "Dinner"
+        },
+        {
+          "label": "The cake!"
+        },
+        {
+          "label": "Dancing until dawn"
+        }
+      ],
+      "quote": "We don't get older, we become vintage.",
+      "gallery": [
+        {
+          "caption": "Turning 20"
+        },
+        {
+          "caption": "With the girls"
+        },
+        {
+          "caption": "Summer 2026"
+        }
+      ]
+    },
+    "ar": {
+      "eventType": "عيد ميلاد",
+      "kicker": "هيّا نحتفل!",
+      "honoree": {
+        "name": "لينا"
+      },
+      "message": "ثلاثون شمعة تستحقّ الاحتفال! انضمّوا إليّ في سهرة مليئة بالضحك والموسيقى والحلوى.",
+      "location": {
+        "name": "سطح البحيرة",
+        "address": "ضفاف البحيرة، تونس"
+      },
+      "program": [
+        {
+          "label": "الاستقبال والمشروبات"
+        },
+        {
+          "label": "العشاء"
+        },
+        {
+          "label": "قالب الحلوى!"
+        },
+        {
+          "label": "رقص حتّى آخر الليل"
+        }
+      ],
+      "quote": "نحن لا نكبر، بل نصبح كلاسيكيّين.",
+      "gallery": [
+        {
+          "caption": "في العشرين"
+        },
+        {
+          "caption": "مع صديقاتي"
+        },
+        {
+          "caption": "صيف 2026"
+        }
+      ]
+    }
+  }
+}

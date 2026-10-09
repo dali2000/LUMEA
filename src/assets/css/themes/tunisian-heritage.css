@@ -1,5 +1,10 @@
 /* Tunisian Heritage — bleu profond, blanc, motifs de zellige, touches dorees. */
 .theme-tunisian-heritage {
+  --confetti-colors: #1b3a4b, #b08d57, #ffffff, #d1477a;
+  --confetti-shape: paper;
+  --scratch-1: #1b3a4b;
+  --scratch-2: #6f9db6;
+  --scratch-ink: rgba(255, 255, 255, 0.85);
   --bg: #ffffff;
   --bg-alt: #eaf2f5;
   --text: #1b3a4b;
@@ -25,10 +30,16 @@
   background-size: 52px 52px;
 }
 
-/* A thin zigzag rule, evocative of tile-edge borders, under the hero and above the footer */
-.theme-tunisian-heritage .invite-hero {
-  border-bottom: 10px solid transparent;
-  border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='10'%3E%3Cpath d='M0 10 L5 0 L10 10 L15 0 L20 10' fill='none' stroke='%23B08D57' stroke-width='1.4'/%3E%3C/svg%3E") 0 0 10 0 repeat;
+/* A thin zigzag rule, evocative of tile-edge borders, along the hero's foot */
+.theme-tunisian-heritage .invite-hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 10px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='10'%3E%3Cpath d='M0 10 L5 0 L10 10 L15 0 L20 10' fill='none' stroke='%23B08D57' stroke-width='1.4'/%3E%3C/svg%3E") repeat-x;
+  background-size: 20px 10px;
 }
 
 .theme-tunisian-heritage .program-item::before { background: var(--accent-strong); border: 2px solid var(--accent); background-clip: padding-box; }
@@ -37,3 +48,35 @@
 .theme-tunisian-heritage .btn-primary:hover { background: #244f66; }
 .theme-tunisian-heritage .label { color: var(--accent-strong); }
 .theme-tunisian-heritage .invite-date { color: var(--accent); }
+
+/* Motion — Tunisian Heritage: the hero pattern settles in and the tile border runs out from the centre. */
+.theme-tunisian-heritage {
+  --m-dur: 1000ms;
+  --m-y: 16px;
+  --m-letter-step: 55ms;
+  --m-letter-from: translateY(0.5em);
+  --m-media-scale: 1.1;
+  --m-parallax: 0.8;
+}
+
+@keyframes tn-pattern { from { opacity: 0; scale: 1.08; } }
+@keyframes tn-border { from { scale: 0 1; } }
+.js .theme-tunisian-heritage:not(.is-opened) .invite-hero::before { opacity: 0; }
+.js .theme-tunisian-heritage:not(.is-opened) .invite-hero::after { scale: 0 1; }
+.theme-tunisian-heritage.is-opened .invite-hero::before { animation: tn-pattern 2.6s ease-out var(--m-hero-start) both; }
+.theme-tunisian-heritage.is-opened .invite-hero::after { animation: tn-border 1.8s var(--m-ease) calc(var(--m-hero-start) + 600ms) both; }
+
+/* Section ornament: a small tile diamond */
+.theme-tunisian-heritage .ornament {
+  width: 9px;
+  height: 9px;
+  background: none;
+  border: 1px solid var(--accent);
+  rotate: 45deg;
+}
+@media (prefers-reduced-motion: reduce) {
+  .theme-tunisian-heritage .invite-hero::before,
+  .theme-tunisian-heritage .invite-hero::after { animation: none !important; }
+  .js .theme-tunisian-heritage:not(.is-opened) .invite-hero::before { opacity: 0.1; }
+  .js .theme-tunisian-heritage:not(.is-opened) .invite-hero::after { scale: none; }
+}

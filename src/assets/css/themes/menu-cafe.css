@@ -1,0 +1,35 @@
+/* Menu Café — coffee shop & brunch : crème, terracotta, assiettes rondes,
+   tout arrive avec un petit balancement léger. */
+.theme-menu-cafe {
+  --bg: #fbf6ef;
+  --bg-alt: #f3e8da;
+  --text: #3b2a20;
+  --text-muted: #8a7363;
+  --text-inverse: #fbf6ef;
+  --accent: #b5653d;
+  --accent-strong: #7a4a2e;
+  --border: rgba(59, 42, 32, 0.12);
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --m-dur: 1100ms;
+  --m-y: 22px;
+  --m-letter-from: translateY(0.35em) rotate(-6deg);
+  --m-letter-step: 50ms;
+  --m-media-scale: 1.1;
+}
+.theme-menu-cafe .menu-cover--photo::after {
+  background: linear-gradient(180deg, rgba(40, 22, 12, 0.15) 0%, rgba(40, 22, 12, 0.3) 45%, rgba(40, 22, 12, 0.85) 100%);
+}
+.theme-menu-cafe .menu-title { font-style: italic; font-weight: 500; }
+/* Round "plates" for the dish photos */
+.theme-menu-cafe .menu-photo { border-radius: 50%; }
+.theme-menu-cafe .ornament {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.theme-menu-cafe .menu-item-price { color: var(--accent-strong); }
+.theme-menu-cafe .btn-primary { background: var(--accent-strong); }
+.theme-menu-cafe .btn-primary:hover { background: #8d5737; }
+.theme-menu-cafe .btn-ghost { border-color: var(--accent); color: var(--text); }

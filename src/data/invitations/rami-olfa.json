@@ -1,0 +1,119 @@
+{
+  "theme": "modern-wedding",
+  "opening": "gift",
+  "meeting": "dance",
+  "finale": "fireworks",
+  "couple": {
+    "name1": "Rami",
+    "name2": "Olfa"
+  },
+  "message": "Le plus beau cadeau, c'est votre présence. Rejoignez-nous pour une nuit de fête.",
+  "date": "2027-10-16T20:00:00",
+  "location": {
+    "name": "The Residence",
+    "address": "Gammarth",
+    "mapsUrl": "https://maps.google.com/?q=The+Residence+Gammarth"
+  },
+  "program": [
+    {
+      "time": "20:00",
+      "label": "Cérémonie"
+    },
+    {
+      "time": "21:00",
+      "label": "Première danse"
+    },
+    {
+      "time": "21:30",
+      "label": "Dîner"
+    },
+    {
+      "time": "23:30",
+      "label": "Feu d'artifice & DJ set"
+    }
+  ],
+  "quote": "Une danse, puis toutes les autres.",
+  "gallery": [
+    {
+      "caption": "Shooting engagement"
+    },
+    {
+      "caption": "Paris, 2026"
+    },
+    {
+      "caption": "La répétition de la danse"
+    }
+  ],
+  "rsvp": {
+    "deadline": "2027-09-20",
+    "contactEmail": "rami.olfa@example.com"
+  },
+  "translations": {
+    "en": {
+      "message": "Your presence is the most beautiful gift. Join us for a night of celebration.",
+      "program": [
+        {
+          "label": "Ceremony"
+        },
+        {
+          "label": "First dance"
+        },
+        {
+          "label": "Dinner"
+        },
+        {
+          "label": "Fireworks & DJ set"
+        }
+      ],
+      "quote": "One dance, then all the others.",
+      "gallery": [
+        {
+          "caption": "Engagement shoot"
+        },
+        {
+          "caption": "Paris, 2026"
+        },
+        {
+          "caption": "Rehearsing the dance"
+        }
+      ]
+    },
+    "ar": {
+      "couple": {
+        "name1": "رامي",
+        "name2": "ألفة"
+      },
+      "message": "حضوركم هو أجمل هديّة. انضمّوا إلينا في ليلة احتفال.",
+      "program": [
+        {
+          "label": "المراسم"
+        },
+        {
+          "label": "الرقصة الأولى"
+        },
+        {
+          "label": "العشاء"
+        },
+        {
+          "label": "ألعاب نارية ودي جي"
+        }
+      ],
+      "quote": "رقصة واحدة، ثمّ كلّ الرقصات الأخرى.",
+      "gallery": [
+        {
+          "caption": "جلسة تصوير الخطوبة"
+        },
+        {
+          "caption": "باريس، 2026"
+        },
+        {
+          "caption": "التدرّب على الرقصة"
+        }
+      ],
+      "location": {
+        "name": "ذا ريزيدنس",
+        "address": "قمرت"
+      }
+    }
+  }
+}

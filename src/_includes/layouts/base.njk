@@ -1,5 +1,7 @@
 <!doctype html>
-<html lang="fr">
+{% set L = i18n[pageLang or (invite and invite.lang) or "fr"] or i18n.fr %}
+{% set alternates = altLangs or (invite and invite.langs) or [] %}
+<html lang="{{ L.code }}" dir="{{ L.dir }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,6 +18,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="/assets/css/main.css">
+  {% if L.code == "ar" %}<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@400;500;700&display=swap">{% endif %}
+  {% if alternates.length > 1 %}{% for alt in alternates %}<link rel="alternate" hreflang="{{ alt.lang }}" href="{{ alt.path }}">{% endfor %}{% endif %}
+  {% for href in extraCss %}<link rel="stylesheet" href="{{ href }}">{% endfor %}
   {% if themeCss %}<link rel="stylesheet" href="{{ themeCss }}">{% endif %}
 </head>
 <body class="{{ bodyClass }}">

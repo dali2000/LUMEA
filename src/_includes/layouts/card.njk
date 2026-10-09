@@ -1,0 +1,66 @@
+---
+layout: layouts/base.njk
+extraCss: ["/assets/css/card.css"]
+altLangs: []
+extraJs: ["https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js", "/assets/js/card.js"]
+eleventyComputed:
+  themeCss: "/assets/css/themes/{{ invite.theme }}.css"
+  bodyClass: "page-card theme-{{ invite.theme }}"
+---
+{#
+  The static version of an invitation, offered with every template: one
+  9:16 card (WhatsApp status, story, or printed) with a QR code back to the
+  animated invitation. "Download as PDF" prints the card alone (card.css).
+#}
+{% from "partials/icons.njk" import icon %}
+{% set T = i18n[invite.lang] or i18n.fr %}
+{% set lang = T.code %}
+{% set single = not invite.couple %}
+{% set coupleLabel = invite.honoree.name if single else invite.couple.name1 + " " + T.amp + " " + invite.couple.name2 %}
+
+<main class="card-page">
+  <article class="print-card" aria-label="{{ T.card.title }} — {{ coupleLabel }}">
+    <div class="print-inner">
+      <span class="label">{{ invite.eventType or T.defaultEventType }}</span>
+      <p class="print-kicker">{{ invite.kicker or (T.defaultKickerSingle if single else T.defaultKicker) }}</p>
+      <h1 class="print-names">
+        {% if single %}
+        {{ invite.honoree.name }}{% if invite.honoree.age %} <span class="print-amp">{{ invite.honoree.age }}</span>{% endif %}
+        {% else %}
+        <span>{{ invite.couple.name1 }}</span>
+        <span class="print-amp">{{ T.amp }}</span>
+        <span>{{ invite.couple.name2 }}</span>
+        {% endif %}
+      </h1>
+      <span class="ornament" aria-hidden="true"></span>
+      <p class="print-message">{{ invite.message }}</p>
+      <div class="print-when">
+        <p class="print-date">{{ invite.date | formatDateLong(lang) }}</p>
+        <p class="print-time">{{ T.at }} {{ invite.date | isoToTime(lang) }}</p>
+      </div>
+      <p class="print-place">
+        {{ invite.location.name }}
+        {% if invite.location.address %}<small>{{ invite.location.address }}</small>{% endif %}
+      </p>
+      <div class="print-qr">
+        <div class="print-qr-code" data-qr="{{ invite.path }}" aria-hidden="true"></div>
+        <p>{{ T.card.scan }}</p>
+      </div>
+      <span class="print-brand">lumea.tn</span>
+    </div>
+  </article>
+
+  <div class="card-actions">
+    <button type="button" class="btn btn-primary" data-print>{{ T.card.pdf }}</button>
+    <a class="btn btn-ghost" data-share="{{ coupleLabel }} — {{ invite.eventType or T.defaultEventType }}" data-share-path="{{ invite.path }}" href="https://wa.me/" target="_blank" rel="noopener">{{ icon("whatsapp") }} {{ T.card.share }}</a>
+    <a class="card-back" href="{{ invite.path }}">{{ T.card.animated }}</a>
+    <p class="card-tip">{{ T.card.tip }}</p>
+    {% if invite.langs.length > 1 %}
+    <nav class="lang-switch" aria-label="{{ T.languages }}">
+      {% for l in invite.langs %}
+      <a href="{{ l.path }}carte/" hreflang="{{ l.lang }}" lang="{{ l.lang }}"{% if l.lang == lang %} aria-current="page"{% endif %}>{{ i18n[l.lang].name }}</a>
+      {% endfor %}
+    </nav>
+    {% endif %}
+  </div>
+</main>

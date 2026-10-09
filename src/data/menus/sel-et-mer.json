@@ -1,0 +1,66 @@
+{
+  "theme": "menu-noir",
+  "restaurant": {
+    "name": "Sel & Mer",
+    "tagline": "Bar à huîtres & cuisine de la mer",
+    "intro": "Arrivages quotidiens du port de La Goulette, cuisine de saison et cocktails de signature face à la baie.",
+    "cover": "/assets/images/menus/sel-et-mer/cover.jpg"
+  },
+  "categories": [
+    {
+      "name": "Bar à huîtres",
+      "subtitle": "Fraîcheur iodée",
+      "items": [
+        { "name": "Huîtres de Bizerte n°3", "description": "Par six, mignonnette à l'échalote, citron", "price": "42 DT", "image": "/assets/images/menus/sel-et-mer/huitres.jpg", "tags": ["Signature"] },
+        { "name": "Plateau Sel & Mer", "description": "Huîtres, crevettes royales, bulots, palourdes — pour deux", "price": "145 DT", "image": "/assets/images/menus/sel-et-mer/plateau.jpg" },
+        { "name": "Crevettes royales", "description": "Pochées au court-bouillon, mayonnaise au citron vert", "price": "48 DT", "image": "/assets/images/menus/sel-et-mer/crevettes.jpg" }
+      ]
+    },
+    {
+      "name": "Plats",
+      "subtitle": "De la mer",
+      "items": [
+        { "name": "Filet de bar rôti", "description": "Peau croustillante, asperges vertes, beurre blanc aux agrumes", "price": "64 DT", "image": "/assets/images/menus/sel-et-mer/bar.jpg" },
+        { "name": "Linguine aux gambas", "description": "Bisque réduite, tomates confites, basilic", "price": "52 DT", "image": "/assets/images/menus/sel-et-mer/linguine.jpg" },
+        { "name": "Poulpe grillé", "description": "Purée de pois chiches fumée, huile au paprika", "price": "56 DT" },
+        { "name": "Loup en croûte de sel", "description": "Pour deux, découpé en salle, sauce vierge", "price": "120 DT" }
+      ]
+    },
+    {
+      "name": "Desserts",
+      "items": [
+        { "name": "Fondant au chocolat noir", "description": "Grand cru 70 %, coulis de fruits rouges", "price": "22 DT", "image": "/assets/images/menus/sel-et-mer/fondant.jpg" },
+        { "name": "Panna cotta", "description": "Vanille de Madagascar, fruits rouges, menthe", "price": "18 DT", "image": "/assets/images/menus/sel-et-mer/panna-cotta.jpg" }
+      ]
+    },
+    {
+      "name": "Cocktails",
+      "items": [
+        { "name": "Marée rouge", "description": "Gin, fraise, basilic, tonic au poivre rose", "price": "32 DT", "image": "/assets/images/menus/sel-et-mer/cocktail.jpg", "tags": ["Signature"] },
+        { "name": "Spritz de La Marsa", "description": "Apéritif aux agrumes, eau pétillante, orange sanguine", "price": "28 DT" },
+        { "name": "Virgin Mojito", "description": "Citron vert, menthe, sucre de canne", "price": "16 DT", "tags": ["Sans alcool"] }
+      ]
+    }
+  ],
+  "specialties": [
+    { "name": "Plateau Sel & Mer", "description": "Le meilleur de l'arrivage du jour, pour deux.", "price": "145 DT", "image": "/assets/images/menus/sel-et-mer/plateau.jpg" },
+    { "name": "Filet de bar rôti", "description": "Notre plat signature, beurre blanc aux agrumes.", "price": "64 DT", "image": "/assets/images/menus/sel-et-mer/bar.jpg" },
+    { "name": "Marée rouge", "description": "Le cocktail de la maison, à découvrir au bar.", "price": "32 DT", "image": "/assets/images/menus/sel-et-mer/cocktail.jpg" }
+  ],
+  "galleryTitle": "Face à la baie",
+  "gallery": [
+    { "src": "/assets/images/menus/sel-et-mer/salle.jpg", "caption": "La salle, vue sur mer" },
+    { "src": "/assets/images/menus/sel-et-mer/cover.jpg", "caption": "Le bar à cocktails" },
+    { "src": "/assets/images/menus/sel-et-mer/huitres.jpg", "caption": "L'arrivage du matin" }
+  ],
+  "contact": {
+    "phone": "+21671000002",
+    "whatsapp": "https://wa.me/21620000002",
+    "instagram": "https://instagram.com/"
+  },
+  "location": {
+    "address": "Corniche de La Marsa, Tunis",
+    "mapsUrl": "https://maps.google.com/?q=Corniche+La+Marsa"
+  },
+  "hours": "Tous les soirs · 19h00 – 00h30 · Bar dès 18h00"
+}
