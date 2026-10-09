@@ -201,6 +201,28 @@ Chaque invitation a aussi une carte fixe au format 9:16 sur
 vers l'invitation animée : téléchargement en PDF (impression 108 × 192 mm)
 et partage WhatsApp. Lien « Version imprimable » en bas de l'invitation.
 
+### RSVP → Excel (Google Sheet)
+
+Les réponses au formulaire de présence s'enregistrent dans un Google Sheet,
+un onglet par invitation (date, nom, présence, nombre de personnes, message,
+langue). Pour obtenir l'Excel : **Fichier → Télécharger → Microsoft Excel
+(.xlsx)**. Installation, une seule fois :
+
+1. Créez un Google Sheet vide (ex. « LUMÉA — RSVP »).
+2. **Extensions → Apps Script**, effacez le contenu, collez
+   `tools/rsvp-google-sheet.gs`, enregistrez.
+3. **Déployer → Nouveau déploiement** → type **Application Web** ·
+   Exécuter en tant que : **Moi** · Qui a accès : **Tout le monde** →
+   Déployer, puis autorisez l'accès à votre compte.
+4. Copiez l'URL qui se termine par `/exec` dans `src/_data/site.json` :
+   `"rsvpEndpoint": "https://script.google.com/macros/s/…/exec"`, puis poussez.
+
+Tant que `rsvpEndpoint` est vide, le formulaire garde l'ancien comportement
+(e-mail à `rsvp.contactEmail`). Si vous modifiez le script plus tard :
+Déployer → Gérer les déploiements → modifier → Nouvelle version (l'URL reste
+la même). Pour donner les réponses à un couple, partagez-lui le fichier ou
+envoyez-lui l'export Excel de son onglet.
+
 ## Catalogue des modèles
 
 `/modeles/` (et `/en/templates/`, `/ar/templates/`) présente les modèles

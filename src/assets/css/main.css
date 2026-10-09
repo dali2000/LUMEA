@@ -505,3 +505,6 @@ a.collection-card { color: inherit; text-decoration: none; }
 @media (max-width: 480px) { .site-langs { display: none; } }
 .site-langs a { text-decoration: none; } .site-langs a:hover { color: var(--accent); }
 .pricing-card .btn { margin-top: var(--space-3); width: 100%; }
+.rsvp-trap { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.rsvp-error { margin: 0; font-size: var(--size-small); color: #b3261e; text-align: center; }
+.rsvp-form button[disabled] { opacity: 0.6; cursor: wait; }

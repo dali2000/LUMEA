@@ -289,7 +289,9 @@ eleventyComputed:
       {% if invite.rsvp.deadline %}<p class="center" style="color:var(--text-muted);font-size:var(--size-small);">{{ T.rsvpBefore }} {{ invite.rsvp.deadline | formatDateShort(lang) }}</p>{% endif %}
       <span class="ornament" aria-hidden="true"></span>
     </div>
-    <form class="rsvp-form reveal" data-rsvp-form {% if invite.rsvp.contactEmail %}data-email="{{ invite.rsvp.contactEmail }}"{% endif %}>
+    <form class="rsvp-form reveal" data-rsvp-form data-invitation="{{ invite.slug }}"{% if site.rsvpEndpoint %} data-endpoint="{{ site.rsvpEndpoint }}"{% endif %}{% if invite.rsvp.contactEmail %} data-email="{{ invite.rsvp.contactEmail }}"{% endif %}>
+      {# Invisible trap field: only bots fill it in #}
+      <input type="text" name="website" class="rsvp-trap" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div>
         <label for="name">{{ T.yourName }}</label>
         <input type="text" id="name" name="name" required>
@@ -307,6 +309,7 @@ eleventyComputed:
         <textarea id="message" name="message"></textarea>
       </div>
       <button type="submit" class="btn btn-primary">{{ T.send }}</button>
+      <p class="rsvp-error" data-rsvp-error role="alert" hidden>{{ T.rsvpError }}</p>
     </form>
     <div class="rsvp-confirmation" data-rsvp-confirmation hidden>
       <svg class="rsvp-check" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24" pathLength="1" /><path d="M15 27l7 7 15-16" pathLength="1" /></svg>
