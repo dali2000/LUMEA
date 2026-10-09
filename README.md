@@ -223,6 +223,18 @@ Déployer → Gérer les déploiements → modifier → Nouvelle version (l'URL 
 la même). Pour donner les réponses à un couple, partagez-lui le fichier ou
 envoyez-lui l'export Excel de son onglet.
 
+#### Récupérer les réponses en JSON sur votre ordinateur
+
+1. Dans le script Apps Script, remplacez `READ_KEY = "CHANGEZ-MOI"` par un
+   mot de passe à vous, puis Déployer → Gérer les déploiements → Nouvelle version.
+2. À la racine du projet, créez `rsvp.config.json` :
+   `{ "url": "https://script.google.com/macros/s/…/exec", "key": "votre-mot-de-passe" }`
+3. `npm run rsvp` → `rsvp/<invitation>.json` (une liste par invitation) et
+   `rsvp/toutes-les-reponses.json`, avec un résumé (réponses, oui, personnes).
+
+`rsvp/` et `rsvp.config.json` sont ignorés par git : les noms des invités et
+la clé ne partent jamais sur GitHub (le dépôt est public).
+
 ## Catalogue des modèles
 
 `/modeles/` (et `/en/templates/`, `/ar/templates/`) présente les modèles

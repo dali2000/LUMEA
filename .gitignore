@@ -3,3 +3,7 @@ _site/
 .cache/
 .DS_Store
 *.log
+
+# RSVP replies (guests personal data) and the key to fetch them
+rsvp/
+rsvp.config.json

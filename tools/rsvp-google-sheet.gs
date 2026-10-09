@@ -15,6 +15,10 @@
 
 var HEADERS = ["Date de réponse", "Nom", "Présence", "Personnes", "Message", "Langue", "Lien de l'invitation"];
 
+// Clé secrète pour récupérer les réponses en JSON (npm run rsvp). Remplacez-la
+// par un mot de passe à vous, et mettez le même dans rsvp.config.json.
+var READ_KEY = "CHANGEZ-MOI";
+
 function doPost(e) {
   var p = (e && e.parameter) || {};
   // Champ piège invisible : rempli uniquement par les robots.
@@ -51,9 +55,31 @@ function doPost(e) {
   return json({ ok: true });
 }
 
-// Ouvrir l'URL /exec dans un navigateur affiche ceci : utile pour vérifier le déploiement.
-function doGet() {
-  return json({ ok: true, service: "LUMÉA RSVP" });
+// Sans clé : simple vérification du déploiement (ouvrir l'URL /exec).
+// Avec ?key=READ_KEY : toutes les réponses en JSON, une liste par invitation
+// (c'est ce que lit tools/rsvp-download.js).
+function doGet(e) {
+  var key = e && e.parameter && e.parameter.key;
+  if (!key || READ_KEY === "CHANGEZ-MOI" || key !== READ_KEY) {
+    return json({ ok: true, service: "LUMÉA RSVP" });
+  }
+  var out = {};
+  SpreadsheetApp.getActiveSpreadsheet().getSheets().forEach(function (sheet) {
+    var rows = sheet.getDataRange().getValues();
+    if (rows.length < 1 || rows[0][0] !== HEADERS[0]) return; // not an RSVP tab
+    out[sheet.getName()] = rows.slice(1).map(function (r) {
+      return {
+        date: r[0] instanceof Date ? r[0].toISOString() : String(r[0]),
+        nom: String(r[1]).replace(/^'/, ""),
+        presence: r[2] === "Oui",
+        personnes: Number(r[3]) || 0,
+        message: String(r[4]).replace(/^'/, ""),
+        langue: String(r[5]),
+        lien: String(r[6]),
+      };
+    });
+  });
+  return json({ ok: true, invitations: out });
 }
 
 function clean(value, max) {
