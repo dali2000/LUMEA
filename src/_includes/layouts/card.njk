@@ -43,7 +43,7 @@ eleventyComputed:
         {% if invite.location.address %}<small>{{ invite.location.address }}</small>{% endif %}
       </p>
       <div class="print-qr">
-        <div class="print-qr-code" data-qr="{{ invite.path }}" aria-hidden="true"></div>
+        <div class="print-qr-code" data-qr="{{ invite.path | url }}" aria-hidden="true"></div>
         <p>{{ T.card.scan }}</p>
       </div>
       <span class="print-brand">lumea.tn</span>
@@ -52,7 +52,7 @@ eleventyComputed:
 
   <div class="card-actions">
     <button type="button" class="btn btn-primary" data-print>{{ T.card.pdf }}</button>
-    <a class="btn btn-ghost" data-share="{{ coupleLabel }} — {{ invite.eventType or T.defaultEventType }}" data-share-path="{{ invite.path }}" href="https://wa.me/" target="_blank" rel="noopener">{{ icon("whatsapp") }} {{ T.card.share }}</a>
+    <a class="btn btn-ghost" data-share="{{ coupleLabel }} — {{ invite.eventType or T.defaultEventType }}" data-share-path="{{ invite.path | url }}" href="https://wa.me/" target="_blank" rel="noopener">{{ icon("whatsapp") }} {{ T.card.share }}</a>
     <a class="card-back" href="{{ invite.path }}">{{ T.card.animated }}</a>
     <p class="card-tip">{{ T.card.tip }}</p>
     {% if invite.langs.length > 1 %}

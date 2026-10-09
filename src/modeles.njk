@@ -62,7 +62,7 @@ eleventyComputed:
       {% set previewLink = (demo.langs | findBy("lang", catLang)) or demo.langs[0] %}
       {% set demoNames = (demo.couple.name1 + " & " + demo.couple.name2) if demo.couple else demo.honoree.name %}
       <article class="tpl" data-occasion="{{ t.occasion }}" id="{{ t.id }}">
-        <div class="tpl-screen" data-preview data-src="{{ previewLink.path }}?preview">
+        <div class="tpl-screen" data-preview data-src="{{ previewLink.path | url }}?preview">
           <div class="tpl-phone" style="--f1: {{ t.frame[0] }}; --f2: {{ t.frame[1] }}; --ink: {{ t.frame[2] }};">
             <div class="tpl-poster" aria-hidden="true">
               <span class="tpl-poster-label">{{ T.occasions[t.occasion] }}</span>
@@ -90,7 +90,7 @@ eleventyComputed:
             <span>{{ C.previewLang }}</span>
             <div class="lang-switch" role="group" aria-label="{{ C.previewLang }}">
               {% for l in demo.langs %}
-              <button type="button" lang="{{ l.lang }}" data-preview-lang="{{ l.path }}" aria-pressed="{{ 'true' if l.path == previewLink.path else 'false' }}">{{ i18n[l.lang].short }}</button>
+              <button type="button" lang="{{ l.lang }}" data-preview-lang="{{ l.path | url }}" aria-pressed="{{ 'true' if l.path == previewLink.path else 'false' }}">{{ i18n[l.lang].short }}</button>
               {% endfor %}
             </div>
           </div>

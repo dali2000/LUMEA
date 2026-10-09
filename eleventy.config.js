@@ -1,6 +1,11 @@
+const { HtmlBasePlugin } = require("@11ty/eleventy");
 const { DateTime } = require("./src/_utils/datetime.js");
 
 module.exports = function (eleventyConfig) {
+  // GitHub Pages serves the site under /LUMEA/ (PATH_PREFIX, set by the
+  // deploy workflow). This plugin prefixes every root-relative href/src in
+  // the generated HTML; data-* paths go through the | url filter.
+  eleventyConfig.addPlugin(HtmlBasePlugin);
   // Static passthrough
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.addPassthroughCopy({ "src/favicon.svg": "favicon.svg" });
@@ -95,6 +100,6 @@ module.exports = function (eleventyConfig) {
       includes: "_includes",
       data: "_data",
     },
-    pathPrefix: "/",
+    pathPrefix: process.env.PATH_PREFIX || "/",
   };
 };
